@@ -1,1 +1,18 @@
-<p>search works!</p>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Tìm kiếm">
+  <input type="text" class="form-control datetimepicker-input" placeholder="Ngày đến" id="ngayden" data-toggle="datetimepicker" data-target="#ngayden"/>
+  <input type="text" class="form-control datetimepicker-input" placeholder="Ngày đi" id="ngaydi" data-toggle="datetimepicker" data-target="#ngaydi"/>
+<!--  <input type="text" class="form-control" placeholder="Ngày đến">-->
+  <input type="text" class="form-control" placeholder="Ngày đi">
+  <input type="text" class="form-control" placeholder="Số người">
+  <button class="btn btn-success" type="submit">Go</button>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#ngayden').datetimepicker();
+    });
+    $(function () {
+        $('#ngaydi').datetimepicker();
+    });
+</script>
