@@ -2,7 +2,14 @@
   <app-header></app-header>
   <div class="row">
   <div class="house-list">
-
+    <h4>House List</h4>
+    <div class="card single-house" *ngFor="let house of houses; i as index">
+      <a routerLink="#"><img class="card-img-top img-fluid" [src] = house.image alt=""></a>
+      <div class="card-body">
+        <h4 class="card-title">{{house.houseName}}</h4>
+        <p class="card-text">{{house.houseName}}</p>
+      </div>
+    </div>
   </div>
   </div>
   <app-footer></app-footer>
