@@ -12,8 +12,12 @@
     <div class="col-sm-8 ">
       <div class="container shadow">
       <p class="font-weight-bold " style="font-size: 20px">{{listHouse.houseName}} ____ {{ time | date:'hh:mm:ss a' }}</p>
-      <p class="font-weight-bold ">{{listHouse.address}}</p>
-      <p class="font-weight-bold ">Nhà riêng: {{listHouse.area}} m2</p>
+      <p class="font-weight-bold ">
+      <img src="assets/icon/address.png" width="20" height="20"> {{listHouse.address}}
+      </p>
+      <p class="font-weight-bold ">
+      <img src="assets/icon/house.png" width="20" height="20">  Nhà riêng: {{listHouse.area}} m2
+      </p>
       <p class="overflow-auto">{{listHouse.description}}</p>
       </div>
       <p></p>
