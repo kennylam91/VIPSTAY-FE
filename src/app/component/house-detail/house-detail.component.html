@@ -1,33 +1,49 @@
 
-<header class="container" style="max-width:100%;" id="home">
+<header class="container shadow" style="max-width:100%;" id="home">
   <img src="assets/PictureHouseDetail/room_18463_11_1545395731.jpg" alt="Architecture" width="100%" height="600">
 </header>
 
-<div class="container">
-  <ul class="breadcrumb">
+<div class="container shadow">
+  <ul class="breadcrumb shadow">
     <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
     <li class="breadcrumb-item active"><a href="#">Trần Hiếu-HomeStay</a></li>
   </ul>
   <div class="row">
     <div class="col-sm-8 ">
-      <h3>Column 2</h3>
-      <p class="font-weight-bold " style="font-size: 20px">{{listHouse[0].houseName}}</p>
-      <p class="font-weight-bold ">{{listHouse[0].address}}</p>
-      <p class="font-weight-bold ">Nhà riêng: {{listHouse[0].area}} m2</p>
-      <p class="overflow-auto">{{listHouse[0].description}}</p>
-
+      <div class="container shadow">
+      <p class="font-weight-bold " style="font-size: 20px">{{listHouse.houseName}} ____ {{ time | date:'hh:mm:ss a' }}</p>
+      <p class="font-weight-bold ">{{listHouse.address}}</p>
+      <p class="font-weight-bold ">Nhà riêng: {{listHouse.area}} m2</p>
+      <p class="overflow-auto">{{listHouse.description}}</p>
+      </div>
       <p></p>
-      <p class="font-weight-bold" style="font-size: 25px">Đánh Giá</p>
-      <div class="container">
+
+      <p class="font-weight-bold shadow" style="font-size: 25px" >Tiện Nghi Chỗ ở </p>
+      <div class="container bg-light shadow">
+        <p>Giới thiệu về các tiện nghi và dịch vụ tại nơi lưu trú</p>
+        <p class="font-weight-bold" style="font-size: 20px" >Tiện ích gia đình </p>
+        <img src="assets/icon/chair.png" width="60" height="60"> Phù hợp với trẻ nhỏ
+        <img src="assets/icon/No-Smoking-Sign-Vinyl-Decal-Sticker__27437.1506204179.jpg" width="35" height="35" >Không hút thuốc
+        <p class="font-weight-bold" style="font-size: 20px" >Tiện ích bếp </p>
+        <img src="assets/icon/electric.png" width="35" height="35"> Bếp điện
+        <img src="assets/icon/microwave-oven-60-798617.png" width="35" height="35"> Lò vi sóng
+        <img src="assets/icon/fridge-119-733211.png" width="35" height="35"> Tủ lạnh
+        <p class="font-weight-bold" style="font-size: 20px" >Tiện ích giải trí </p>
+        <img src="assets/icon/background_1151777.png" width="35" height="35"> Cảnh quan đẹp
+      </div>
+      <p class="font-weight-bold shadow" style="font-size: 25px">Đánh Giá</p>
+      <div class="container shadow">
       <div class="card">
-        <div class="card-header">Trần Thanh Hiếu Thảo</div>
+        <div class="card-header">Trần Thanh Hiếu Thảo </div>
         <div class="card-body">Lần này đặt phòng do có sự cố phòng nên chủ nhà đã liên hệ giúp mình sang một homestay khác. Hy vọng lần sau sẽ có dịp ở homestay này :D</div>
       </div>
-        <input style="width: 647px" type="text" placeholder="Type your comment"><button>Send</button>
+        <form class="form-inline" >
+        <input type="text" style="width: 627px" class="form-control mb-2 mr-sm-2" placeholder="Type your comment">
+        <button type="submit"  class="btn btn-primary mb-2">Send</button>
+        </form>
       </div>
     </div>
     <div class="col-sm-4">
-      <h3>Column 3</h3>
       <div class="container border shadow-lg ">
         <p style="font-size: 35px;text-align: center">{{listHouse[0].price / 3}}₫ /đêm
         <p>
@@ -64,6 +80,7 @@
         </div>
         <p style="font-size: 14px;border: 1px bisque solid ">Gọi<a href="#"> 18006586</a> (miễn phí) để được hỗ trợ 24/7</p>
       </div>
+
     </div>
   </div>
 </div>

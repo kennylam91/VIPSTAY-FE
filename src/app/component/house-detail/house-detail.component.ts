@@ -9,13 +9,17 @@ import {IHouse} from '../../model/IHouse';
   styleUrls: ['./house-detail.component.css']
 })
 export class HouseDetailComponent implements OnInit {
-  listHouse: IHouse[];
+  listHouse: IHouse;
+   time: Date = new Date();
 
   constructor(private houseService: HouseService) {
-    this.listHouse = houseService.listHouse;
+    this.listHouse = houseService.listHouse[0];
   }
 
   ngOnInit() {
+    setInterval(() => {
+      this.time = new Date();
+    }, 1000);
   }
 
 }
