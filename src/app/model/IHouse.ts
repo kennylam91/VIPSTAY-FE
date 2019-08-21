@@ -1,4 +1,5 @@
 export interface IHouse {
+  id: number;
   houseName: string;
   houseType: string;
   address: string;
