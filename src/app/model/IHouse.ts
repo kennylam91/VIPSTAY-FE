@@ -1,4 +1,5 @@
-export interface House {
+
+export interface IHouse {
   id: number;
   houseName: string;
   houseType: string;
@@ -10,5 +11,4 @@ export interface House {
   image: string;
   rate: number;
   area: number;
-
 }

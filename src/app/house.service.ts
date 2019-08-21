@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {House} from './model/House';
+import {IHouse} from './model/IHouse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HouseService {
-  listHouse: House[] = [
+  listHouse: IHouse[] = [
     {
       id: 0,
       houseName: 'Trần Hiếu - HomeStay',
