@@ -8,7 +8,8 @@ import {IHouse} from '../../model/IHouse';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  houses: IHouse[] = [
+
+  bestChoiceHouses: IHouse[] = [
     {
       id: 1, houseName: 'Premium Luxury', address: 'Binh Thanh, Ho Chi Minh, VietNam', bathroomNumber: 2, bedroomNumber: 2,
       description: 'Căn hộ penhouse 3 phòng ngủ với nội thất đẳng cấp và dịch vụ tiện nghi 5 sao! Hệ thống rạp phim tại gia siêu ' +
@@ -41,6 +42,9 @@ export class HomepageComponent implements OnInit {
     }
 
   ];
+  bestSaleoffHouses = this.bestChoiceHouses;
+  suggestionHouses = this.bestChoiceHouses;
+
 
   constructor(private houseService: HouseService) {
 
@@ -49,7 +53,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
     // this.houseService.getHouses()
     //   .subscribe(next => {
-    //     this.houses = next;
+    //     this.bestChoiceHouses = next;
     //   });
 
   }
