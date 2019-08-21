@@ -8,6 +8,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { HouseDetailComponent } from './component/house-detail/house-detail.component';
 import { SearchComponent } from './component/search/search.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,8 +16,7 @@ import { SearchComponent } from './component/search/search.component';
     HomepageComponent,
     HeaderComponent,
     FooterComponent,
-    HouseDetailComponent,
-    SearchComponent
+    HouseDetailComponent
   ],
   imports: [
     BrowserModule,

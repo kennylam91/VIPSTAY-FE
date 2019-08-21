@@ -1,2 +1,16 @@
-<div class="container">
+<div class="container bg-light">
+  <div class="house-list">
+    <h4>House List</h4>
+    <div class="row">
+      <div class="card single-house col-sm-3" *ngFor="let house of houses; i as index">
+        <a routerLink="#"><img class="card-img-top img-fluid" [src]=house.image alt=""></a>
+        <div class="card-body text-center">
+          <a routerLink="#"><h5 class="card-title">{{house.houseName}}</h5></a>
+          <p class="card-text">{{house.price}}</p>
+          <p class="card-text">{{house.address}}</p>
+          <p class="card-text">{{house.rate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
