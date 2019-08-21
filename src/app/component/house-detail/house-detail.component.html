@@ -1,1 +1,81 @@
-<p>house-detail works!</p>
+<script src="/bower_components/angular-read-more/readmore.min.js"></script>
+<!--<div id="myCarousel" class="carousel slile" data-ride="carousel">-->
+<!--  <div class="carousel-inner">-->
+<!--    <div class="carousel-item active">-->
+<!--      <img class="d-block w-100" src="assets/PictureHouseDetail/room_18463_1_1545395723.jpg" alt="First slide">-->
+<!--    </div>-->
+<!--  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">-->
+<!--    <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--    <span class="sr-only">Previous</span>-->
+<!--  </a>-->
+<!--  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">-->
+<!--    <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--    <span class="sr-only">Next</span>-->
+<!--  </a>-->
+<!--</div>-->
+<header class="container" style="max-width:100%;" id="home">
+  <img src="assets/PictureHouseDetail/room_18463_11_1545395731.jpg" alt="Architecture" width="100%" height="600">
+</header>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 ">
+      <h3>Column 2</h3>
+      <p class="font-weight-bold " style="font-size: 20px">{{listHouse[0].houseName}}</p>
+      <p class="font-weight-bold ">{{listHouse[0].address}}</p>
+      <p class="font-weight-bold ">Nhà riêng: {{listHouse[0].area}} m2</p>
+      <p class="overflow-auto">{{listHouse[0].description}}</p>
+
+      <p></p>
+      <p class="font-weight-bold" style="font-size: 25px">Đánh Giá</p>
+      <div class="container">
+      <div class="card">
+        <div class="card-header">Trần Thanh Hiếu Thảo</div>
+        <div class="card-body">Lần này đặt phòng do có sự cố phòng nên chủ nhà đã liên hệ giúp mình sang một homestay khác. Hy vọng lần sau sẽ có dịp ở homestay này :D</div>
+      </div>
+        <input style="width: 647px" type="text" placeholder="Type your comment"><button>Send</button>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 3</h3>
+      <div class="container border shadow-lg ">
+        <p style="font-size: 35px;text-align: center">{{listHouse[0].price / 3}}₫ /đêm
+        <p>
+        <form>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="dd/mm/yyyy">
+            <input type="text" class="form-control" placeholder="dd/mm/yyyy">
+          </div>
+        </form>
+        <form>
+          <div class="input-group mb-3">
+            <form>
+              <select  class="custom-select" style="width: 320px">
+                <option selected>1 Khách</option>
+                <option>2 khách</option>
+              </select>
+            </form>
+          </div>
+        </form>
+        <form>
+          <div class="input-group mb-3 input-group-lg ">
+            <button style="background: coral;color: white" type="text" class="form-control">Gửi yêu cầu đặt phòng
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="container border shadow-lg h-auto ">
+        <div class="row">
+        <div class="col-2"><img src="assets/PictureHouseDetail/room_18463_14_1545395734.jpg" width="60" height="60" style="border-radius: 50%"></div>
+        <div class="col-10">
+        <p style="font-size: 20px;text-align: center;color: coral">Xóm HomeStay<p>
+        <p style="font-size: 15px;text-align: center">Tham gia 09/2018<p>
+        </div>
+        </div>
+        <p style="font-size: 14px;border: 1px bisque solid ">Gọi<a href="#"> 18006586</a> (miễn phí) để được hỗ trợ 24/7</p>
+      </div>
+    </div>
+  </div>
+</div>
+<p>'</p>
+
+
