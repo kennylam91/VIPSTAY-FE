@@ -13,19 +13,19 @@ export class HouseService {
   getHouses(): Observable<IHouse[]> {
     return this.http.get<IHouse[]>(this.API_URL);
   }
-  getBookById(id: number): Observable<IHouse> {
+  getHouseById(id: number): Observable<IHouse> {
     return this.http.get<IHouse>(`${this.API_URL}/${id}`);
   }
 
-  createBook(book: Partial<IHouse>): Observable<IHouse> {
-    return this.http.post<IHouse>(this.API_URL, book);
+  createHouse(house: Partial<IHouse>): Observable<IHouse> {
+    return this.http.post<IHouse>(this.API_URL, house);
   }
 
-  updateBook(book: IHouse): Observable<IHouse> {
-    return this.http.put<IHouse>(`${this.API_URL}/${book.id}`, book);
+  updateHouse(house: IHouse): Observable<IHouse> {
+    return this.http.put<IHouse>(`${this.API_URL}/${house.id}`, house);
   }
 
-  deleteBook(id: number): Observable<IHouse> {
+  deleteHouse(id: number): Observable<IHouse> {
     return this.http.delete<IHouse>(`${this.API_URL}/${id}`);
   }
 
