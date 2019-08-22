@@ -20,14 +20,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     HouseDetailComponent,
     SearchComponent,
-    LoginComponent
-  ],
+    LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
