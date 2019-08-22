@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from 'angularfire2/storage';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -12,12 +10,8 @@ import {map} from 'rxjs/operators';
 })
 export class UploadFileComponent implements OnInit {
   selectedFile: File;
-  API_URL = 'https://firebasestorage.clients6.google.com/v0/b/vipstay-637a2.appspot.com/o';
   ref: AngularFireStorageReference;
-  task: AngularFireUploadTask;
-  uploadState: Observable<string>;
-  uploadProgress: Observable<number>;
-  downloadURL: Observable<string>;
+  downloadURL: string;
 
 
   constructor(private httpClient: HttpClient, private afStorage: AngularFireStorage) {
@@ -35,8 +29,21 @@ export class UploadFileComponent implements OnInit {
     console.log('upload');
     const id = Math.random().toString(36).substring(2);
     this.ref = this.afStorage.ref(id);
-    this.task = this.ref.put(this.selectedFile);
-    this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
-    this.uploadProgress = this.task.percentageChanges();
+
+    this.ref.put(this.selectedFile)
+      .then(snapshot => {
+        return snapshot.ref.getDownloadURL();   // Will return a promise with the download link
+      })
+
+      .then(downloadURL => {
+        this.downloadURL = downloadURL;
+        console.log(downloadURL);
+        return downloadURL;
+      })
+
+      .catch(error => {
+        // Use to signal error if something goes wrong.
+        console.log(`Failed to upload file and get link - ${error}`);
+      });
   }
 }
