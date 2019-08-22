@@ -11,7 +11,19 @@ import {SearchComponent} from './component/search/search.component';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './component/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UploadFileComponent} from './component/upload-file/upload-file.component';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireStorageModule} from 'angularfire2/storage';
 
+const firebaseConfig = {
+  apiKey: 'AIzaSyDibiKCzy27CCE-J5_ncb1imwzYqK9-L_Q',
+  authDomain: 'vipstay-637a2.firebaseapp.com',
+  databaseURL: 'https://vipstay-637a2.firebaseio.com',
+  projectId: 'vipstay-637a2',
+  storageBucket: 'vipstay-637a2.appspot.com',
+  messagingSenderId: '394776501356',
+  appId: '1:394776501356:web:d1cea52d76cd19a0'
+};
 // @ts-ignore
 // @ts-ignore
 @NgModule({
@@ -22,7 +34,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     HouseDetailComponent,
     SearchComponent,
-    LoginComponent],
+    LoginComponent,
+    UploadFileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,7 +43,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
