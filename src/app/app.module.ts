@@ -10,6 +10,7 @@ import { HouseDetailComponent } from './component/house-detail/house-detail.comp
 import { SearchComponent } from './component/search/search.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './component/login/login.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { LoginComponent } from './component/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
