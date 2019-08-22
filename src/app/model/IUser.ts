@@ -9,4 +9,5 @@ export interface IUser {
   email: string;
   id: number;
   avatar: string;
+  type: 'user';
 }

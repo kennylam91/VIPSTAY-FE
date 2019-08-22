@@ -7,12 +7,12 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private readonly API_URL = 'http://localhost:8080/api/houses';
+  private readonly API_URL = 'http://localhost:8080/api/user';
 
   constructor(private httpClient: HttpClient) {
   }
 
-  create(user: Partial<IUser>): Observable<IUser> {
+  register(user: Partial<IUser>): Observable<IUser> {
     return this.httpClient.post<IUser>(this.API_URL, user);
   }
 
@@ -20,5 +20,11 @@ export class UserService {
     return this.httpClient.put<IUser>(`${this.API_URL}/${user.id}`, user);
   }
 
+  getById(id: number): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${this.API_URL}/${id}`);
+  }
+  delete(id: number): Observable<IUser> {
+    return this.httpClient.delete<IUser>(`${this.API_URL}/${id}`);
+  }
 }
 

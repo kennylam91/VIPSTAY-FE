@@ -11,6 +11,8 @@ import { SearchComponent } from './component/search/search.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './component/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RegisterComponent} from './component/register/register.component';
+import { RegisterHostComponent } from './component/register-host/register-host.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     HouseDetailComponent,
     SearchComponent,
-    LoginComponent],
+    LoginComponent,
+  RegisterComponent,
+  RegisterHostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

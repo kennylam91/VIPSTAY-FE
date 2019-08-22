@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm bg-light">
   <div class="col-md-4">
     <!-- Brand -->
-    <a class="navbar-brand text-dark" href="#">VIPstay</a>
+    <a class="navbar-brand text-dark" [routerLink]="['']">VIPstay</a>
   </div>
   <div class="col-md-8">
     <ul class="navbar-nav justify-content-around">
@@ -9,10 +9,10 @@
         <a class="nav-link text-dark " href="#">Hotline: 1900 1080</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link btn btn-outline-warning text-warning p-0 mt-2" href="#">Trở thành chủ nhà</a>
+        <a class="nav-link btn btn-outline-warning text-warning p-0 mt-2" [routerLink]="['/registerHost']">Trở thành chủ nhà</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark " href="#">Đăng ký</a>
+        <a class="nav-link text-dark " [routerLink]="['/registerUser']">Đăng ký</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-dark " routerLink="/login">Đăng nhập</a>
@@ -21,12 +21,11 @@
       <!-- Dropdown -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-dark " href="#" id="navbardrop" data-toggle="dropdown">
-          Dropdown link
+          VND
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item text-dark" href="#">Link 1</a>
-          <a class="dropdown-item text-dark" href="#">Link 2</a>
-          <a class="dropdown-item text-dark" href="#">Link 3</a>
+          <a class="dropdown-item text-dark" href="#">VND_Viet Nam Dong</a>
+          <a class="dropdown-item text-dark" href="#">USD_Dolla USA</a>
         </div>
       </li>
     </ul>
