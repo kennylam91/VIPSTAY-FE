@@ -1,20 +1,36 @@
 <div class="container">
-<app-header></app-header>
-<div class="login-body row">
-  <form [formGroup]="loginForm" class=" col-sm-6" (ngSubmit)="login()">
-    <h3>User Login:</h3>
-    <div class="form-row form-group">
-      <label class="col-sm-3 col-form-label">Username:</label>
+  <app-header></app-header>
+  <div class="login-body row m-3">
+    <form [formGroup]="loginForm" class="offset-sm-3 col-sm-6 bg-light" (ngSubmit)="login()">
+      <h3>User Login</h3>
+      <div class="form-row form-group mt-3">
+        <label class="col-sm-3 col-form-label">Username:</label>
         <input type="text" formControlName="username" class="form-control col-sm-9">
-    </div>
-    <div class="form-row form-group">
-      <label class="col-sm-3 col-form-label">Password:</label>
-      <input type="password" formControlName="password" class="form-control col-sm-9">
-    </div>
-    <button class="btn btn-outline-primary offset-sm-3 col-sm-3" type="submit">Log in</button>
-    <a routerLink="/home">
-      <button class="btn btn-outline-warning col-sm-3 offset-sm-1">Cancel</button></a>
-  </form>
-</div>
-<app-footer></app-footer>
+      </div>
+      <div class="form-row form-group">
+        <label class="col-sm-3 col-form-label">Password:</label>
+        <input type="password" formControlName="password" class="form-control col-sm-9">
+      </div>
+      <button class="btn btn-outline-primary offset-sm-3 col-sm-3" type="submit">Log in</button>
+      <a routerLink="/home">
+        <button class="btn btn-outline-danger col-sm-3 offset-sm-1">Sign up</button>
+      </a>
+      <span class="text-center mt-3 d-block">
+        <p>Forget password?
+        <a class="d-inline" routerLink="#">Click here</a>
+        </p>
+    </span>
+      <div class="mt-3">
+        <a routerLink="#">
+          <button class="btn btn-outline-primary col-sm-10 offset-sm-1">Continue with Facebook</button>
+        </a>
+      </div>
+      <div class="mt-3">
+        <a routerLink="#">
+          <button class="btn btn-outline-danger col-sm-10 offset-sm-1">Continue with Google</button>
+        </a>
+      </div>
+    </form>
+  </div>
+  <app-footer></app-footer>
 </div>
