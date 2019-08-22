@@ -22,14 +22,12 @@ export class UploadFileComponent implements OnInit {
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
+
   }
 
   onUpload() {
-    console.log('upload');
-    const id = Math.random().toString(36).substring(2);
+    const id = Math.random().toString(36).substring(2); // Create a random string
     this.ref = this.afStorage.ref(id);
-
     this.ref.put(this.selectedFile)
       .then(snapshot => {
         return snapshot.ref.getDownloadURL();   // Will return a promise with the download link
