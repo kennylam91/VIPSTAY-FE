@@ -9,6 +9,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { HouseDetailComponent } from './component/house-detail/house-detail.component';
 import {FormsModule} from '@angular/forms';
 import { SearchComponent } from './component/search/search.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SearchComponent } from './component/search/search.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

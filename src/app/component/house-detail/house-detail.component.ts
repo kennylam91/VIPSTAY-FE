@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HouseService} from '../../house.service';
 import {IHouse} from '../../model/IHouse';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -9,17 +10,24 @@ import {IHouse} from '../../model/IHouse';
   styleUrls: ['./house-detail.component.css']
 })
 export class HouseDetailComponent implements OnInit {
-  listHouse: IHouse;
-   time: Date = new Date();
+  house: IHouse;
+  time: Date = new Date();
 
-  constructor(private houseService: HouseService) {
-    this.listHouse = houseService.listHouse[0];
+  constructor(private houseService: HouseService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     setInterval(() => {
       this.time = new Date();
     }, 1000);
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.houseService.getHouseById(id).subscribe(
+      next => (this.house = next),
+      error => {
+        console.log(error);
+        this.house = null;
+      }
+    );
   }
 
 }
