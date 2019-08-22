@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="container">
+<app-header></app-header>
+<div class="login-body row">
+  <form [formGroup]="loginForm" class=" col-sm-6" (ngSubmit)="login()">
+    <h3>User Login:</h3>
+    <div class="form-row form-group">
+      <label class="col-sm-3 col-form-label">Username:</label>
+        <input type="text" formControlName="username" class="form-control col-sm-9">
+    </div>
+    <div class="form-row form-group">
+      <label class="col-sm-3 col-form-label">Password:</label>
+      <input type="password" formControlName="password" class="form-control col-sm-9">
+    </div>
+    <button class="btn btn-outline-primary offset-sm-3 col-sm-3" type="submit">Log in</button>
+    <a routerLink="/home">
+      <button class="btn btn-outline-warning col-sm-3 offset-sm-1">Cancel</button></a>
+  </form>
+</div>
+<app-footer></app-footer>
+</div>
