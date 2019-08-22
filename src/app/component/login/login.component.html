@@ -1,19 +1,21 @@
 <div class="container">
   <app-header></app-header>
   <div class="login-body row m-3">
-    <form [formGroup]="loginForm" class="offset-sm-3 col-sm-6 bg-light" (ngSubmit)="login()">
+    <form [formGroup]="loginForm" class="offset-sm-4 col-sm-4 bg-light" (ngSubmit)="login()" novalidate>
       <h3>User Login</h3>
       <div class="form-row form-group mt-3">
         <label class="col-sm-3 col-form-label">Username:</label>
-        <input type="text" formControlName="username" class="form-control col-sm-9">
+        <input type="text" formControlName="username" class="form-control col-sm-9"
+               [class.is-invalid]="loginForm.invalid && (loginForm.controls.username.dirty||loginForm.controls.username.touched)">
       </div>
       <div class="form-row form-group">
         <label class="col-sm-3 col-form-label">Password:</label>
-        <input type="password" formControlName="password" class="form-control col-sm-9">
+        <input type="password" formControlName="password" class="form-control col-sm-9"
+               [class.is-invalid]="loginForm.invalid && (loginForm.controls.password.dirty||loginForm.controls.password.touched)">
       </div>
-      <button class="btn btn-outline-primary offset-sm-3 col-sm-3" type="submit">Log in</button>
+      <button class="btn btn-primary offset-sm-1 col-sm-4" [disabled]="loginForm.invalid" type="submit">Log in</button>
       <a routerLink="/home">
-        <button class="btn btn-outline-danger col-sm-3 offset-sm-1">Sign up</button>
+        <button class="btn btn-danger offset-sm-2 col-sm-4 ">Sign up</button>
       </a>
       <span class="text-center mt-3 d-block">
         <p>Forget password?
