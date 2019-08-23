@@ -13,9 +13,13 @@ import {LoginComponent} from './component/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './component/register/register.component';
 import { RegisterHostComponent } from './component/register-host/register-host.component';
+
 import {UploadFileComponent} from './component/upload-file/upload-file.component';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireStorageModule} from 'angularfire2/storage';
+import {HeaderForHostComponent} from './component/header-for-host/header-for-host.component';
+import {HomeForHostComponent} from './component/home-for-host/home-for-host.component';
+import {CreateHouseComponent} from './component/create-house/create-house.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDibiKCzy27CCE-J5_ncb1imwzYqK9-L_Q',
@@ -39,7 +43,10 @@ const firebaseConfig = {
     LoginComponent,
   RegisterComponent,
   RegisterHostComponent,
-    UploadFileComponent],
+    UploadFileComponent,
+  HomeForHostComponent,
+  HeaderForHostComponent,
+  CreateHouseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

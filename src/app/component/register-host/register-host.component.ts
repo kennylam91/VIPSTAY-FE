@@ -36,7 +36,7 @@ export class RegisterHostComponent implements OnInit {
 
   onSubmit() {
     console.log('register');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home-for-host']);
     // if (this.registerForm.invalid) {
     //   return;
     // }
