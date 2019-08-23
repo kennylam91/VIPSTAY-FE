@@ -1,19 +1,33 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomepageComponent } from './component/homepage/homepage.component';
-import { HeaderComponent } from './component/header/header.component';
-import { FooterComponent } from './component/footer/footer.component';
-import { HouseDetailComponent } from './component/house-detail/house-detail.component';
-import { SearchComponent } from './component/search/search.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HomepageComponent} from './component/homepage/homepage.component';
+import {HeaderComponent} from './component/header/header.component';
+import {FooterComponent} from './component/footer/footer.component';
+import {HouseDetailComponent} from './component/house-detail/house-detail.component';
+import {SearchComponent} from './component/search/search.component';
 import {HttpClientModule} from '@angular/common/http';
-import { LoginComponent } from './component/login/login.component';
+import {LoginComponent} from './component/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './component/register/register.component';
 import { RegisterHostComponent } from './component/register-host/register-host.component';
+import {UploadFileComponent} from './component/upload-file/upload-file.component';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireStorageModule} from 'angularfire2/storage';
 
+const firebaseConfig = {
+  apiKey: 'AIzaSyDibiKCzy27CCE-J5_ncb1imwzYqK9-L_Q',
+  authDomain: 'vipstay-637a2.firebaseapp.com',
+  databaseURL: 'https://vipstay-637a2.firebaseio.com',
+  projectId: 'vipstay-637a2',
+  storageBucket: 'vipstay-637a2.appspot.com',
+  messagingSenderId: '394776501356',
+  appId: '1:394776501356:web:d1cea52d76cd19a0'
+};
+// @ts-ignore
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +38,8 @@ import { RegisterHostComponent } from './component/register-host/register-host.c
     SearchComponent,
     LoginComponent,
   RegisterComponent,
-  RegisterHostComponent],
+  RegisterHostComponent,
+    UploadFileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,9 +47,12 @@ import { RegisterHostComponent } from './component/register-host/register-host.c
     FormsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
