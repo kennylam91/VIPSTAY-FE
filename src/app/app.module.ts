@@ -14,6 +14,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './component/register/register.component';
 import { RegisterHostComponent } from './component/register-host/register-host.component';
 import { HomeForHostComponent } from './component/home-for-host/home-for-host.component';
+import { HeaderForHostComponent } from './component/header-for-host/header-for-host.component';
+import { CreateHouseComponent } from './component/create-house/create-house.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { HomeForHostComponent } from './component/home-for-host/home-for-host.co
     LoginComponent,
   RegisterComponent,
   RegisterHostComponent,
-  HomeForHostComponent],
+  HomeForHostComponent,
+  HeaderForHostComponent,
+  CreateHouseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
