@@ -13,6 +13,7 @@ import { LoginComponent } from './component/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './component/register/register.component';
 import { RegisterHostComponent } from './component/register-host/register-host.component';
+import { HomeForHostComponent } from './component/home-for-host/home-for-host.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterHostComponent } from './component/register-host/register-host.c
     SearchComponent,
     LoginComponent,
   RegisterComponent,
-  RegisterHostComponent],
+  RegisterHostComponent,
+  HomeForHostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
