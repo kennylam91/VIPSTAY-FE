@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
       age: ['', [Validators.required, Validators.min(18)]],
       type: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^\+84\d{9,10}$/)]],
-      role: ['admin', Validators.required],
+      role: ['user', Validators.required],
       name: ['', Validators.required],
       idNumber: ['', Validators.required],
       avatar: ['', Validators.required],
