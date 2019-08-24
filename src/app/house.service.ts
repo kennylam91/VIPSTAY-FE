@@ -15,23 +15,36 @@ export class HouseService {
   getHouses(): Observable<IHouse[]> {
     return this.http.get<IHouse[]>(this.API_URL, {
       headers: this.authenService.header
-    });
+    }
+    );
   }
 
   getHouseById(id: number): Observable<IHouse> {
-    return this.http.get<IHouse>(`${this.API_URL}/${id}`);
+    return this.http.get<IHouse>(`${this.API_URL}/${id}`,
+      {
+        headers: this.authenService.header
+      });
   }
 
   createHouse(house: Partial<IHouse>): Observable<IHouse> {
-    return this.http.post<IHouse>(this.API_URL, house);
+    return this.http.post<IHouse>(this.API_URL, house,
+      {
+        headers: this.authenService.header
+      });
   }
 
   updateHouse(house: IHouse): Observable<IHouse> {
-    return this.http.put<IHouse>(`${this.API_URL}/${house.id}`, house);
+    return this.http.put<IHouse>(`${this.API_URL}/${house.id}`, house,
+      {
+        headers: this.authenService.header
+      });
   }
 
   deleteHouse(id: number): Observable<IHouse> {
-    return this.http.delete<IHouse>(`${this.API_URL}/${id}`);
+    return this.http.delete<IHouse>(`${this.API_URL}/${id}`,
+      {
+        headers: this.authenService.header
+      });
   }
 
   constructor(private http: HttpClient, private authenService: AuthenticationService) {

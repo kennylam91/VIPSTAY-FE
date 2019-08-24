@@ -14,12 +14,13 @@ import {CreateHouseComponent} from './component/create-house/create-house.compon
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'upload', component: UploadFileComponent},
-  {path: '', component: HomepageComponent},
+  {path: 'houses', component: HomepageComponent},
   {path: 'houses/:id', component: HouseDetailComponent},
   {path: 'registerUser', component: RegisterComponent},
   {path: 'registerHost', component: RegisterHostComponent},
   {path: 'home-for-host', component: HomeForHostComponent},
-  {path: 'create-house', component: CreateHouseComponent}
+  {path: 'create-house', component: CreateHouseComponent},
+  {path: '**', redirectTo: '/houses', pathMatch: 'full'}
 ];
 
 @NgModule({
