@@ -22,16 +22,16 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.fb.group({
       id: [Math.round(Math.random() * 100)],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['tranthanhhieuthao@gmail.com', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      address: ['', Validators.required],
-      age: ['', [Validators.required, Validators.min(18)]],
-      type: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern(/^\+84\d{9,10}$/)]],
+      address: ['Ha Noi', Validators.required],
+      age: ['23', [Validators.required, Validators.min(18)]],
+      type: ['Nam', Validators.required],
+      phone: ['+840374006604', [Validators.required, Validators.pattern(/^\+84\d{9,10}$/)]],
       role: ['user', Validators.required],
-      name: ['', Validators.required],
-      idNumber: ['', Validators.required],
-      avatar: ['', Validators.required],
+      name: ['hieu', Validators.required],
+      idNumber: ['123456', Validators.required],
+      avatar: ['sdf', Validators.required],
       username: ['', Validators.required],
     });
   }
