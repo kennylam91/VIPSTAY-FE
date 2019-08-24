@@ -14,10 +14,7 @@ export class HouseService {
 
   getHouses(): Observable<IHouse[]> {
     return this.http.get<IHouse[]>(this.API_URL, {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.authenService.token}`,
-        'Content-Type': 'application/json'
-      })
+      headers: this.authenService.header
     });
   }
 
