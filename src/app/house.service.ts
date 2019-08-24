@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {IHouse} from './model/IHouse';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {AuthenticationService} from './authentication.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,14 @@ export class HouseService {
   private readonly API_URL = 'http://localhost:8080/api/houses';
 
   getHouses(): Observable<IHouse[]> {
-    return this.http.get<IHouse[]>(this.API_URL);
+    return this.http.get<IHouse[]>(this.API_URL, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.authenService.token}`,
+        'Content-Type': 'application/json'
+      })
+    });
   }
+
   getHouseById(id: number): Observable<IHouse> {
     return this.http.get<IHouse>(`${this.API_URL}/${id}`);
   }
@@ -29,6 +37,6 @@ export class HouseService {
     return this.http.delete<IHouse>(`${this.API_URL}/${id}`);
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authenService: AuthenticationService) {
   }
 }
