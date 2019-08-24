@@ -5,7 +5,7 @@ import {LoginComponent} from './component/login/login.component';
 import {HouseDetailComponent} from './component/house-detail/house-detail.component';
 import {RegisterComponent} from './component/register/register.component';
 import {RegisterHostComponent} from './component/register-host/register-host.component';
-// import {UploadFileComponent} from './component/upload-file/upload-file.component';
+import {UploadFileComponent} from './component/upload-file/upload-file.component';
 
 import {HomeForHostComponent} from './component/home-for-host/home-for-host.component';
 import {CreateHouseComponent} from './component/create-house/create-house.component';
@@ -13,7 +13,7 @@ import {CreateHouseComponent} from './component/create-house/create-house.compon
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  // {path: 'upload', component: UploadFileComponent},
+  {path: 'upload', component: UploadFileComponent},
   {path: 'houses', component: HomepageComponent},
   {path: 'houses/:id', component: HouseDetailComponent},
   {path: 'registerUser', component: RegisterComponent},

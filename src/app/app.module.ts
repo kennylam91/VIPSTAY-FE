@@ -14,22 +14,22 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './component/register/register.component';
 import { RegisterHostComponent } from './component/register-host/register-host.component';
 
-// import {UploadFileComponent} from './component/upload-file/upload-file.component';
-// import {AngularFireModule} from 'angularfire2';
-// import {AngularFireStorageModule} from 'angularfire2/storage';
+import {UploadFileComponent} from './component/upload-file/upload-file.component';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireStorageModule} from 'angularfire2/storage';
 import {HeaderForHostComponent} from './component/header-for-host/header-for-host.component';
 import {HomeForHostComponent} from './component/home-for-host/home-for-host.component';
 import {CreateHouseComponent} from './component/create-house/create-house.component';
 
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyDibiKCzy27CCE-J5_ncb1imwzYqK9-L_Q',
-//   // authDomain: 'vipstay-637a2.firebaseapp.com',
-//   // databaseURL: 'https://vipstay-637a2.firebaseio.com',
-//   projectId: 'vipstay-637a2',
-//   storageBucket: 'vipstay-637a2.appspot.com',
-//   messagingSenderId: '394776501356',
-//   appId: '1:394776501356:web:d1cea52d76cd19a0'
-// };
+const firebaseConfig = {
+  apiKey: 'AIzaSyDibiKCzy27CCE-J5_ncb1imwzYqK9-L_Q',
+  authDomain: 'vipstay-637a2.firebaseapp.com',
+  databaseURL: 'https://vipstay-637a2.firebaseio.com',
+  projectId: 'vipstay-637a2',
+  storageBucket: 'vipstay-637a2.appspot.com',
+  messagingSenderId: '394776501356',
+  appId: '1:394776501356:web:d1cea52d76cd19a0'
+};
 // @ts-ignore
 // @ts-ignore
 @NgModule({
@@ -43,7 +43,7 @@ import {CreateHouseComponent} from './component/create-house/create-house.compon
     LoginComponent,
   RegisterComponent,
   RegisterHostComponent,
-    // UploadFileComponent,
+    UploadFileComponent,
   HomeForHostComponent,
   HeaderForHostComponent,
   CreateHouseComponent],
@@ -55,8 +55,8 @@ import {CreateHouseComponent} from './component/create-house/create-house.compon
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    // AngularFireModule.initializeApp(firebaseConfig),
-    // AngularFireStorageModule
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
