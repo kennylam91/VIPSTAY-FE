@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         if (next.token) {
           this.router.navigateByUrl('');
         }
+        console.log(next.token);
       }
     );
 

@@ -10,7 +10,7 @@ import {AuthenticationService} from './authentication.service';
 })
 export class HouseService {
   houses: IHouse[];
-  private readonly API_URL = 'http://localhost:8080/api/houses';
+  private readonly API_URL = 'http://localhost:8080/houses';
 
   getHouses(): Observable<IHouse[]> {
     return this.http.get<IHouse[]>(this.API_URL, {
