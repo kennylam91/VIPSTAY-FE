@@ -11,6 +11,8 @@ import {SearchComponent} from './component/search/search.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FooterTopComponent} from './footer-top/footer-top.component';
 import {AuthHttpInterceptorService} from './service/authHttpInterceptor.service';
+import { LoginComponent } from './component/login/login.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import {AuthHttpInterceptorService} from './service/authHttpInterceptor.service'
     FooterComponent,
     HouseDetailComponent,
     SearchComponent,
-    FooterTopComponent
+    FooterTopComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {

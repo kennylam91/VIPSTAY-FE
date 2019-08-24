@@ -11,13 +11,15 @@ export class AuthHttpInterceptorService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
+    if (localStorage.getItem('currentUser') && localStorage.getItem('token')) {
       req = req.clone({
         setHeaders: {
-          Authorization: sessionStorage.getItem('token')
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
     }
     return next.handle(req);
   }
+
 }
+
