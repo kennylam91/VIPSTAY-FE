@@ -22,5 +22,11 @@ export class AuthenticationService {
   }
 
   constructor(private httpClient: HttpClient) {
+    this.token = localStorage.getItem('token');
+    this.header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`
+  })
+    ;
   }
 }

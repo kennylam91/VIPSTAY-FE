@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     console.log(JSON.stringify(this.loginForm.value));
     this.authenService.login(this.loginForm.value).subscribe(
       next => {
+        localStorage.setItem('token', next.token);
         this.authenService.token = next.token;
         this.authenService.header = new HttpHeaders(
           {
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
             'Content-Type': 'application/json'
           }
         );
-        if (this.authenService.token) {
+        if (next.token) {
           this.router.navigateByUrl('');
         }
       }
