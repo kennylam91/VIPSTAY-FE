@@ -37,7 +37,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-
+    if (this.registerForm.invalid) {
+      return;
+    }
     console.log(this.registerForm.value);
     this.userService.register(this.registerForm.value)
       .subscribe(

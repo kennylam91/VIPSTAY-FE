@@ -16,7 +16,9 @@
         <input type="password" class="form-control" formControlName="password">
       </label>
     </div>
-
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched">
+    password invalid
+  </div>
   <div class="form-group row">
     <label class="col">
       Quốc gia

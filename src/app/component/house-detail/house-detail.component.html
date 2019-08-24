@@ -5,8 +5,8 @@
 
 <div class="container shadow">
   <ul class="breadcrumb shadow">
-    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-    <li class="breadcrumb-item active"><a href="#">Trần Hiếu-HomeStay</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['']">Trang chủ</a></li>
+    <li class="breadcrumb-item active"><a [routerLink]="['/houses',house.id]">{{house.houseName}}</a></li>
   </ul>
   <div class="row">
     <div class="col-sm-8 ">
