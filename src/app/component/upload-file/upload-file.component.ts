@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from 'angularfire2/storage';
 
@@ -12,7 +12,8 @@ export class UploadFileComponent implements OnInit {
   selectedFile: File;
   ref: AngularFireStorageReference;
   downloadURL: string;
-
+  @Output()
+  giveURLtoCreate = new EventEmitter<string>();
 
   constructor(private httpClient: HttpClient, private afStorage: AngularFireStorage) {
   }
@@ -32,13 +33,12 @@ export class UploadFileComponent implements OnInit {
       .then(snapshot => {
         return snapshot.ref.getDownloadURL();   // Will return a promise with the download link
       })
-
       .then(downloadURL => {
         this.downloadURL = downloadURL;
-        console.log(downloadURL);
+        this.giveURLtoCreate.emit(this.downloadURL);
+        // console.log(downloadURL);
         return downloadURL;
       })
-
       .catch(error => {
         // Use to signal error if something goes wrong.
         console.log(`Failed to upload file and get link - ${error}`);

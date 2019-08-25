@@ -43,7 +43,12 @@ export class CreateHouseComponent implements OnInit {
   ngOnInit() {
   }
 
+  onChange($event) {
+    this.house.image = $event;
+  }
+
   createHouse() {
-    this.router.navigate(['/home-for-host']);
+    console.log(this.house);
+    // this.router.navigate(['/home-for-host']);
   }
 }

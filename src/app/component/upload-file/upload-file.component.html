@@ -1,5 +1,8 @@
 <div class="upload-file">
-  <p>upload-file!</p>
+  <p>Thêm ảnh chỗ ở của bạn: </p>
   <input type="file" class="" (change)="onFileChanged($event)" #fileInput>
   <button (click)="onUpload()">Upload!</button>
+  <div *ngIf="downloadURL">
+    <img [src]="downloadURL" style="width: 300px; height: auto">
+  </div>
 </div>
