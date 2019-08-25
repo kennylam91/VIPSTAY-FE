@@ -23,7 +23,6 @@ export class UploadFileComponent implements OnInit {
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
-
   }
 
   onUpload() {

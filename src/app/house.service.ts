@@ -16,7 +16,6 @@ export class HouseService {
   getHouseById(id: number): Observable<IHouse> {
     return this.http.get<IHouse>(`${this.API_URL}/${id}`);
   }
-
   createHouse(house: Partial<IHouse>): Observable<IHouse> {
     return this.http.post<IHouse>(this.API_URL, house);
   }

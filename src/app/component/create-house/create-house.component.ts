@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {IHouse} from '../../model/IHouse';
 import {Router} from '@angular/router';
+import {HouseService} from '../../house.service';
 
 @Component({
   selector: 'app-create-house',
@@ -13,7 +14,8 @@ export class CreateHouseComponent implements OnInit {
   houseForm: FormGroup;
   house: Partial<IHouse>;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private service: HouseService) {
     this.houseForm = new FormGroup({
       houseName: new FormControl(''),
       houseType: new FormControl(''),
@@ -49,6 +51,8 @@ export class CreateHouseComponent implements OnInit {
 
   createHouse() {
     console.log(this.house);
-    // this.router.navigate(['/home-for-host']);
+    this.service.createHouse(this.house).subscribe(() => {
+      this.router.navigate(['/home-for-host']);
+    }, error => console.log(error) );
   }
 }

@@ -58,5 +58,4 @@ export class HomepageComponent implements OnInit {
         console.log(next);
       });
   }
-
 }
