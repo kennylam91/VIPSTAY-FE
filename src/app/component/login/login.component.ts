@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../authentication.service';
 import {Router} from '@angular/router';
+import {HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -27,11 +28,18 @@ export class LoginComponent implements OnInit {
     console.log(JSON.stringify(this.loginForm.value));
     this.authenService.login(this.loginForm.value).subscribe(
       next => {
+        localStorage.setItem('token', next.token);
         this.authenService.token = next.token;
-        console.log(this.authenService.token);
-        if (this.authenService.token) {
+        this.authenService.header = new HttpHeaders(
+          {
+            Authorization: `Bearer ${this.authenService.token}`,
+            'Content-Type': 'application/json'
+          }
+        );
+        if (next.token) {
           this.router.navigateByUrl('');
         }
+        console.log(next.token);
       }
     );
 

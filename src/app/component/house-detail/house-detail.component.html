@@ -1,12 +1,12 @@
-
+<app-header></app-header>
 <header class="container shadow" style="max-width:100%;" id="home">
   <img src='{{house.image}}' alt="Architecture" width="100%" height="600">
 </header>
 
 <div class="container shadow">
   <ul class="breadcrumb shadow">
-    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-    <li class="breadcrumb-item active"><a href="#">Trần Hiếu-HomeStay</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['']">Trang chủ</a></li>
+    <li class="breadcrumb-item active"><a [routerLink]="['/houses',house.id]">{{house.houseName}}</a></li>
   </ul>
   <div class="row">
     <div class="col-sm-8 ">
@@ -106,7 +106,7 @@
         </p>
         <form>
           <div class="input-group mb-3">
-            <button style="background: coral;color: white" type="text" class="form-control">ĐĂNG NHẬP
+            <button style="background: coral;color: white" type="text" class="form-control" [routerLink]="['/login']">ĐĂNG NHẬP
             </button>
           </div>
         </form>
@@ -135,4 +135,4 @@
         $('#ngaydi1').datetimepicker();
     });
 </script>
-
+<app-footer></app-footer>

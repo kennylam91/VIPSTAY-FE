@@ -9,9 +9,9 @@
       </span>
       <div class="row mt-3">
         <div class="card single-house col-sm-3" *ngFor="let house of bestChoiceHouses; i as index">
-          <a routerLink="#"><img class="card-img-top img-fluid" [src]=house.image alt=""></a>
+          <a routerLink="/houses/{{house.id}}"><img class="card-img-top img-fluid" [src]=house.image alt=""></a>
           <div class="card-body text-center">
-            <a routerLink="#"><h5 class="card-title">{{house.houseName}}</h5></a>
+            <a routerLink="/houses/{{house.id}}"><h5 class="card-title">{{house.houseName}}</h5></a>
             <p class="card-text">{{house.price}}</p>
             <p class="card-text">{{house.address}}</p>
             <p class="card-text">{{house.rate}}</p>
@@ -27,9 +27,10 @@
       </span>
       <div class="row mt-3">
         <div class="card single-house col-sm-3" *ngFor="let house of bestSaleoffHouses; i as index">
-          <a routerLink="#"><img class="card-img-top img-fluid" [src]=house.image alt=""></a>
+          <a routerLink="/houses/{{house.id}}"><img class="card-img-top img-fluid" [src]=house.image alt=""></a>
           <div class="card-body text-center">
-            <a routerLink="#"><h5 class="card-title">{{house.houseName}}</h5></a>
+            <a routerLink="/houses/{{house.id}}">
+              <h5 class="card-title">{{house.houseName}}</h5></a>
             <p class="card-text">{{house.price}}</p>
             <p class="card-text">{{house.address}}</p>
             <p class="card-text">{{house.rate}}</p>
@@ -45,9 +46,9 @@
       </span>
       <div class="row mt-3">
         <div class="card single-house col-sm-3" *ngFor="let house of suggestionHouses; i as index">
-          <a routerLink="#"><img class="card-img-top img-fluid" [src]=house.image alt=""></a>
+          <a routerLink="/houses/{{house.id}}"><img class="card-img-top img-fluid" [src]=house.image alt=""></a>
           <div class="card-body text-center">
-            <a routerLink="#"><h5 class="card-title">{{house.houseName}}</h5></a>
+            <a routerLink="/houses/{{house.id}}"><h5 class="card-title">{{house.houseName}}</h5></a>
             <p class="card-text">{{house.price}}</p>
             <p class="card-text">{{house.address}}</p>
             <p class="card-text">{{house.rate}}</p>

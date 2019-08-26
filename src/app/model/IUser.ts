@@ -1,13 +1,14 @@
 export interface IUser {
+  id: number;
   username: string;
   password: string;
-  role: string;
+  role: 'admin';
   name: string;
   age: number;
+  type: string;
   address: string;
   phone: string;
   email: string;
-  id: number;
+  idNumber: string;
   avatar: string;
-  type: 'user';
 }
