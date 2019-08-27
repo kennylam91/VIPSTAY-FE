@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {IHouse} from '../../model/IHouse';
+import {IHouse} from '../../../model/IHouse';
 import {Router} from '@angular/router';
-import {HouseService} from '../../house.service';
+import {HouseService} from '../../../services/house.service';
 
 @Component({
   selector: 'app-create-house',

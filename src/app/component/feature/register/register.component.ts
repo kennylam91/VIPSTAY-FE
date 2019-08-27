@@ -1,24 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../../services/user.service';
+import {first} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {UserService} from '../../user.service';
+import {IUser} from '../../../model/IUser';
+import {ajaxGetJSON} from 'rxjs/internal-compatibility';
+import {Observable} from 'rxjs';
 
-function comparePassword(c: AbstractControl) {
-  const v = c.value;
-  return (v.password === v.confirmPassword) ? null : {
-    passwordnotmatch: true
-  };
-}
 
 @Component({
-  selector: 'app-register-host',
-  templateUrl: './register-host.component.html',
-  styleUrls: ['./register-host.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class RegisterHostComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -30,7 +28,7 @@ export class RegisterHostComponent implements OnInit {
       age: ['23', [Validators.required, Validators.min(18)]],
       type: ['Nam', Validators.required],
       phone: ['+840374006604', [Validators.required, Validators.pattern(/^\+84\d{9,10}$/)]],
-      role: ['admin', Validators.required],
+      role: ['user', Validators.required],
       name: ['hieu', Validators.required],
       idNumber: ['123456', Validators.required],
       avatar: ['sdf', Validators.required],
@@ -43,17 +41,16 @@ export class RegisterHostComponent implements OnInit {
       return;
     }
     console.log(this.registerForm.value);
-    this.userService.register(this.registerForm.value)
+    this.userService.registerGuest(this.registerForm.value)
       .subscribe(
         data => {
           console.log('succsess');
-          this.router.navigate(['/login']);
+          this.router.navigateByUrl('/login');
         },
         error => {
           console.log('error');
         }
       );
   }
+
 }
-
-

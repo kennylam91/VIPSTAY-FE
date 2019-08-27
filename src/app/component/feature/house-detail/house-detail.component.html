@@ -1,0 +1,146 @@
+<header class="container shadow" style="max-width:100%;" id="home">
+  <img src='{{house.image}}' alt="Architecture" width="100%" height="600">
+</header>
+
+<div class="container shadow">
+  <ul class="breadcrumb shadow">
+    <li class="breadcrumb-item"><a [routerLink]="['']">Trang chủ</a></li>
+    <li class="breadcrumb-item active"><a [routerLink]="['/houses',house.id]">{{house.houseName}}</a></li>
+  </ul>
+  <div class="row">
+    <div class="col-sm-8 ">
+      <div class="container shadow">
+        <p class="font-weight-bold " style="font-size: 20px">{{house.houseName}} ____ {{ time | date:'hh:mm:ss a' }}</p>
+        <p class="font-weight-bold ">
+          <img src="assets/icon/address.png" width="20" height="20"> {{house.address}}
+        </p>
+        <p class="font-weight-bold ">
+          <img src="assets/icon/house.png" width="20" height="20"> Nhà riêng: {{house.area}} m2
+        </p>
+        <p class="overflow-auto">{{house.description}}</p>
+      </div>
+      <p></p>
+
+      <p class="font-weight-bold shadow" style="font-size: 25px">Tiện Nghi Chỗ ở </p>
+      <div class="container bg-light shadow">
+        <p>Giới thiệu về các tiện nghi và dịch vụ tại nơi lưu trú</p>
+        <p class="font-weight-bold" style="font-size: 20px">Tiện ích gia đình </p>
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="assets/icon/chair.png" width="60" height="60">Phù hợp với trẻ nhỏ
+          </div>
+          <div class="col-lg-4">
+            <img src="assets/icon/No-Smoking-Sign-Vinyl-Decal-Sticker__27437.1506204179.jpg" width="35" height="35">
+            Không hút thuốc
+          </div>
+        </div>
+        <p class="font-weight-bold" style="font-size: 20px">Tiện ích bếp </p>
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="assets/icon/electric.png" width="35" height="35"> Bếp điện
+          </div>
+          <div class="col-lg-4">
+            <img src="assets/icon/microwave-oven-60-798617.png" width="35" height="35"> Lò vi sóng
+          </div>
+          <div class="col-lg-4">
+            <img src="assets/icon/fridge-119-733211.png" width="35" height="35"> Tủ lạnh
+          </div>
+        </div>
+        <p class="font-weight-bold" style="font-size: 20px">Tiện ích giải trí </p>
+        <img src="assets/icon/background_1151777.png" width="35" height="35"> Cảnh quan đẹp
+      </div>
+      <p class="font-weight-bold shadow" style="font-size: 25px">Đánh Giá</p>
+      <div class="container shadow">
+        <div class="card">
+          <div class="card-header row">
+            <div class="col-lg-1">
+              <img src="assets/PictureHouseDetail/room_18463_14_1545395734.jpg" width="35" height="35"
+                   style="border-radius: 50%">
+            </div>
+            <div class="col-lg-4">
+              <p> Trần Thanh Hiếu Thảo</p>
+            </div>
+            <div class="col-lg-7 text-lg-right">
+              <p> 2 month ago</p>
+            </div>
+          </div>
+          <div class="card-body">Lần này đặt phòng do có sự cố phòng nên chủ nhà đã liên hệ giúp mình sang một homestay
+            khác. Hy vọng lần sau sẽ có dịp ở homestay này :D
+          </div>
+        </div>
+        <form class="form-inline">
+          <input type="text" style="width: 627px" class="form-control mb-2 mr-sm-2" placeholder="Type your comment">
+          <button type="submit" class="btn btn-primary mb-2">Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="container border shadow-lg ">
+        <p style="font-size: 35px;text-align: center">{{house.price}} $/đêm
+        <p>
+        <form>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control datetimepicker-input" id="ngayden1" data-toggle="datetimepicker"
+                   placeholder="dd/mm/yyyy" data-target="#ngayden1">
+            <input type="text" class="form-control datetimepicker-input" id="ngaydi1" data-toggle="datetimepicker"
+                   placeholder="dd/mm/yyyy" data-target="#ngaydi1">
+          </div>
+        </form>
+        <form>
+          <div class="input-group mb-3">
+            <form>
+              <select class="custom-select" style="width: 320px">
+                <option selected>1 Khách</option>
+                <option>2 khách</option>
+              </select>
+            </form>
+          </div>
+        </form>
+        <form>
+          <div class="input-group mb-3 input-group-lg ">
+            <button style="background: coral;color: white" type="text" class="form-control">Gửi yêu cầu đặt phòng
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="container border shadow-lg ">
+        <p style="font-size: 20px;text-align: center">Đăng nhập và tận hưởng quyền lợi của Thành viên!
+        </p>
+        <p style="font-size: 14px;text-align: center">Đăng ký thành viên VIPstay, trải nghiệm đột phá - Đặt phòng nhanh
+          hơn, ưu đãi nhiều hơn nữa.
+        </p>
+        <form>
+          <div class="input-group mb-3">
+            <button style="background: coral;color: white" type="text" class="form-control" [routerLink]="['/login']">
+              ĐĂNG NHẬP
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="container border shadow-lg h-auto ">
+        <div class="row">
+          <div class="col-2"><img src="assets/PictureHouseDetail/room_18463_14_1545395734.jpg" width="60" height="60"
+                                  style="border-radius: 50%"></div>
+          <div class="col-10">
+            <p style="font-size: 20px;text-align: center;color: coral">Xóm HomeStay
+            <p>
+            <p style="font-size: 15px;text-align: center">Tham gia 09/2018
+            <p>
+          </div>
+        </div>
+        <p style="font-size: 14px;border: 1px bisque solid ">Gọi<a href="#"> 18006586</a> (miễn phí) để được hỗ trợ 24/7
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+<p>'</p>
+<script type="text/javascript">
+    $(function () {
+        $('#ngayden1').datetimepicker();
+    });
+    $(function () {
+        $('#ngaydi1').datetimepicker();
+    });
+</script>
