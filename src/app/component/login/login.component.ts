@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     this.authenService.login(this.loginForm.value).subscribe(
       next => {
         localStorage.setItem('token', next.token);
+        localStorage.setItem('username', next.username);
         this.authenService.token = next.token;
         this.authenService.header = new HttpHeaders(
           {

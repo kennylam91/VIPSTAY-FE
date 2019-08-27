@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderForHostComponent implements OnInit {
 
+  username: string;
   constructor() { }
 
   ngOnInit() {
+    this.username = localStorage.getItem('username');
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+  }
 }

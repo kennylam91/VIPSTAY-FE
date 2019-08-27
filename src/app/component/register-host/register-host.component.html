@@ -22,6 +22,10 @@
       <input type="text" class="form-control" [(ngModel)]="user.username" formControlName="username">
     </label>
   </div>
+  <div class="alert alert-danger" role="alert"
+       *ngIf="registerForm.get('username').invalid && registerForm.get('username').touched">
+    Address is required!
+  </div>
   <div formGroupName="pwGroup">
     <div class="form-group row">
       <label class="col">
@@ -86,7 +90,7 @@
   <!--    </label>-->
   <!--  </div>-->
   <!--  <div class="alert alert-danger" role="alert"-->
-  <!--       *ngIf="registerForm.get('name').invalid && registerForm.get('address').touched">-->
+  <!--       *ngIf="registerForm.get('name').invalid && registerForm.get('name').touched">-->
   <!--    Address is required!-->
   <!--  </div>-->
 
@@ -98,7 +102,7 @@
   <!--    </label>-->
   <!--  </div>-->
   <!--  <div class="alert alert-danger" role="alert"-->
-  <!--       *ngIf="registerForm.get('idNumber').invalid && registerForm.get('address').touched">-->
+  <!--       *ngIf="registerForm.get('idNumber').invalid && registerForm.get('idNumber').touched">-->
   <!--    Address is required!-->
   <!--  </div>-->
 

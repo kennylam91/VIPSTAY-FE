@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IHouse} from '../../model/IHouse';
 import {Router} from '@angular/router';
 import {HouseService} from '../../house.service';
@@ -17,16 +17,15 @@ export class CreateHouseComponent implements OnInit {
   constructor(private router: Router,
               private service: HouseService) {
     this.houseForm = new FormGroup({
-      houseName: new FormControl(''),
-      houseType: new FormControl(''),
-      address: new FormControl(''),
+      houseName: new FormControl('', [Validators.required]),
+      houseType: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
       bedroomNumber: new FormControl(''),
       bathroomNumber: new FormControl(''),
-      price: new FormControl(''),
-      description: new FormControl(''),
-      image: new FormControl(''),
-      rate: new FormControl(''),
-      area: new FormControl('')
+      price: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      area: new FormControl('', [Validators.required])
     });
     this.house = {
       houseName: '',
