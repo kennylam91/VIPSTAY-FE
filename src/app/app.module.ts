@@ -12,7 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './component/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './component/register/register.component';
-import { RegisterHostComponent } from './component/register-host/register-host.component';
+import {RegisterHostComponent} from './component/register-host/register-host.component';
 
 import {UploadFileComponent} from './component/upload-file/upload-file.component';
 import {AngularFireModule} from 'angularfire2';
@@ -41,12 +41,12 @@ const firebaseConfig = {
     HouseDetailComponent,
     SearchComponent,
     LoginComponent,
-  RegisterComponent,
-  RegisterHostComponent,
+    RegisterComponent,
+    RegisterHostComponent,
     UploadFileComponent,
-  HomeForHostComponent,
-  HeaderForHostComponent,
-  CreateHouseComponent],
+    HomeForHostComponent,
+    HeaderForHostComponent,
+    CreateHouseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

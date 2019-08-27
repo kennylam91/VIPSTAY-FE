@@ -12,7 +12,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  register(user: IUser): Observable<IUser> {
+  register(user: Partial<IUser>): Observable<IUser> {
     return this.httpClient.post<IUser>(this.API_URL, user);
   }
 }
