@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {IHouse} from '../../../model/IHouse';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {IHouse} from '../../model/IHouse';
 import {Router} from '@angular/router';
-import {HouseService} from '../../../services/house.service';
+import {HouseService} from '../../house.service';
 
 @Component({
   selector: 'app-create-house',
@@ -17,16 +17,15 @@ export class CreateHouseComponent implements OnInit {
   constructor(private router: Router,
               private service: HouseService) {
     this.houseForm = new FormGroup({
-      houseName: new FormControl(''),
-      houseType: new FormControl(''),
-      address: new FormControl(''),
+      houseName: new FormControl('', [Validators.required]),
+      houseType: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
       bedroomNumber: new FormControl(''),
       bathroomNumber: new FormControl(''),
-      price: new FormControl(''),
-      description: new FormControl(''),
-      image: new FormControl(''),
-      rate: new FormControl(''),
-      area: new FormControl('')
+      price: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      area: new FormControl('', [Validators.required])
     });
     this.house = {
       houseName: '',
@@ -36,7 +35,7 @@ export class CreateHouseComponent implements OnInit {
       bathroomNumber: 0,
       price: 0,
       description: '',
-      image: '',
+      image: 'https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg',
       rate: 0,
       area: 0
     };

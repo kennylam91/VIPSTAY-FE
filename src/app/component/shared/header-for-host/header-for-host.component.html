@@ -9,10 +9,15 @@
           <a class="nav-link text-dark " href="#">Hotline: 1900 1080</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark " [routerLink]="['/registerUser']">User</a>
+          <div *ngIf="username">
+            <a class="nav-link text-dark" href="#">{{username}}</a>
+          </div>
+          <div *ngIf="username == null">
+            <a class="nav-link text-dark " routerLink="/login">Đăng nhập</a>
+          </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark " routerLink="/login">Đăng xuất</a>
+          <a href="/logout" class="nav-link text-dark " (click)="logout()">Đăng xuất</a>
         </li>
 
         <li class="nav-item">

@@ -1,94 +1,143 @@
 <app-header></app-header>
-<h2 class="text-center shadow">Đăng kí người dùng</h2>
+
+<div
+  style="margin-top: 20px; margin-bottom: 20px; background-color: black; color: white; border-radius: 15px; text-align: center">
+  <h2>Đăng kí người dùng</h2>
+</div>
+
+
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="col-md-6 offset-md-3">
-<!--  <div class="form-group row">-->
-<!--    <label class="col">-->
-<!--      Email-->
-<!--      <input type="email" class="form-control" formControlName="email">-->
-<!--    </label>-->
-<!--  </div>-->
-<!--  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">-->
-<!--    Invalid email!-->
-<!--  </div>-->
+  <!--  <div class="form-group row">-->
+  <!--    <label class="col">-->
+  <!--      Email-->
+  <!--      <input type="email" class="form-control" [(ngModel)]="user.email" formControlName="email">-->
+  <!--    </label>-->
+  <!--  </div>-->
+  <!--  <div class="alert alert-danger" role="alert"-->
+  <!--       *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">-->
+  <!--    Invalid email!-->
+  <!--  </div>-->
   <div class="form-group row">
     <label class="col">
-      usename
-      <input type="text" class="form-control" formControlName="username">
+      Username:
+      <input type="text" class="form-control" [(ngModel)]="user.username" formControlName="username">
     </label>
   </div>
+  <div class="alert alert-danger" role="alert"
+       *ngIf="registerForm.get('username').invalid && registerForm.get('username').touched">
+    Address is required!
+  </div>
+  <div formGroupName="pwGroup">
     <div class="form-group row">
       <label class="col">
-        Mật khẩu
-        <input type="password" class="form-control" formControlName="password">
+        Mật khẩu:
+        <input type="password" class="form-control" [(ngModel)]="user.password" formControlName="password">
       </label>
     </div>
-  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched">
-    password invalid
+    <div class="form-group row">
+      <label class="col">
+        Xác nhận mật khẩu:
+        <input type="password" class="form-control" formControlName="confirmPassword">
+      </label>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="registerForm.hasError('passwordnotmatch', ['pwGroup']) &&
+      registerForm.get('pwGroup').touched">
+      Password does not match!
+    </div>
   </div>
-<!--  <div class="form-group row">-->
-<!--    <label class="col">-->
-<!--      Quốc gia-->
-<!--      <select formControlName="address" class="form-control">-->
-<!--        <option value="">Chọn</option>-->
-<!--        <option value="vn">Việt Nam</option>-->
-<!--        <option value="us">US</option>-->
-<!--      </select>-->
-<!--    </label>-->
-<!--  </div>-->
-<!--  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('address').invalid && registerForm.get('address').touched">-->
-<!--    Country is required!-->
-<!--  </div>-->
-<!--  <div class="form-group row">-->
-<!--    <label class="col">-->
-<!--      Tuổi-->
-<!--      <input type="number" class="form-control" formControlName="age">-->
-<!--    </label>-->
-<!--  </div>-->
-<!--  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('age').invalid && registerForm.get('age').touched">-->
-<!--    You have to be over 18 to register an account-->
-<!--  </div>-->
-<!--  <div class="form-group row">-->
-<!--    <div class="col">-->
-<!--      Giới tính-->
-<!--      <label><input type="radio" formControlName="type" value="male">Nam</label>-->
-<!--      <label><input type="radio" formControlName="type" value="female">Nữ</label>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('type').invalid && registerForm.get('type').touched">-->
-<!--    Gender is required!-->
-<!--  </div>-->
-<!--  <div class="form-group row">-->
-<!--    <label class="col">-->
-<!--      Số điện thoại-->
-<!--      <input type="tel" class="form-control" formControlName="phone" placeholder="+84...">-->
-<!--    </label>-->
-<!--  </div>-->
-<!--  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('phone').invalid && registerForm.get('phone').touched">-->
-<!--    <span *ngIf="registerForm.get('phone').hasError('required')">Phone is required</span>-->
-<!--    <span *ngIf="registerForm.get('phone').hasError('pattern')">Phone must start with +84 followed by 9 or 10 digits.</span>-->
-<!--  </div>-->
 
-<!--  <div class="form-group row">-->
-<!--    <label class="col">-->
-<!--      name-->
-<!--      <input type="text" class="form-control" formControlName="name">-->
-<!--    </label>-->
-<!--  </div>-->
-<!--  <div class="form-group row">-->
-<!--    <label class="col">-->
-<!--      idNumber-->
-<!--      <input type="text" class="form-control" formControlName="idNumber">-->
-<!--    </label>-->
-<!--  </div>-->
-<!--  <div class="form-group row">-->
-<!--    <label class="col">-->
-<!--      avatar-->
-<!--      <input type="text" class="form-control" formControlName="avatar">-->
-<!--    </label>-->
-<!--  </div>-->
+
+  <!--  <div class="form-group row">-->
+  <!--    <label class="col">-->
+  <!--      Address-->
+  <!--      <input type="text" class="form-control" [(ngModel)]="user.address" formControlName="address">-->
+  <!--    </label>-->
+  <!--  </div>-->
+  <!--  <div class="alert alert-danger" role="alert"-->
+  <!--       *ngIf="registerForm.get('address').invalid && registerForm.get('address').touched">-->
+  <!--    Address is required!-->
+  <!--  </div>-->
+
+
+  <!--  <div class="form-group row">-->
+  <!--    <label class="col">-->
+  <!--      Tuổi-->
+  <!--      <input type="number" class="form-control" [(ngModel)]="user.age" formControlName="age">-->
+  <!--    </label>-->
+  <!--  </div>-->
+  <!--  <div class="alert alert-danger" role="alert"-->
+  <!--       *ngIf="registerForm.get('age').invalid && registerForm.get('age').touched">-->
+  <!--    You have to be over 18 to register an account-->
+  <!--  </div>-->
+
+
+  <!--  <div class="form-group row">-->
+  <!--    <label class="col">-->
+  <!--      Số điện thoại-->
+  <!--      <input type="tel" class="form-control" [(ngModel)]="user.phone" formControlName="phone" placeholder="+84...">-->
+  <!--    </label>-->
+  <!--  </div>-->
+  <!--  <div class="alert alert-danger" role="alert"-->
+  <!--       *ngIf="registerForm.get('phone').invalid && registerForm.get('phone').touched">-->
+  <!--    <span *ngIf="registerForm.get('phone').hasError('required')">Phone is required</span>-->
+  <!--    <span-->
+  <!--      *ngIf="registerForm.get('phone').hasError('pattern')">Phone must start with +84 followed by 9 or 10 digits.</span>-->
+  <!--  </div>-->
+
+  <!--  <div class="form-group row">-->
+  <!--    <label class="col">-->
+  <!--      Name-->
+  <!--      <input type="text" class="form-control" [(ngModel)]="user.name" formControlName="name">-->
+  <!--    </label>-->
+  <!--  </div>-->
+  <!--  <div class="alert alert-danger" role="alert"-->
+  <!--       *ngIf="registerForm.get('name').invalid && registerForm.get('name').touched">-->
+  <!--    Address is required!-->
+  <!--  </div>-->
+
+
+  <!--  <div class="form-group row">-->
+  <!--    <label class="col">-->
+  <!--      IdNumber-->
+  <!--      <input type="text" class="form-control" [(ngModel)]="user.idNumber" formControlName="idNumber">-->
+  <!--    </label>-->
+  <!--  </div>-->
+  <!--  <div class="alert alert-danger" role="alert"-->
+  <!--       *ngIf="registerForm.get('idNumber').invalid && registerForm.get('idNumber').touched">-->
+  <!--    Address is required!-->
+  <!--  </div>-->
+
+  <!--  <div class="form-group row">-->
+  <!--    <label class="col">-->
+  <!--      Avatar-->
+  <!--     <app-upload-file (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-file>-->
+  <!--    </label>-->
+  <!--  </div>-->
+
   <div class="form-group">
-    <button class="btn btn-info" type="submit">Submit</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" type="submit">
+      Create User
+    </button>
   </div>
+  <!--  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+  <!--    <div class="modal-dialog modal-dialog-centered" role="document">-->
+  <!--      <div class="modal-content">-->
+  <!--        <div class="modal-header">-->
+  <!--          <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>-->
+  <!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+  <!--            <span aria-hidden="true">&times;</span>-->
+  <!--          </button>-->
+  <!--        </div>-->
+  <!--        <div class="modal-body">-->
+  <!--          Bạn đã đăng ký thành công-->
+  <!--        </div>-->
+  <!--        <div class="modal-footer">-->
+  <!--          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
 </form>
+
 <app-footer></app-footer>
 
