@@ -13,11 +13,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.username = localStorage.getItem('username');
+    this.username = localStorage.getItem('currentUser');
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
+    localStorage.clear();
   }
 }

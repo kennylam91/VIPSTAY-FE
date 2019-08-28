@@ -13,11 +13,11 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  registerGuest(user: IUser): Observable<IUser> {
-    return this.httpClient.post<IUser>(this.API_URL + 'signup', user);
+  registerGuest(user: Partial<IUser>): Observable<IUser> {
+    return this.httpClient.post<IUser>(this.API_URL + '/signup', user);
   }
 
-  registerHost(user: IUser): Observable<IUser> {
+  registerHost(user: Partial<IUser>): Observable<IUser> {
     return this.httpClient.post<IUser>(this.API_URL + '/host/signup', user);
   }
 }
