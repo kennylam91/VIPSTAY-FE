@@ -52,7 +52,8 @@ export class CreateHouseComponent implements OnInit {
   createHouse() {
     this.house.images = this.houseService.imageUrls;
     console.log(this.house);
-    this.houseService.createHouse(this.house).subscribe(() => {
+    this.houseService.createHouse(this.house).subscribe(next => {
+      console.log(next);
       this.router.navigate(['/home-for-host']);
     }, error => console.log(error));
   }
