@@ -16,8 +16,8 @@ export class HouseService {
   constructor(private http: HttpClient, private authenService: AuthenticationService) {
   }
 
-  getHouses(): Observable<IHouse[]> {
-    return this.http.get<IHouse[]>(this.API_URL);
+  getHouses(): Observable<any> {
+    return this.http.get<any>(this.API_URL);
   }
 
   getHouseById(id: number): Observable<IHouse> {
