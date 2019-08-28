@@ -10,12 +10,13 @@ import {RegisterHostComponent} from './component/feature/register-host/register-
 import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 import {ListHouseComponent} from './component/feature/list-house/list-house.component';
+import {UploadFileComponent} from './component/feature/upload-file/upload-file.component';
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  // {path: 'upload', component: UploadFileComponent},
-  {path: 'houses', component: ListHouseComponent},
+  {path: 'upload', component: UploadFileComponent},
+  {path: 'houses', component: HomepageComponent},
   {path: 'houses/:id', component: HouseDetailComponent},
   {path: 'registerUser', component: RegisterComponent},
   {path: 'registerHost', component: RegisterHostComponent},
