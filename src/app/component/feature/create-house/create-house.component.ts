@@ -16,7 +16,7 @@ export class CreateHouseComponent implements OnInit {
   house: Partial<IHouse>;
 
   constructor(private router: Router,
-              private service: HouseService) {
+              private houseService: HouseService) {
     this.houseForm = new FormGroup({
       houseName: new FormControl('', [Validators.required]),
       houseType: new FormControl('', [Validators.required]),
@@ -36,7 +36,7 @@ export class CreateHouseComponent implements OnInit {
       bathroomNumber: 0,
       price: 0,
       description: '',
-      image: 'https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg',
+      images: ['https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg'],
       rate: 0,
       area: 0
     };
@@ -45,14 +45,15 @@ export class CreateHouseComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChange($event) {
-    this.house.image = $event;
-  }
+  // onChange($event) {
+  //   this.house.images = $event;
+  // }
 
   createHouse() {
+    this.house.images = this.houseService.imageUrls;
     console.log(this.house);
-    this.service.createHouse(this.house).subscribe(() => {
+    this.houseService.createHouse(this.house).subscribe(() => {
       this.router.navigate(['/home-for-host']);
-    }, error => console.log(error) );
+    }, error => console.log(error));
   }
 }

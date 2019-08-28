@@ -11,7 +11,8 @@ import {environment} from '../../environments/environment';
 })
 export class HouseService {
   houses: IHouse[];
-  private API_URL = environment.URL + '/api/houses';
+  imageUrls: string[] = [];
+  private API_URL = environment.URL + '/api/host/houses';
 
   constructor(private http: HttpClient, private authenService: AuthenticationService) {
   }

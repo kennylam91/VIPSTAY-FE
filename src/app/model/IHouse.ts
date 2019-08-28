@@ -8,7 +8,7 @@ export interface IHouse {
   bathroomNumber: number;
   price: number;
   description: string;
-  image: string;
+  images: string[];
   rate: number;
   area: number;
 }
