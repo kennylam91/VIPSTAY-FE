@@ -15,20 +15,17 @@ import {RegisterComponent} from './component/feature/register/register.component
 import {RegisterHostComponent} from './component/feature/register-host/register-host.component';
 
 import {UploadFileComponent} from './component/feature/upload-file/upload-file.component';
-import {AngularFireModule} from 'angularfire2';
-import {AngularFireStorageModule} from 'angularfire2/storage';
-import {HeaderForHostComponent} from './component/shared/header-for-host/header-for-host.component';
-import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
-import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 import { ListHouseComponent } from './component/feature/list-house/list-house.component';
 import {environment} from '../environments/environment';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
-import {HeaderForHostComponent} from './component/header-for-host/header-for-host.component';
-import {HomeForHostComponent} from './component/home-for-host/home-for-host.component';
-import {CreateHouseComponent} from './component/create-house/create-house.component';
 import {DatePickerComponent} from './component/date-picker/date-picker.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
+import {HeaderForHostComponent} from './component/shared/header-for-host/header-for-host.component';
+import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -45,8 +42,7 @@ import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateMo
     HomeForHostComponent,
     HeaderForHostComponent,
     CreateHouseComponent,
-    ListHouseComponent],
-    CreateHouseComponent,
+    ListHouseComponent,
     DatePickerComponent],
   imports: [
     BrowserModule,
@@ -57,8 +53,6 @@ import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateMo
     FormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
-    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,
     MatDatepickerModule,
     MatNativeDateModule,
