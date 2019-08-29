@@ -76,6 +76,13 @@
       </div>
     </div>
     <div class="col-sm-4">
+      <div class="container" style="background-color: black; border-radius: 10px; color: white; margin-top: 20px; margin-bottom: 20px" *ngIf="house.startDate != null">
+        <p>Vì một vài lý do kỹ thuật, bên host sẽ ngừng cung cấp dịch vụ kể từ ngày: </p>
+        <p style="color: white">{{house.startDate}}</p>
+        <p> đến ngày: </p>
+        <p style="color: white">{{house.endDate}}</p>
+      </div>
+
       <div class="container border shadow-lg ">
         <p style="font-size: 35px;text-align: center">{{house.price}} $/đêm
         <p>

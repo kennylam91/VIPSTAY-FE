@@ -38,7 +38,9 @@ export class CreateHouseComponent implements OnInit {
       description: '',
       images: ['https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg'],
       rate: 0,
-      area: 0
+      area: 0,
+      startDate: null,
+      endDate: null
     };
   }
 

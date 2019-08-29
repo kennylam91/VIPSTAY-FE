@@ -19,9 +19,7 @@ export class DatePickerComponent implements OnInit {
     this.date1 = '';
   }
 
-
   onClick() {
-    this.date1 = this.date.toDateString();
     console.log(this.date1);
     console.log(this.date);
   }

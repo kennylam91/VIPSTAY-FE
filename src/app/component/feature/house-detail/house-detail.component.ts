@@ -21,7 +21,9 @@ export class HouseDetailComponent implements OnInit {
     description: '',
     images: [],
     rate: 0,
-    area: 0
+    area: 0,
+    startDate: null,
+    endDate: null
   };
 
   time: Date = new Date();
