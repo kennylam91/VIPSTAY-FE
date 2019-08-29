@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {IHouse} from '../../model/IHouse';
+
 import {Router} from '@angular/router';
-import {HouseService} from '../../house.service';
+import {IHouse} from '../../../model/IHouse';
+import {HouseService} from '../../../services/house.service';
+
 
 @Component({
   selector: 'app-create-house',
@@ -10,7 +12,6 @@ import {HouseService} from '../../house.service';
   styleUrls: ['./create-house.component.css']
 })
 export class CreateHouseComponent implements OnInit {
-
   houseForm: FormGroup;
   house: Partial<IHouse>;
 

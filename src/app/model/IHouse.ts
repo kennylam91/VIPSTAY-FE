@@ -1,4 +1,3 @@
-
 export interface IHouse {
   id: number;
   houseName: string;
@@ -11,4 +10,7 @@ export interface IHouse {
   image: string;
   rate: number;
   area: number;
+  status: string;
+  user: string;
+  category: string;
 }

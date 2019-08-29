@@ -20,7 +20,7 @@ import {AngularFireStorageModule} from 'angularfire2/storage';
 import {HeaderForHostComponent} from './component/shared/header-for-host/header-for-host.component';
 import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
-import { ListHouseComponent } from './component/feature/list-house/list-house.component';
+// import {ListHouseComponent} from './component/feature/list-house/list-house.component';
 import {environment} from '../environments/environment';
 
 @NgModule({
@@ -37,8 +37,8 @@ import {environment} from '../environments/environment';
     UploadFileComponent,
     HomeForHostComponent,
     HeaderForHostComponent,
-    CreateHouseComponent,
-    ListHouseComponent],
+    CreateHouseComponent],
+    // ListHouseComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,

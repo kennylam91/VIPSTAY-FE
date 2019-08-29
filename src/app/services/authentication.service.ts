@@ -14,7 +14,7 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private API_URL = environment.URL + '/api/login';
+  private API_URL = environment.URL + '/login';
 
   constructor(private httpClient: HttpClient) {
   }

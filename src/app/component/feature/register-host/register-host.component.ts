@@ -45,7 +45,7 @@ export class RegisterHostComponent implements OnInit {
     this.user = {
       username: '',
       password: '',
-      name: 'dat' + Math.random() * 1000,
+      name: 'host',
       email: 'dat' + Math.random() * 1000 + '@gmai.com',
     };
   }

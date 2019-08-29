@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
 import {first} from 'rxjs/operators';
@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   user: Partial<IUser>;
 
+
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
   }
 
@@ -48,7 +49,7 @@ export class RegisterComponent implements OnInit {
     this.user = {
       username: '',
       password: '',
-      name: 'dat' + Math.random() * 1000,
+      name: 'user',
       email: 'dat' + Math.random() * 1000 + '@gmai.com',
     };
   }
