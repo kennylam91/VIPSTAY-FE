@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../../authentication.service';
+import {AuthenticationService} from '../../../services/authentication.service';
 import {Router} from '@angular/router';
 import {HttpHeaders} from '@angular/common/http';
+import {error} from 'util';
 
 @Component({
   selector: 'app-login',
@@ -24,25 +25,19 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('Log in');
     console.log(JSON.stringify(this.loginForm.value));
-    this.authenService.login(this.loginForm.value).subscribe(
+    console.log(this.loginForm.value);
+    this.authenService.authenticate(this.loginForm.value).subscribe(
       next => {
-        localStorage.setItem('token', next.token);
-        localStorage.setItem('username', next.username);
-        this.authenService.token = next.token;
-        this.authenService.header = new HttpHeaders(
-          {
-            Authorization: `Bearer ${this.authenService.token}`,
-            'Content-Type': 'application/json'
-          }
-        );
-        if (next.token) {
-          this.router.navigateByUrl('');
+        localStorage.setItem('token', next.data.token);
+        localStorage.setItem('currentUser', next.data.username);
+        if (next.data.token) {
+          this.router.navigateByUrl('/home-for-host');
         }
-        console.log(next.token);
-      }
-    );
-
+      },
+      error1 => {
+        this.router.navigateByUrl('/login');
+        console.log(error1);
+      });
   }
 }

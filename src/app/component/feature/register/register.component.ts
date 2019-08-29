@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../user.service';
+import {UserService} from '../../../services/user.service';
 import {first} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {IUser} from '../../model/IUser';
+import {IUser} from '../../../model/IUser';
 import {ajaxGetJSON} from 'rxjs/internal-compatibility';
 import {Observable} from 'rxjs';
+import {User} from 'firebase';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -47,35 +48,27 @@ export class RegisterComponent implements OnInit {
     this.user = {
       username: '',
       password: '',
-      role: 'GUEST',
-      name: '',
-      age: 0,
-      type: '',
-      address: '',
-      phone: '',
-      email: '',
-      idNumber: '',
-      avatar: ''
-    }
-    ;
-  }
-
-  onChangeAvatar($event: string) {
-    this.user.avatar = $event;
+      name: 'dat' + Math.random() * 1000,
+      email: 'dat' + Math.random() * 1000 + '@gmai.com',
+    };
   }
 
   onSubmit() {
-    console.log(this.registerForm.value);
-    this.userService.register(this.user)
+    // if (this.registerForm.invalid) {
+    //   return;
+    // }
+    console.log(this.user);
+    this.userService.registerGuest(this.user)
       .subscribe(
         data => {
-          console.log('success');
+          console.log('succsess');
           alert('Đăng ký thành công');
-          this.router.navigate(['/login']);
+          this.router.navigateByUrl('/login');
         },
         error => {
           console.log('error');
         }
       );
   }
+
 }

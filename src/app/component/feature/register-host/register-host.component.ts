@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {UserService} from '../../user.service';
-import {IUser} from '../../model/IUser';
+import {UserService} from '../../../services/user.service';
+import {IUser} from '../../../model/IUser';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -10,6 +10,7 @@ function comparePassword(c: AbstractControl) {
     passwordnotmatch: true
   };
 }
+
 
 @Component({
   selector: 'app-register-host',
@@ -20,7 +21,7 @@ export class RegisterHostComponent implements OnInit {
   registerForm: FormGroup;
   user: Partial<IUser>;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -44,31 +45,21 @@ export class RegisterHostComponent implements OnInit {
     this.user = {
       username: '',
       password: '',
-      role: 'OWNER',
-      name: '',
-      age: 0,
-      type: '',
-      address: '',
-      phone: '',
-      email: '',
-      idNumber: '',
-      avatar: ''
-    }
-    ;
-  }
-
-  onChangeAvatar($event: string) {
-    this.user.avatar = $event;
+      name: 'dat' + Math.random() * 1000,
+      email: 'dat' + Math.random() * 1000 + '@gmai.com',
+    };
   }
 
   onSubmit() {
+    // if (this.registerForm.invalid) {
+    //   return;
+    // }
     console.log(this.registerForm.value);
-    this.userService.register(this.user)
+    this.userService.registerHost(this.user)
       .subscribe(
         data => {
-          console.log('success');
-          alert('Đăng ký thành công');
-          this.router.navigate(['/login']);
+          console.log('succsess');
+          this.router.navigateByUrl('/login');
         },
         error => {
           console.log('error');
