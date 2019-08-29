@@ -24,9 +24,9 @@ export class HouseService {
     return this.http.get<StandardResponse>(`${this.API_URL}/${id}`);
   }
 
-  createHouse(house: Partial<StandardResponse>): Observable<StandardResponse> {
-    return this.http.post<StandardResponse>(this.API_URL, house);
-  }
+  // createHouse(house: Partial<StandardResponse>): Observable<StandardResponse> {
+  //   return this.http.post<StandardResponse>(this.API_URL, house);
+  // }
 
   // updateHouse(house: StandardResponse): Observable<StandardResponse> {
   //   return this.http.put<StandardResponse>(`${this.API_URL}/${house.data.id}`, house);

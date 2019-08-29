@@ -22,6 +22,7 @@ import {HomeForHostComponent} from './component/core/home-for-host/home-for-host
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 // import {ListHouseComponent} from './component/feature/list-house/list-house.component';
 import {environment} from '../environments/environment';
+import { ProfileUserComponent } from './component/feature/profile-user/profile-user.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {environment} from '../environments/environment';
     UploadFileComponent,
     HomeForHostComponent,
     HeaderForHostComponent,
-    CreateHouseComponent],
+    CreateHouseComponent,
+    ProfileUserComponent],
     // ListHouseComponent ],
   imports: [
     BrowserModule,
