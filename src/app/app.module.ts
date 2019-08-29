@@ -20,6 +20,9 @@ import {AngularFireStorageModule} from 'angularfire2/storage';
 import {HeaderForHostComponent} from './component/header-for-host/header-for-host.component';
 import {HomeForHostComponent} from './component/home-for-host/home-for-host.component';
 import {CreateHouseComponent} from './component/create-house/create-house.component';
+import {DatePickerComponent} from './component/date-picker/date-picker.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDibiKCzy27CCE-J5_ncb1imwzYqK9-L_Q',
@@ -46,8 +49,10 @@ const firebaseConfig = {
     UploadFileComponent,
     HomeForHostComponent,
     HeaderForHostComponent,
-    CreateHouseComponent],
+    CreateHouseComponent,
+    DatePickerComponent],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -56,7 +61,12 @@ const firebaseConfig = {
     FormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,9 @@
+<div style="background-color: black; color: white">
+<mat-form-field>
+  <mat-label>Date</mat-label>
+  <input [(ngModel)]="date" matInput [matDatepicker]="myPicker"  placeholder="date">
+  <mat-datepicker-toggle  matSuffix [for]="myPicker"></mat-datepicker-toggle>
+  <mat-datepicker #myPicker></mat-datepicker>
+</mat-form-field>
+</div>
+<button (click)="onClick()">test</button>
