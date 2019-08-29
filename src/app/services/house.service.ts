@@ -11,17 +11,18 @@ import {environment} from '../../environments/environment';
 })
 export class HouseService {
   houses: IHouse[];
-  private API_URL = environment.URL + '/api/houses';
+  imageUrls: string[] = [];
+  private API_URL = environment.URL + '/api/host/houses';
 
   constructor(private http: HttpClient, private authenService: AuthenticationService) {
   }
 
-  getHouses(): Observable<IHouse[]> {
-    return this.http.get<IHouse[]>(this.API_URL);
+  getHouses(): Observable<any> {
+    return this.http.get<any>(this.API_URL);
   }
 
-  getHouseById(id: number): Observable<IHouse> {
-    return this.http.get<IHouse>(`${this.API_URL}/${id}`);
+  getHouseById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.API_URL}/${id}`);
   }
 
   createHouse(house: Partial<IHouse>): Observable<IHouse> {

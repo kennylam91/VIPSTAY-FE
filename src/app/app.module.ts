@@ -8,7 +8,7 @@ import {HeaderComponent} from './component/shared/header/header.component';
 import {FooterComponent} from './component/shared/footer/footer.component';
 import {HouseDetailComponent} from './component/feature/house-detail/house-detail.component';
 import {SearchComponent} from './component/shared/search/search.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './component/feature/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './component/feature/register/register.component';
@@ -22,6 +22,7 @@ import {HomeForHostComponent} from './component/core/home-for-host/home-for-host
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 import { ListHouseComponent } from './component/feature/list-house/list-house.component';
 import {environment} from '../environments/environment';
+import {AuthInterceptorService} from './services/auth-interceptor.service';
 import {HeaderForHostComponent} from './component/header-for-host/header-for-host.component';
 import {HomeForHostComponent} from './component/home-for-host/home-for-host.component';
 import {CreateHouseComponent} from './component/create-house/create-house.component';
@@ -65,7 +66,13 @@ import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateMo
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
