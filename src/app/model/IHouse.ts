@@ -1,9 +1,10 @@
 import {HouseRequest} from './HouseRequest';
+import {CategoryOfHouse} from './CategoryOfHouse';
 
 export interface IHouse {
   id: number;
   houseName: string;
-  houseType: string;
+  category: string;
   address: string;
   bedroomNumber: number;
   bathroomNumber: number;

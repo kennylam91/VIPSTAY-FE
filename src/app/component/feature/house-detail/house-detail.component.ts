@@ -13,7 +13,7 @@ export class HouseDetailComponent implements OnInit {
   house: IHouse = {
     id: 0,
     houseName: '',
-    houseType: '',
+    category: '',
     address: '',
     bedroomNumber: 0,
     bathroomNumber: 0,
