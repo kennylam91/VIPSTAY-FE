@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
 import {IHouse} from '../../../model/IHouse';
 import {HouseService} from '../../../services/house.service';
-
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-create-house',
-  templateUrl: './create-house.component.html',
-  styleUrls: ['./create-house.component.css']
+  selector: 'app-edit-house',
+  templateUrl: './edit-house.component.html',
+  styleUrls: ['./edit-house.component.css']
 })
-export class CreateHouseComponent implements OnInit {
+export class EditHouseComponent implements OnInit {
 
   houseForm: FormGroup;
-  house: Partial<IHouse>;
+  house: IHouse;
 
-  constructor(private router: Router,
-              private houseService: HouseService) {
+  constructor(private houseService: HouseService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.houseForm = new FormGroup({
       houseName: new FormControl('', [Validators.required]),
       houseType: new FormControl('', [Validators.required]),
@@ -27,8 +27,11 @@ export class CreateHouseComponent implements OnInit {
       description: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required]),
       area: new FormControl('', [Validators.required]),
+      startDate: new FormControl(),
+      endDate: new FormControl()
     });
     this.house = {
+      id: 0,
       houseName: '',
       houseType: '',
       address: '',
@@ -36,7 +39,7 @@ export class CreateHouseComponent implements OnInit {
       bathroomNumber: 0,
       price: 0,
       description: '',
-      images: ['https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg'],
+      images: [],
       rate: 0,
       area: 0,
       startDate: null,
@@ -45,18 +48,22 @@ export class CreateHouseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(paramMap => {
+      const id = +paramMap;
+      this.houseService.getHouseById(id).subscribe(next => {
+        this.house = next.data;
+        console.log(next.data);
+      }, error1 => {
+        console.log(error1);
+        this.house = null;
+      });
+    });
   }
 
-  // onChange($event) {
-  //   this.house.images = $event;
-  // }
-
-  createHouse() {
-    this.house.images = this.houseService.imageUrls;
+  editHouse() {
     console.log(this.house);
-    this.houseService.createHouse(this.house).subscribe(next => {
-      console.log(next);
-      this.router.navigate(['/home-for-host']);
+    this.houseService.updateHouse(this.house).subscribe(next => {
+      alert(next.message);
     }, error => console.log(error));
   }
 }

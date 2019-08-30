@@ -25,15 +25,15 @@ export class HouseService {
     return this.http.get<any>(`${this.API_URL}/${id}`);
   }
 
-  createHouse(house: Partial<IHouse>): Observable<IHouse> {
-    return this.http.post<IHouse>(this.API_URL, house);
+  createHouse(house: Partial<any>): Observable<IHouse> {
+    return this.http.post<any>(this.API_URL, house);
   }
 
-  updateHouse(house: IHouse): Observable<IHouse> {
-    return this.http.put<IHouse>(`${this.API_URL}/${house.id}`, house);
+  updateHouse(house: IHouse): Observable<any> {
+    return this.http.put<any>(`${this.API_URL}/${house.id}`, house);
   }
 
-  deleteHouse(id: number): Observable<IHouse> {
-    return this.http.delete<IHouse>(`${this.API_URL}/${id}`);
+  deleteHouse(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.API_URL}/${id}`);
   }
 }

@@ -1,0 +1,104 @@
+<div class="container-fluid">
+  <app-header-for-host></app-header-for-host>
+  <div
+    style="background-color: black; border-radius: 10px; text-align: center; color: white; margin-top: 20px; margin-bottom: 20px; font-size: x-large; margin-left: 5px; margin-right:5px">
+    Sửa lại thông tin về chỗ ở bạn đã đăng
+  </div>
+  <div class="container-fluid row">
+    <div class="col-8">
+      <form (ngSubmit)="editHouse()" [formGroup]="houseForm">
+        <div class="form-group">
+          <label>House Name: </label>
+          <input type="email" class="form-control" [(ngModel)]="house.houseName" formControlName="houseName"
+                 placeholder="Enter house name">
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('houseName').invalid && houseForm.get('houseName').touched">
+          Address is required!
+        </div>
+
+        <div class="form-group">
+          <label>House Type: </label>
+          <select class="form-control form-control-lg" [(ngModel)]="house.houseType" formControlName="houseType">
+            <option value="home">HOME</option>
+            <option value="villa">VILLA</option>
+            <option value="resort">RESORT</option>
+            <option value="hotel">HOTEL</option>
+          </select>
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('houseType').invalid && houseForm.get('houseType').touched">
+          Address is required!
+        </div>
+
+        <div class="form-group">
+          <label>Address: </label>
+          <input type="text" class="form-control" [(ngModel)]="house.address" formControlName="address"
+                 placeholder="Enter address">
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('address').invalid && houseForm.get('address').touched">
+          Address is required!
+        </div>
+        <div class="form-group">
+          <label>Bedroom number: </label>
+          <input type="number" class="form-control" [(ngModel)]="house.bedroomNumber" formControlName="bedroomNumber"
+                 placeholder="Enter bedroom number">
+        </div>
+        <div class="form-group">
+          <label>Bathroom Number: </label>
+          <input type="number" class="form-control" [(ngModel)]="house.bathroomNumber" formControlName="bathroomNumber"
+                 placeholder="Enter bathroom number">
+        </div>
+        <div class="form-group">
+          <label>Price: </label>
+          <input type="number" class="form-control" [(ngModel)]="house.price" formControlName="price"
+                 placeholder="Enter price">
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('price').invalid && houseForm.get('price').touched">
+          Address is required!
+        </div>
+        <div class="form-group">
+          <label>Description: </label>
+          <textarea class="form-control" [(ngModel)]="house.description" formControlName="description"
+                    placeholder="Enter description"></textarea>
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('description').invalid && houseForm.get('description').touched">
+          Address is required!
+        </div>
+        <div class="form-group">
+          <label>Area: </label>
+          <input type="number" class="form-control" [(ngModel)]="house.area" formControlName="area"
+                 placeholder="Enter area">
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('area').invalid && houseForm.get('area').touched">
+          Address is required!
+        </div>
+
+        <div class="form-group">
+          <label>Chỗ ở sẽ tạm dừng cung cấp dịch vụ kể từ ngày: </label>
+          <input type="date" class="form-control" [(ngModel)]="house.startDate" formControlName="startDate">
+        </div>
+
+        <div class="form-group">
+          <label>đến ngày: </label>
+          <input type="date" class="form-control" [(ngModel)]="house.endDate" formControlName="endDate">
+        </div>
+
+        <div style="margin-bottom: 20px">
+          <button type="submit" class="btn btn-primary">Sửa thông tin</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-4" style="margin-bottom: 10px">
+      <div>
+        <p>Thêm hoặc xóa ảnh chỗ ở của bạn: </p>
+        <app-upload-file></app-upload-file>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

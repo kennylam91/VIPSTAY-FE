@@ -18,7 +18,6 @@ import {UploadFileComponent} from './component/feature/upload-file/upload-file.c
 import { ListHouseComponent } from './component/feature/list-house/list-house.component';
 import {environment} from '../environments/environment';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
-import {DatePickerComponent} from './component/date-picker/date-picker.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
@@ -26,6 +25,7 @@ import {HeaderForHostComponent} from './component/shared/header-for-host/header-
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule} from '@angular/fire/storage';
+import { EditHouseComponent } from './component/feature/edit-house/edit-house.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
     HeaderForHostComponent,
     CreateHouseComponent,
     ListHouseComponent,
-    DatePickerComponent],
+    EditHouseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
