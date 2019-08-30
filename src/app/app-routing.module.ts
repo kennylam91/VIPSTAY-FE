@@ -7,11 +7,12 @@ import {RegisterComponent} from './component/feature/register/register.component
 import {RegisterHostComponent} from './component/feature/register-host/register-host.component';
 // import {UploadFileComponent} from './component/upload-file/upload-file.component';
 
-import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
+
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 // import {ListHouseComponent} from './component/feature/list-house/list-house.component';
 import {UploadFileComponent} from './component/feature/upload-file/upload-file.component';
 import {ProfileUserComponent} from './component/feature/profile-user/profile-user.component';
+import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
 
 
 const routes: Routes = [
