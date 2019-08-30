@@ -21,7 +21,7 @@ export class UploadFileComponent implements OnInit {
   task: AngularFireUploadTask;
   percent = 0;
   index = 0;
-  imageUrls: string[];
+  imageUrls: string[] = [];
   totalFile: number;
   @Output()
   giveURLtoCreate = new EventEmitter<string>();
@@ -37,65 +37,53 @@ export class UploadFileComponent implements OnInit {
   onFileChanged(event) {
     this.files = event.target.files;
     this.totalFile = this.files.length;
+    this.percent = 0;
+    this.index = 0;
   }
 
   async onUpload() {
     try {
       this.houseService.imageUrls = [];
+      this.index = 1;
       for (const file of this.files) {
         const id = Math.random().toString(36).substring(2); // Create a random string
         this.ref = this.afStorage.ref(id);
         // await
         const snapshot: UploadTaskSnapshot = await this.ref.put(file);
-        let temp = 0;
-        temp = temp === 1 ? Math.round(snapshot.bytesTransferred / snapshot.totalBytes) - 1 :
-          Math.round(snapshot.bytesTransferred / snapshot.totalBytes);
-        this.percent = this.percent + temp * (100 / this.totalFile);
-
-        this.houseService.imageUrls.push(snapshot.downloadURL);
-        // no await
-        //   this.task = this.ref.put(file);
-        //   this.uploadProgress = this.task.percentageChanges();
-        //   let temp = 0;
-        //   this.task.snapshotChanges().subscribe(
-        //     next => {
-        // temp = temp === 1 ? Math.round(next.bytesTransferred / next.totalBytes) - 1 :
-        //   Math.round(next.bytesTransferred / next.totalBytes);
+        const downloadUrl = await snapshot.ref.getDownloadURL();
+        // let temp = 0;
+        // temp = temp === 1 ? Math.round(snapshot.bytesTransferred / snapshot.totalBytes) - 1 :
+        //   Math.round(snapshot.bytesTransferred / snapshot.totalBytes);
         // this.percent = this.percent + temp * (100 / this.totalFile);
-        //       this.houseService.imageUrls.push(next.downloadURL);
-        //     });
-        //   this.task.snapshotChanges().pipe(
-        //     finalize(() => {
-        //       this.ref.getDownloadURL().subscribe(url =>
-        //         this.imageUrls.push(url));
-        //     })).subscribe();
-        //   // -------------------
-        //   this.index++;
-        // }
-        // this.imageUrls.filter(url => {
-        //   if (url) {
-        //     this.houseService.imageUrls.push(url);
-        // }
+
+        // downloadUrl.then(next => {
+        //   this.imageUrls.push(next);
         // });
+        this.imageUrls.push(downloadUrl);
+        this.percent = this.index / this.totalFile * 100;
+
+        // no await
+        // this.task = this.ref.put(file);
+        // this.uploadProgress = this.task.percentageChanges();
+        // let temp = 0;
+        // this.task.snapshotChanges().subscribe(
+        //   next => {
+        //     temp = temp === 1 ? Math.round(next.bytesTransferred / next.totalBytes) - 1 :
+        //       Math.round(next.bytesTransferred / next.totalBytes);
+        //     this.percent = this.percent + temp * (100 / this.totalFile);
+        //     this.houseService.imageUrls.push(next.downloadURL);
+        //   });
+        // this.task.snapshotChanges().pipe(
+        //   finalize(() => {
+        //     this.ref.getDownloadURL().subscribe(url =>
+        //       this.imageUrls.push(url));
+        //   })).subscribe();
+        // -------------------
+        this.index++;
       }
-      console.log(this.houseService.imageUrls);
     } catch (error) {
       console.log(`Failed to upload file and get link - ${error}`);
     }
-
-    // this.ref.put(file)
-    //   .then(snapshot => {
-    //     return snapshot.ref.getDownloadURL();   // Will return a promise with the download link
-    //   })
-    //   .then(downloadURL => {
-    //     this.downloadURL = downloadURL;
-    //     this.giveURLtoCreate.emit(this.downloadURL);
-    //     // console.log(downloadURL);
-    //     return downloadURL;
-    //   })
-    //   .catch(error => {
-    //     // Use to signal error if something goes wrong.
-    //     console.log(`Failed to upload file and get link - ${error}`);
-    //   });
+    console.log(this.imageUrls);
   }
 }
