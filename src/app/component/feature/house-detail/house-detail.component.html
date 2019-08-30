@@ -1,9 +1,9 @@
 <app-header></app-header>
-<header class="container shadow" style="max-width:100%;" id="home">
-<!--  <img src='{{house.imageHouses}}' alt="Architecture" width="100%" height="600">-->
+<header class="container-fluid shadow" style="max-width:100%;" id="home">
+  <img src='{{house.imageUrls[0]}}' alt="Architecture" width="100%" height="600">
 </header>
 
-<div class="container shadow">
+<div class="container-fluid shadow">
   <ul class="breadcrumb shadow">
     <li class="breadcrumb-item"><a [routerLink]="['']">Trang chủ</a></li>
     <li class="breadcrumb-item active"><a [routerLink]="['/houses',house.id]">{{house.houseName}}</a></li>
@@ -16,15 +16,19 @@
           <img src="assets/icon/address.png" width="20" height="20"> {{house.address}}
         </p>
         <p class="font-weight-bold ">
-          <img src="assets/icon/house.png" width="20" height="20"> Nhà riêng: {{house.area}} m2
+          <img src="assets/icon/house.png" width="20" height="20"> Diện tích: {{house.area}} m2
         </p>
         <p class="overflow-auto">{{house.description}}</p>
       </div>
       <p></p>
-
-      <p class="font-weight-bold shadow" style="font-size: 25px">Tiện Nghi Chỗ ở </p>
-      <div class="container bg-light shadow">
-        <p>Giới thiệu về các tiện nghi và dịch vụ tại nơi lưu trú</p>
+      <div class="container shadow">
+        <p class="font-weight-bold" style="font-size: 20px" >Tiện Nghi Chỗ ở </p>
+        <div class="row">
+          <div class="col-md-6"><p><img src="assets/icon/house.png" width="20" height="20"> Phòng ngủ: {{house.bathroomNumber}}</p></div>
+          <div class="col-md-6"><p><img src="assets/icon/house.png" width="20" height="20"> Phòng tắm: {{house.bedroomNumber}}</p></div>
+        </div>
+      </div>
+      <div class="container bg-light shadow mt-2">
         <p class="font-weight-bold" style="font-size: 20px">Tiện ích gia đình </p>
         <div class="row">
           <div class="col-lg-4">

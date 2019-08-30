@@ -19,7 +19,7 @@ const httpOptions = {
 export class HouseService {
   houses: IHouse[];
   imageUrls: string[] = [];
-  private API_URL = environment.URL + '/api/host/houses';
+  private API_URL = environment.URL + '/api/houses';
 
   constructor(private http: HttpClient, private authenService: AuthenticationService) {
   }
@@ -36,11 +36,11 @@ export class HouseService {
     return this.http.post<any>(this.API_URL, JSON.stringify(imageOfHouses), httpOptions);
   }
 
-  updateHouse(house: IHouse): Observable<IHouse> {
-    return this.http.put<IHouse>(`${this.API_URL}/${house.id}`, house);
+  updateHouse(house: IHouse): Observable<any> {
+    return this.http.put<any>(`${this.API_URL}/${house.id}`, house);
   }
 
-  deleteHouse(id: number): Observable<IHouse> {
-    return this.http.delete<IHouse>(`${this.API_URL}/${id}`);
+  deleteHouse(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.API_URL}/${id}`);
   }
 }

@@ -19,7 +19,7 @@ export class HouseDetailComponent implements OnInit {
     bathroomNumber: 0,
     price: 0,
     description: '',
-    // imageHouses: [],
+    imageUrls: [],
     rate: 0,
     area: 0
   };
