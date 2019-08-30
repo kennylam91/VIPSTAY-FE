@@ -17,14 +17,10 @@ import {finalize} from 'rxjs/operators';
 export class UploadFileComponent implements OnInit {
   files: File[];
   ref: AngularFireStorageReference;
-  uploadProgress: Observable<number>;
-  task: AngularFireUploadTask;
   percent = 0;
   index = 0;
-  imageUrls: string[] = [];
-  totalFile: number;
-  @Output()
-  giveURLtoCreate = new EventEmitter<string>();
+  btn = 'Upload';
+  totalFile = 0;
 
   constructor(private httpClient: HttpClient,
               private afStorage: AngularFireStorage,
@@ -45,45 +41,23 @@ export class UploadFileComponent implements OnInit {
     try {
       this.houseService.imageUrls = [];
       this.index = 1;
+      this.btn = 'Uploading';
       for (const file of this.files) {
         const id = Math.random().toString(36).substring(2); // Create a random string
         this.ref = this.afStorage.ref(id);
         // await
         const snapshot: UploadTaskSnapshot = await this.ref.put(file);
         const downloadUrl = await snapshot.ref.getDownloadURL();
-        // let temp = 0;
-        // temp = temp === 1 ? Math.round(snapshot.bytesTransferred / snapshot.totalBytes) - 1 :
-        //   Math.round(snapshot.bytesTransferred / snapshot.totalBytes);
-        // this.percent = this.percent + temp * (100 / this.totalFile);
 
-        // downloadUrl.then(next => {
-        //   this.imageUrls.push(next);
-        // });
-        this.imageUrls.push(downloadUrl);
-        this.percent = this.index / this.totalFile * 100;
-
-        // no await
-        // this.task = this.ref.put(file);
-        // this.uploadProgress = this.task.percentageChanges();
-        // let temp = 0;
-        // this.task.snapshotChanges().subscribe(
-        //   next => {
-        //     temp = temp === 1 ? Math.round(next.bytesTransferred / next.totalBytes) - 1 :
-        //       Math.round(next.bytesTransferred / next.totalBytes);
-        //     this.percent = this.percent + temp * (100 / this.totalFile);
-        //     this.houseService.imageUrls.push(next.downloadURL);
-        //   });
-        // this.task.snapshotChanges().pipe(
-        //   finalize(() => {
-        //     this.ref.getDownloadURL().subscribe(url =>
-        //       this.imageUrls.push(url));
-        //   })).subscribe();
-        // -------------------
-        this.index++;
+        this.houseService.imageUrls.push(downloadUrl);
+        this.percent = Math.round(this.index / this.totalFile * 100);
+        // prevent index++ when index=totalFile
+        this.index = this.index === this.totalFile ? this.index : this.index + 1;
       }
     } catch (error) {
       console.log(`Failed to upload file and get link - ${error}`);
     }
-    console.log(this.imageUrls);
+    console.log(this.houseService.imageUrls);
+    this.btn = 'Upload';
   }
 }
