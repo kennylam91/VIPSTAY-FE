@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {IHouse} from '../../../model/IHouse';
 import {HouseService} from '../../../services/house.service';
+import {HouseRequest} from '../../../model/HouseRequest';
+import {ImageOfHouse} from '../../../model/ImageOfHouse';
 
 
 @Component({
@@ -25,7 +27,7 @@ export class CreateHouseComponent implements OnInit {
       bathroomNumber: new FormControl(''),
       price: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      image: new FormControl('', [Validators.required]),
+      // image: new FormControl('', [Validators.required]),
       area: new FormControl('', [Validators.required])
     });
     this.house = {
@@ -36,7 +38,8 @@ export class CreateHouseComponent implements OnInit {
       bathroomNumber: 0,
       price: 0,
       description: '',
-      images: ['https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg'],
+      // imageHouses: ['https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg'],
+      // imageHouses: [],
       rate: 0,
       area: 0
     };
@@ -50,9 +53,16 @@ export class CreateHouseComponent implements OnInit {
   // }
 
   createHouse() {
-    this.house.images = this.houseService.imageUrls;
+    // this.house.imageHouses = this.houseService.imageUrls;
     console.log(this.house);
-    this.houseService.createHouse(this.house).subscribe(next => {
+    const imageHouses: ImageOfHouse[] = [];
+    for (let i = 0; i < this.houseService.imageUrls.length; i++) {
+      let imageHouse = new ImageOfHouse();
+      imageHouse.imageUrl = this.houseService.imageUrls[i];
+      imageHouse.house = this.house;
+      imageHouses.push(imageHouse);
+    }
+    this.houseService.createHouse(imageHouses).subscribe(next => {
       console.log(next);
       this.router.navigate(['/home-for-host']);
     }, error => console.log(error));

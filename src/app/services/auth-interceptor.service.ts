@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpEvent, HttpHandler, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +19,7 @@ export class AuthInterceptorService {
     if (localStorage.getItem('currentUser') && localStorage.getItem('token')) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
       });
     }

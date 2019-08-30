@@ -1,3 +1,4 @@
+import {HouseRequest} from './HouseRequest';
 
 export interface IHouse {
   id: number;
@@ -8,7 +9,6 @@ export interface IHouse {
   bathroomNumber: number;
   price: number;
   description: string;
-  images: string[];
   rate: number;
   area: number;
 }

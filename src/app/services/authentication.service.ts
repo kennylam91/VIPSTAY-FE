@@ -4,11 +4,11 @@ import {Observable} from 'rxjs';
 import {FormGroup} from '@angular/forms';
 import {environment} from '../../environments/environment';
 
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     'Content-Type': 'application/json'
-//   })
-// };
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
