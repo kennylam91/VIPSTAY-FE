@@ -25,12 +25,12 @@ export class ProfileUserComponent implements OnInit {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < data.length; i++) {
         if (data[i].username === this.username) {
-          this.id = i;
+          this.id = i+1;
           console.log(data[i]);
           alert(this.id);
-          this.userProfileService.getUserByid(this.id).subscribe(data => {
-            this.user = data;
-            console.log(data);
+          this.userProfileService.getUserByid(this.id).subscribe(data1 => {
+            this.user = data1;
+            console.log(data1);
           });
           break;
         }
@@ -45,7 +45,7 @@ export class ProfileUserComponent implements OnInit {
   updateProfile() {
     console.log(this.user);
     this.userProfileService.updateUser(this.user).subscribe(data => {
-        alert('Ban da update thanh cong');
+        // alert('Ban da update thanh cong');
         console.log('sua thanh cong');
       }, error => {
         console.log('error');
