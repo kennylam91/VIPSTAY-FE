@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit {
     });
 
     this.user = {
+      id: Math.round(Math.random() * 1000),
       username: '',
       password: '',
       name: 'user',

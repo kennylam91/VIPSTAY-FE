@@ -9,7 +9,7 @@
       <form (ngSubmit)="createHouse()" [formGroup]="houseForm">
         <div class="form-group">
           <label>House Name: </label>
-          <input type="email" class="form-control" [(ngModel)]="house.data.houseName" formControlName="houseName"
+          <input type="text" class="form-control" [(ngModel)]="house.data.houseName" formControlName="houseName"
                  placeholder="Enter house name">
         </div>
         <div class="alert alert-danger" role="alert"
