@@ -49,7 +49,7 @@ export class EditHouseComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
-      const id = +paramMap;
+      const id = +paramMap.get('id');
       this.houseService.getHouseById(id).subscribe(next => {
         this.house = next.data;
         console.log(next.data);
@@ -63,7 +63,11 @@ export class EditHouseComponent implements OnInit {
   editHouse() {
     console.log(this.house);
     this.houseService.updateHouse(this.house).subscribe(next => {
-      alert(next.message);
+      console.log(next);
     }, error => console.log(error));
+  }
+
+  redirect() {
+    this.router.navigate(['/home-for-host']);
   }
 }

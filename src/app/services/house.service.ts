@@ -13,16 +13,17 @@ export class HouseService {
   houses: IHouse[];
   imageUrls: string[] = [];
   private API_URL = environment.URL + '/api/host/houses';
+  private API_URL_GET = environment.URL + '/api/houses';
 
   constructor(private http: HttpClient, private authenService: AuthenticationService) {
   }
 
   getHouses(): Observable<any> {
-    return this.http.get<any>(this.API_URL);
+    return this.http.get<any>(this.API_URL_GET);
   }
 
   getHouseById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.API_URL}/${id}`);
+    return this.http.get<any>(`${this.API_URL_GET}/${id}`);
   }
 
   createHouse(house: Partial<any>): Observable<IHouse> {
