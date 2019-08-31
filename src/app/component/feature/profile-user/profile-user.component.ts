@@ -25,9 +25,8 @@ export class ProfileUserComponent implements OnInit {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < data.length; i++) {
         if (data[i].username === this.username) {
-          this.id = i+1;
+          this.id = i + 1;
           console.log(data[i]);
-          alert(this.id);
           this.userProfileService.getUserByid(this.id).subscribe(data1 => {
             this.user = data1;
             console.log(data1);
@@ -43,10 +42,12 @@ export class ProfileUserComponent implements OnInit {
   }
 
   updateProfile() {
-    console.log(this.user);
     this.userProfileService.updateUser(this.user).subscribe(data => {
-        // alert('Ban da update thanh cong');
-        console.log('sua thanh cong');
+        alert('Ban da update thanh cong');
+        this.username = data.username;
+        localStorage.setItem('currentUser', data.username);
+        console.log(this.user);
+        // console.log('sua thanh cong');
       }, error => {
         console.log('error');
       }

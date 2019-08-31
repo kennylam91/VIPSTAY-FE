@@ -1,4 +1,4 @@
-// import {IRole} from './IRole';
+import {IRole} from './IRole';
 
 export interface IUser {
   id: number;
@@ -6,5 +6,5 @@ export interface IUser {
   password: string;
   name: string;
   email: string;
-  // role: IRole;
+  role: IRole;
 }

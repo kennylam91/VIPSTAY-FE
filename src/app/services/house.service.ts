@@ -25,7 +25,7 @@ export class HouseService {
   }
 
   createHouse(house: Partial<StandardResponse>): Observable<StandardResponse> {
-    return this.http.post<StandardResponse>(this.API_URL, house);
+    return this.http.post<StandardResponse>(`${this.API_URL + '/create'}`, house);
   }
 
   // updateHouse(house: StandardResponse): Observable<StandardResponse> {

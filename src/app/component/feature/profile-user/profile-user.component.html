@@ -35,25 +35,25 @@
     <div class="col-lg-8 ">
 
 
-      <form >
+      <form (ngSubmit)="updateProfile()">
         <div class="form-group">
           <label for="username">Tên </label>
-          <input type="text" class="form-control" id="username"  [value]="user.username" >
+          <input type="text" class="form-control" id="username"  value='{{user.username}}' [(ngModel)]="user.username" name="first">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email"  [value]="user.email">
+          <input type="email" class="form-control" id="email"  value='{{user.email}}' [(ngModel)]="user.email" name="two">
         </div>
         <div class="form-group">
           <label for="pwd">Password</label>
-          <input type="password" class="form-control" id="pwd"  [value]="user.password">
+          <input type="password" class="form-control" id="pwd"  value='{{user.password}}' [(ngModel)]="user.password" name="three">
         </div>
         <div class="form-group form-check">
           <label class="form-check-label">
             <input class="form-check-input" type="checkbox"> Remember me
           </label>
         </div>
-        <button (click)="updateProfile()" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
