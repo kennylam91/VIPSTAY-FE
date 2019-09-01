@@ -1,21 +1,6 @@
 <app-header></app-header>
-<div class="container">
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" [routerLink]="['/houses']">Menu</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Đặt chỗ của tôi</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/profileUser']">Thông tin tài khoản</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link " href="/logout" (click)="logout()">Đăng xuất</a>
-    </li>
-  </ul>
-</nav>
+<div class="container" style="height: 528px">
+<app-navbar-profile></app-navbar-profile>
 
     <div class="container">
       <h4 style="color: coral"> {{username}}. Thông tin tài khoản </h4>
@@ -25,8 +10,8 @@
   <div class="row">
     <div class="col-lg-4 " >
       <div class="d-flex flex-column flex-wrap bg-light shadow">
-        <button class="p-2 bg-white font-weight-bold " style="text-align: left">Thông tin tài khoản</button>
-        <button class="p-2 bg-white " style="text-align: left">Thay đổi mật khẩu</button>
+        <button class="p-2 bg-white font-weight-bold " style="text-align: left" [routerLink]="['/profileUser']">Thông tin tài khoản</button>
+        <button class="p-2 bg-white " style="text-align: left" [routerLink]="['/editPassword']">Thay đổi mật khẩu</button>
         <button class="p-2 bg-white " style="text-align: left">Thanh Toán</button>
         <button class="p-2 bg-white " style="text-align: left">Liên kết tài khoản</button>
       </div>
@@ -37,16 +22,16 @@
 
       <form (ngSubmit)="updateProfile()">
         <div class="form-group">
-          <label for="username">Tên </label>
-          <input type="text" class="form-control" id="username"  value='{{user.username}}' [(ngModel)]="user.username" name="first">
+          <label for="username">Tên/UserName </label>
+          <input type="text" class="form-control" id="username"  [(ngModel)]="user.username" name="first">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email"  value='{{user.email}}' [(ngModel)]="user.email" name="two">
+          <input type="email" class="form-control" id="email"  [(ngModel)]="user.email" name="two">
         </div>
         <div class="form-group">
-          <label for="pwd">Password</label>
-          <input type="password" class="form-control" id="pwd"  value='{{user.password}}' [(ngModel)]="user.password" name="three">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name"   [(ngModel)]="user.name" name="three">
         </div>
         <div class="form-group form-check">
           <label class="form-check-label">

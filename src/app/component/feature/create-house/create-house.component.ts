@@ -32,21 +32,25 @@ export class CreateHouseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.house.data = {
-      id: 0,
-      houseName: '',
-      houseType: '',
-      address: '',
-      bedroomNumber: 0,
-      bathroomNumber: 0,
-      price: 0,
-      description: '',
-      image: 'https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg',
-      rate: 0,
-      area: 0,
-      status: '',
-      user: '',
-      category: ''
+    this.house = {
+      message: 'Post a new house successfully',
+      success: true,
+      data: {
+        id: 0,
+        houseName: '',
+        houseType: '',
+        address: '',
+        bedroomNumber: 0,
+        bathroomNumber: 0,
+        price: 0,
+        description: '',
+        image: 'https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg',
+        rate: 0,
+        area: 0,
+        status: '',
+        user: '',
+        category: ''
+      }
     };
   }
 
@@ -56,7 +60,9 @@ export class CreateHouseComponent implements OnInit {
 
   createHouse() {
     console.log(this.house);
-    this.service.createHouse(this.house).subscribe(() => {
+    this.service.createHouse(this.house).subscribe(data => {
+      alert('tao thanh cong');
+      // this.house = data;
       this.router.navigate(['/home-for-host']);
     }, error => {
       console.log(error);

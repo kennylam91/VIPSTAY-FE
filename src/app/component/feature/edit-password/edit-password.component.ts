@@ -1,26 +1,25 @@
 import {Component, OnInit} from '@angular/core';
 import {UserProfileService} from '../../../services/user-profile.service';
-import {IUser} from '../../../model/IUser';
 import {ActivatedRoute} from '@angular/router';
+import {IUser} from '../../../model/IUser';
 
 
 @Component({
-  selector: 'app-profile-user',
-  templateUrl: './profile-user.component.html',
-  styleUrls: ['./profile-user.component.css']
+  selector: 'app-edit-password',
+  templateUrl: './edit-password.component.html',
+  styleUrls: ['./edit-password.component.css']
 })
-export class ProfileUserComponent implements OnInit {
+export class EditPasswordComponent implements OnInit {
   username: string;
+  passwordOld: string;
   user: Partial<IUser>;
   id: number;
-
 
   constructor(private  userProfileService: UserProfileService, private  route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.username = localStorage.getItem('currentUser');
-    console.log(this.username);
     this.userProfileService.getAllUser().subscribe(data => {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i <= data.length; i++) {
@@ -30,6 +29,7 @@ export class ProfileUserComponent implements OnInit {
           console.log(data[i]);
           this.userProfileService.getUserByid(this.id).subscribe(data1 => {
             this.user = data1;
+            this.passwordOld = data1.password;
             console.log(data1);
           });
           break;
@@ -37,8 +37,6 @@ export class ProfileUserComponent implements OnInit {
       }
     });
   }
-
-
 
   updateProfile() {
     this.userProfileService.updateUser(this.user).subscribe(data => {
@@ -52,4 +50,5 @@ export class ProfileUserComponent implements OnInit {
       }
     );
   }
+
 }

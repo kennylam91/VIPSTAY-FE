@@ -23,7 +23,10 @@ import {CreateHouseComponent} from './component/feature/create-house/create-hous
 // import {ListHouseComponent} from './component/feature/list-house/list-house.component';
 import {environment} from '../environments/environment';
 import { ProfileUserComponent } from './component/feature/profile-user/profile-user.component';
-
+import { NavbarProfileComponent } from './component/feature/navbar-profile/navbar-profile.component';
+import { BookingOfUserComponent } from './component/feature/booking-of-user/booking-of-user.component';
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { EditPasswordComponent } from './component/feature/edit-password/edit-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,10 @@ import { ProfileUserComponent } from './component/feature/profile-user/profile-u
     HomeForHostComponent,
     HeaderForHostComponent,
     CreateHouseComponent,
-    ProfileUserComponent],
+    ProfileUserComponent,
+    NavbarProfileComponent,
+    BookingOfUserComponent,
+    EditPasswordComponent],
     // ListHouseComponent ],
   imports: [
     BrowserModule,
@@ -49,6 +55,7 @@ import { ProfileUserComponent } from './component/feature/profile-user/profile-u
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    DatePickerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule
   ],

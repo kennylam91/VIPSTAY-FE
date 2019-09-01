@@ -11,21 +11,21 @@ import {StandardResponse} from '../model/StandardResponse';
 })
 export class HouseService {
   houses: StandardResponse;
-  private API_URL = environment.URL + '/api/houses';
+  private API_URL = environment.URL + '/api';
 
   constructor(private http: HttpClient, private authenService: AuthenticationService) {
   }
 
   getHouses(): Observable<StandardResponse> {
-    return this.http.get<StandardResponse>(this.API_URL);
+    return this.http.get<StandardResponse>(`${this.API_URL + '/houses'}`);
   }
 
   getHouseById(id: number): Observable<StandardResponse> {
-    return this.http.get<StandardResponse>(`${this.API_URL}/${id}`);
+    return this.http.get<StandardResponse>(`${this.API_URL + '/houses'}/${id}`);
   }
 
   createHouse(house: Partial<StandardResponse>): Observable<StandardResponse> {
-    return this.http.post<StandardResponse>(`${this.API_URL + '/create'}`, house);
+    return this.http.post<StandardResponse>(`${this.API_URL + '/host/houses'}`, house);
   }
 
   // updateHouse(house: StandardResponse): Observable<StandardResponse> {

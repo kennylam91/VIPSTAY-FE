@@ -13,6 +13,8 @@ import {CreateHouseComponent} from './component/feature/create-house/create-hous
 import {UploadFileComponent} from './component/feature/upload-file/upload-file.component';
 import {ProfileUserComponent} from './component/feature/profile-user/profile-user.component';
 import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
+import {BookingOfUserComponent} from './component/feature/booking-of-user/booking-of-user.component';
+import {EditPasswordComponent} from './component/feature/edit-password/edit-password.component';
 
 
 const routes: Routes = [
@@ -25,6 +27,8 @@ const routes: Routes = [
   {path: 'home-for-host', component: HomeForHostComponent},
   {path: 'create-house', component: CreateHouseComponent},
   {path: 'profileUser', component: ProfileUserComponent},
+  {path: 'bookingOfUser', component: BookingOfUserComponent},
+  {path: 'editPassword', component: EditPasswordComponent},
   {path: '**', redirectTo: '/houses', pathMatch: 'full'}
 ];
 

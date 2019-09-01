@@ -3,7 +3,8 @@
     <div class="col-md-2">
       <a class="navbar-brand" [routerLink]="['']">
         <img width="70" class="img-fluid" alt="VIPSTAY"
-             src="https://firebasestorage.googleapis.com/v0/b/vipstay-637a2.appspot.com/o/vipstay-logo.png?alt=media&token=0692d07b-3d78-449d-8803-d866d0439bbf">
+             src="assets/icon/background_1151777.png" style="height: 50px;width: 50px">
+        <label>VIPstay</label>
       </a>
     </div>
     <div class="col-md-10">
@@ -33,7 +34,7 @@
               </button>
               <div class="dropdown-menu">
                 <a class="nav-link text-dark dropdown-item " [routerLink]="['/profileUser']"><i class="fa fa-address-card"></i> Profile User</a>
-                <a class="nav-link text-dark dropdown-item" href="#"><i class="fa fa-paragraph"></i> Đặt chỗ của tôi</a>
+                <a class="nav-link text-dark dropdown-item" [routerLink]="['/bookingOfUser']"><i class="fa fa-paragraph"></i> Đặt chỗ của tôi</a>
                 <a href="/logout" class="nav-link text-dark dropdown-item" (click)="logout()"><i class="fa fa-backward"></i> Đăng xuất</a>
               </div>
             </div>
