@@ -78,6 +78,22 @@
           Address is required!
         </div>
 
+
+        <div style="padding-left: 30px">
+<!--          <mat-form-field color="primary">-->
+<!--            <mat-label>Custom calendar color</mat-label>-->
+<!--            <input matInput [matDatepicker]="picker2">-->
+<!--            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>-->
+<!--            <mat-datepicker #picker2 color="primary"></mat-datepicker>-->
+<!--          </mat-form-field>-->
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
         <div style="margin-bottom: 20px">
           <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Sửa thông tin</button>
         </div>
