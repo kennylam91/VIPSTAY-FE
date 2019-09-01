@@ -6,6 +6,7 @@ import {AuthenticationService} from './authentication.service';
 import {environment} from '../../environments/environment';
 import {HouseRequest} from '../model/HouseRequest';
 import {ImageOfHouse} from '../model/ImageOfHouse';
+import {OrderHouse} from '../model/OrderHouse';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -42,5 +43,9 @@ export class HouseService {
 
   deleteHouse(id: number): Observable<any> {
     return this.http.delete<any>(`${this.API_URL}/${id}`);
+  }
+
+  bookingHouse(orderHouse: OrderHouse, id: number): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/${id}/booking`, JSON.stringify(orderHouse), httpOptions);
   }
 }

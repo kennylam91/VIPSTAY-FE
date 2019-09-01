@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <br>
+  <br>
+  <div class="row text-center">
+    <h1> All orders</h1></div>
+  <div class="row">
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr class="bg-dark text-light text-center">
+        <th>#</th>
+        <th>Tên nhà</th>
+        <th>Đơn giá</th>
+        <th>Checkin</th>
+        <th>Checkout</th>
+        <th>Số đêm</th>
+        <th>Số người</th>
+        <th>Tổng t</th>
+        <th>Thời gian đặt</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of orders,index as i">
+        <td class="text-center">{{i+1}}</td>
+        <td>{{order.house.houseName}}</td>
+        <td class="text-center">{{order.house.price}}$</td>
+        <td class="text-center">{{order.checkin | date:'dd/MM/yyyy' }}</td>
+        <td class="text-center">{{order.checkout | date:'dd/MM/yyyy' }}</td>
+        <td class="text-center">{{(order.checkout.getTime()-order.checkin.getTime())/day}}</td>
+        <td class="text-center">{{order.numberGuest}}</td>
+        <td class="text-center">{{order.cost}}</td>
+        <td>{{order.orderTime | date:"EEEE, HH:mm, 'ngày' dd/MM/yyyy"}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-footer></app-footer>

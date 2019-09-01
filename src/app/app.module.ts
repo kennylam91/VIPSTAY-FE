@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -23,6 +23,13 @@ import {CreateHouseComponent} from './component/feature/create-house/create-hous
 import { ListHouseComponent } from './component/feature/list-house/list-house.component';
 import {environment} from '../environments/environment';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
+import { HomeForGuestComponent } from './component/core/home-for-guest/home-for-guest.component';
+// set locale VN
+import { registerLocaleData } from '@angular/common';
+import localeVN from '@angular/common/locales/vi';
+
+// set locale VN
+registerLocaleData(localeVN);
 
 @NgModule({
   declarations: [
@@ -39,7 +46,8 @@ import {AuthInterceptorService} from './services/auth-interceptor.service';
     HomeForHostComponent,
     HeaderForHostComponent,
     CreateHouseComponent,
-    ListHouseComponent],
+    ListHouseComponent,
+    HomeForGuestComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

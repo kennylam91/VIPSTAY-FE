@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HouseService} from '../../../services/house.service';
 import {IHouse} from '../../../model/IHouse';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {OrderHouse} from '../../../model/OrderHouse';
 
 
 @Component({
@@ -23,10 +25,19 @@ export class HouseDetailComponent implements OnInit {
     rate: 0,
     area: 0
   };
+  orderHouse = new OrderHouse();
+  formOrder: FormGroup;
 
   time: Date = new Date();
 
-  constructor(private houseService: HouseService, private route: ActivatedRoute) {
+  constructor(private houseService: HouseService,
+              private route: ActivatedRoute,
+              private router: Router) {
+    this.formOrder = new FormGroup({
+      checkin: new FormControl('', [Validators.required]),
+      checkout: new FormControl('', [Validators.required]),
+      numberGuest: new FormControl('', [Validators.required, Validators.min(1)])
+    });
   }
 
   ngOnInit() {
@@ -46,4 +57,35 @@ export class HouseDetailComponent implements OnInit {
         });
   }
 
+  getNumberDay() {
+    let numberDay;
+    if (this.orderHouse.checkin && this.orderHouse.checkout) {
+      const day = 86400 * 1000;
+      let checkout = new Date(this.orderHouse.checkout);
+      let checkin = new Date(this.orderHouse.checkin);
+      numberDay = (checkout.getTime() - checkin.getTime()) / day;
+
+    } else {
+      numberDay = 1;
+    }
+    return numberDay;
+  }
+
+  booking() {
+    if (this.formOrder.valid) {
+      this.orderHouse.orderTime = new Date();
+      this.orderHouse.cost = this.house.price * this.getNumberDay();
+      this.houseService.bookingHouse(this.orderHouse, this.house.id).subscribe(
+        next => {
+          if (next.success) {
+            alert(next.message);
+            this.router.navigateByUrl('/me/orders');
+          } else {
+            alert(next.message);
+          }
+
+        }
+      );
+    }
+  }
 }

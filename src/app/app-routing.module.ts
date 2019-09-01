@@ -11,6 +11,7 @@ import {HomeForHostComponent} from './component/core/home-for-host/home-for-host
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 import {ListHouseComponent} from './component/feature/list-house/list-house.component';
 import {UploadFileComponent} from './component/feature/upload-file/upload-file.component';
+import {HomeForGuestComponent} from './component/core/home-for-guest/home-for-guest.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'registerUser', component: RegisterComponent},
   {path: 'registerHost', component: RegisterHostComponent},
   {path: 'home-for-host', component: HomeForHostComponent},
+  {path: 'me/orders', component: HomeForGuestComponent},
   {path: 'create-house', component: CreateHouseComponent},
   {path: '**', redirectTo: '/houses', pathMatch: 'full'}
 ];

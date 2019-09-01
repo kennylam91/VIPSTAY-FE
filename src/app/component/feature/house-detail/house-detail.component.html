@@ -22,13 +22,15 @@
       </div>
       <p></p>
       <div class="container shadow">
-        <p class="font-weight-bold" style="font-size: 20px" >Tiện Nghi Chỗ ở </p>
+        <p class="font-weight-bold" style="font-size: 20px">Tiện Nghi Chỗ ở </p>
         <div class="row">
-          <div class="col-md-6"><p><img src="assets/icon/house.png" width="20" height="20"> Phòng ngủ: {{house.bathroomNumber}}</p></div>
-          <div class="col-md-6"><p><img src="assets/icon/house.png" width="20" height="20"> Phòng tắm: {{house.bedroomNumber}}</p></div>
+          <div class="col-md-6"><p><img src="assets/icon/house.png" width="20" height="20"> Phòng
+            ngủ: {{house.bathroomNumber}}</p></div>
+          <div class="col-md-6"><p><img src="assets/icon/house.png" width="20" height="20"> Phòng
+            tắm: {{house.bedroomNumber}}</p></div>
         </div>
       </div>
-      <div class="container bg-light shadow mt-2">
+      <div class="container bg-light shadow mt-3">
         <p class="font-weight-bold" style="font-size: 20px">Tiện ích gia đình </p>
         <div class="row">
           <div class="col-lg-4">
@@ -81,30 +83,48 @@
     </div>
     <div class="col-sm-4">
       <div class="container border shadow-lg ">
-        <p style="font-size: 35px;text-align: center">{{house.price}} $/đêm
-        <p>
-        <form>
+        <p style="font-size: 35px;text-align: center">{{house.price * getNumberDay()}}$<span style="font-size: 20px">/{{getNumberDay()}}đêm</span></p>
+        <form [formGroup]="formOrder" (ngSubmit)="booking()">
           <div class="input-group mb-3">
-            <input type="text" class="form-control datetimepicker-input" id="ngayden1" data-toggle="datetimepicker"
-                   placeholder="dd/mm/yyyy" data-target="#ngayden1">
-            <input type="text" class="form-control datetimepicker-input" id="ngaydi1" data-toggle="datetimepicker"
-                   placeholder="dd/mm/yyyy" data-target="#ngaydi1">
+            <div class="col-md-3"><label>Checkin: </label></div>
+            <div class="col-md-9">
+              <input type="date" class="form-control datetimepicker-input" id="checkin"
+                     formControlName="checkin" [(ngModel)]="orderHouse.checkin">
+            </div>
           </div>
-        </form>
-        <form>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="formOrder.get('checkin').invalid && formOrder.get('checkin').touched">
+            Không để trống trường này!
+          </div>
           <div class="input-group mb-3">
-            <form>
-              <select class="custom-select" style="width: 320px">
-                <option selected>1 Khách</option>
-                <option>2 khách</option>
-              </select>
-            </form>
+            <div class="col-md-3"><label>Checkout: </label></div>
+            <div class="col-md-9">
+              <input type="date" class="form-control datetimepicker-input" id="checkout"
+                     formControlName="checkout" [(ngModel)]="orderHouse.checkout">
+            </div>
           </div>
-        </form>
-        <form>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="formOrder.get('checkout').invalid && formOrder.get('checkout').touched">
+            Không để trống trường này!
+          </div>
+          <div class="input-group mb-3">
+            <div class="col-md-3"><label>Số người: </label></div>
+            <div class="col-md-9">
+              <input type="number" class="form-control" id="numberGuest"
+                     formControlName="numberGuest" [(ngModel)]="orderHouse.numberGuest">
+            </div>
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="formOrder.get('numberGuest')?.errors?.required && formOrder.get('numberGuest').touched">
+            Không để trống trường này!
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="formOrder.get('numberGuest')?.errors?.min && formOrder.get('numberGuest').touched">
+            Trường này phải lớn hơn 0
+          </div>
           <div class="input-group mb-3 input-group-lg ">
-            <button style="background: coral;color: white" type="text" class="form-control">Gửi yêu cầu đặt phòng
-            </button>
+            <input style="background: coral;color: white" type="submit" class="form-control text-center"
+                   value="Gửi yêu cầu đặt phòng">
           </div>
         </form>
       </div>
@@ -142,12 +162,12 @@
 </div>
 <p>'</p>
 <app-footer></app-footer>
-<script type="text/javascript">
-    $(function () {
-        $('#ngayden1').datetimepicker();
-    });
-    $(function () {
-        $('#ngaydi1').datetimepicker();
-    });
-</script>
+<!--<script type="text/javascript">-->
+<!--    $(function () {-->
+<!--        $('#ngayden1').datetimepicker();-->
+<!--    });-->
+<!--    $(function () {-->
+<!--        $('#ngaydi1').datetimepicker();-->
+<!--    });-->
+<!--</script>-->
 
