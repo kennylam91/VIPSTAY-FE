@@ -11,6 +11,4 @@ export interface IHouse {
   images: string[];
   rate: number;
   area: number;
-  startDate: Date;
-  endDate: Date;
 }

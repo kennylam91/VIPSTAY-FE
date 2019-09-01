@@ -3,6 +3,8 @@ import {IHouse} from '../../../model/IHouse';
 import {HouseService} from '../../../services/house.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {StatusHouseService} from '../../../services/status-house.service';
+import {IStatusHouse} from '../../../model/IStatusHouse';
 
 @Component({
   selector: 'app-edit-house',
@@ -13,8 +15,10 @@ export class EditHouseComponent implements OnInit {
 
   houseForm: FormGroup;
   house: IHouse;
+  statusHouses: IStatusHouse[];
 
   constructor(private houseService: HouseService,
+              private statusHouseService: StatusHouseService,
               private route: ActivatedRoute,
               private router: Router) {
     this.houseForm = new FormGroup({
@@ -27,8 +31,6 @@ export class EditHouseComponent implements OnInit {
       description: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required]),
       area: new FormControl('', [Validators.required]),
-      startDate: new FormControl(),
-      endDate: new FormControl()
     });
     this.house = {
       id: 0,
@@ -42,8 +44,6 @@ export class EditHouseComponent implements OnInit {
       images: [],
       rate: 0,
       area: 0,
-      startDate: null,
-      endDate: null
     };
   }
 
@@ -53,6 +53,12 @@ export class EditHouseComponent implements OnInit {
       this.houseService.getHouseById(id).subscribe(next => {
         this.house = next.data;
         console.log(next.data);
+        this.statusHouseService.getStatusHouseByHouseId(this.house.id).subscribe(data => {
+          if (data.data != null) {
+            this.statusHouses = data.data;
+          }
+          this.statusHouses = [null];
+        });
       }, error1 => {
         console.log(error1);
         this.house = null;
