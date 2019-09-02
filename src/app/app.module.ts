@@ -27,6 +27,7 @@ import { HomeForGuestComponent } from './component/core/home-for-guest/home-for-
 // set locale VN
 import { registerLocaleData } from '@angular/common';
 import localeVN from '@angular/common/locales/vi';
+import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
 
 // set locale VN
 registerLocaleData(localeVN);
@@ -47,7 +48,8 @@ registerLocaleData(localeVN);
     HeaderForHostComponent,
     CreateHouseComponent,
     ListHouseComponent,
-    HomeForGuestComponent],
+    HomeForGuestComponent,
+    SlideShowComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

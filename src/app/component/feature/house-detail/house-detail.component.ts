@@ -12,6 +12,7 @@ import {OrderHouse} from '../../../model/OrderHouse';
   styleUrls: ['./house-detail.component.css']
 })
 export class HouseDetailComponent implements OnInit {
+
   house: IHouse = {
     id: 0,
     houseName: '',

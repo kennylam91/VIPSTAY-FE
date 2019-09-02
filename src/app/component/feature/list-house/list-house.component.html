@@ -11,10 +11,16 @@
         <a routerLink="/houses/{{house.id}}"><img class="card-img-top img-fluid" [src]=house.imageUrls[0] alt=""></a>
         <div class="card-body text-center">
           <a routerLink="/houses/{{house.id}}"><h5 class="card-title">{{house.houseName}}</h5></a>
-          <p class="card-text">{{house.price}} $/đêm</p>
-          <p class="card-text">{{house.address}}</p>
-          <p class="card-text">Đánh giá: {{house.rate}}/5</p>
-          <p class="card-text">{{house.bathroomNumber}} phòng tắm + {{house.bedroomNumber}} phòng ngủ</p>
+          <p class="card-text m-md-1">{{house.price}} $/đêm</p>
+          <p class="card-text m-md-1"><span class="fa fa-map-marker"></span> {{house.address}}</p>
+          <p class="card-text m-md-1">
+            <span class="fa fa-star " [class.checked]="house.rate"></span>
+            <span class="fa fa-star" [class.checked]="(house.rate-1)>0"></span>
+            <span class="fa fa-star" [class.checked]="(house.rate-2)>0"></span>
+            <span class="fa fa-star" [class.checked]="(house.rate-3)>0"></span>
+            <span class="fa fa-star" [class.checked]="(house.rate-4)>0"></span>
+          </p>
+          <p class="card-text m-md-1">{{house.bathroomNumber}} phòng tắm + {{house.bedroomNumber}} phòng ngủ</p>
 
         </div>
       </div>

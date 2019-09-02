@@ -1,6 +1,7 @@
 <app-header></app-header>
 <header class="container-fluid shadow" style="max-width:100%;" id="home">
-  <img src='{{house.imageUrls[0]}}' alt="Architecture" width="100%" height="600">
+  <!--    <img src='{{house.imageUrls[1]}}' alt="Architecture" width="100%" height="600">-->
+  <app-slide-show [house]="house"></app-slide-show>
 </header>
 
 <div class="container-fluid shadow">
@@ -83,13 +84,15 @@
     </div>
     <div class="col-sm-4">
       <div class="container border shadow-lg ">
-        <p style="font-size: 35px;text-align: center">{{house.price * getNumberDay()}}$<span style="font-size: 20px">/{{getNumberDay()}}đêm</span></p>
+        <p style="font-size: 35px;text-align: center">{{house.price * getNumberDay()}}$<span
+          style="font-size: 20px">/{{getNumberDay()}}đêm</span></p>
         <form [formGroup]="formOrder" (ngSubmit)="booking()">
           <div class="input-group mb-3">
             <div class="col-md-3"><label>Checkin: </label></div>
             <div class="col-md-9">
               <input type="date" class="form-control datetimepicker-input" id="checkin"
-                     formControlName="checkin" [(ngModel)]="orderHouse.checkin">
+                     formControlName="checkin" [(ngModel)]="orderHouse.checkin"
+                     data-date="" data-date-format="DD/MM/YYYY">
             </div>
           </div>
           <div class="alert alert-danger" role="alert"
@@ -160,14 +163,5 @@
     </div>
   </div>
 </div>
-<p>'</p>
 <app-footer></app-footer>
-<!--<script type="text/javascript">-->
-<!--    $(function () {-->
-<!--        $('#ngayden1').datetimepicker();-->
-<!--    });-->
-<!--    $(function () {-->
-<!--        $('#ngaydi1').datetimepicker();-->
-<!--    });-->
-<!--</script>-->
 
