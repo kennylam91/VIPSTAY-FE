@@ -26,7 +26,7 @@ import { ProfileUserComponent } from './component/feature/profile-user/profile-u
 import { NavbarProfileComponent } from './component/feature/navbar-profile/navbar-profile.component';
 import { BookingOfUserComponent } from './component/feature/booking-of-user/booking-of-user.component';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
-import { EditPasswordComponent } from './component/feature/edit-password/edit-password.component';
+// import { EditPasswordComponent } from './component/feature/edit-password/edit-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +45,8 @@ import { EditPasswordComponent } from './component/feature/edit-password/edit-pa
     ProfileUserComponent,
     NavbarProfileComponent,
     BookingOfUserComponent,
-    EditPasswordComponent],
+    // EditPasswordComponent
+  ],
     // ListHouseComponent ],
   imports: [
     BrowserModule,
