@@ -26,6 +26,7 @@ import {CreateHouseComponent} from './component/feature/create-house/create-hous
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { EditHouseComponent } from './component/feature/edit-house/edit-house.component';
+import { EditStatusHouseComponent } from './component/feature/edit-status-house/edit-status-house.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { EditHouseComponent } from './component/feature/edit-house/edit-house.co
     HeaderForHostComponent,
     CreateHouseComponent,
     ListHouseComponent,
-    EditHouseComponent],
+    EditHouseComponent,
+    EditStatusHouseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

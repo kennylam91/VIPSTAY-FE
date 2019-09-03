@@ -12,6 +12,7 @@ import {CreateHouseComponent} from './component/feature/create-house/create-hous
 import {ListHouseComponent} from './component/feature/list-house/list-house.component';
 import {UploadFileComponent} from './component/feature/upload-file/upload-file.component';
 import {EditHouseComponent} from './component/feature/edit-house/edit-house.component';
+import {EditStatusHouseComponent} from './component/feature/edit-status-house/edit-status-house.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'home-for-host', component: HomeForHostComponent},
   {path: 'create-house', component: CreateHouseComponent},
   {path: 'edit-house/:id', component: EditHouseComponent},
+  {path: 'edit-statusHouse/:houseId', component: EditStatusHouseComponent},
   {path: '**', redirectTo: '/houses', pathMatch: 'full'}
 ];
 
