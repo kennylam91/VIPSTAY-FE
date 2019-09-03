@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -22,6 +22,11 @@ import {HomeForHostComponent} from './component/core/home-for-host/home-for-host
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 import { ListHouseComponent } from './component/feature/list-house/list-house.component';
 import {environment} from '../environments/environment';
+import { ProfileUserComponent } from './component/feature/profile-user/profile-user.component';
+import { NavbarProfileComponent } from './component/feature/navbar-profile/navbar-profile.component';
+import { BookingOfUserComponent } from './component/feature/booking-of-user/booking-of-user.component';
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+// import { EditPasswordComponent } from './component/feature/edit-password/edit-password.component';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
 import { HomeForGuestComponent } from './component/core/home-for-guest/home-for-guest.component';
 // set locale VN
@@ -50,6 +55,9 @@ registerLocaleData(localeVN);
     HomeForHostComponent,
     HeaderForHostComponent,
     CreateHouseComponent,
+    ProfileUserComponent,
+    NavbarProfileComponent,
+    BookingOfUserComponent,
     ListHouseComponent,
     HomeForGuestComponent,
     SlideShowComponent,
@@ -62,6 +70,7 @@ registerLocaleData(localeVN);
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    DatePickerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     BrowserAnimationsModule,

@@ -31,8 +31,9 @@ export class LoginComponent implements OnInit {
       next => {
         localStorage.setItem('token', next.data.token);
         localStorage.setItem('currentUser', next.data.username);
+        localStorage.setItem('currentPassword', next.data.password);
         if (next.data.token) {
-          this.router.navigateByUrl('/home-for-host');
+          this.router.navigateByUrl('houses');
         }
       },
       error1 => {

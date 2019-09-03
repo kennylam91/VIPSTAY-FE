@@ -17,11 +17,12 @@ export class HomeForGuestComponent implements OnInit {
   ngOnInit() {
     this.orderService.getOrders().subscribe(
       next => {
+        console.log("haha");
         this.orders = next.data;
-        for (let order of this.orders) {
-          order.checkin = new Date(order.checkin);
-          order.checkout = new Date(order.checkout);
-        }
+        // for (let order of this.orders) {
+        //   order.checkin = new Date(order.checkin);
+        //   order.checkout = new Date(order.checkout);
+        // }
       }
     );
   }

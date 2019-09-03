@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {IHouse} from '../../../model/IHouse';
-import {HouseService} from '../../../services/house.service';
+import {StandardResponse} from '../../../model/StandardResponse';
 import {HouseRequest} from '../../../model/HouseRequest';
 import {ImageOfHouse} from '../../../model/ImageOfHouse';
 import {CategoryOfHouse} from '../../../model/CategoryOfHouse';
 import {HostService} from '../../../services/host.service';
+import {IHouse} from '../../../model/IHouse';
+import {HouseService} from '../../../services/house.service';
 
 
 @Component({
@@ -15,7 +16,6 @@ import {HostService} from '../../../services/host.service';
   styleUrls: ['./create-house.component.css']
 })
 export class CreateHouseComponent implements OnInit {
-
   houseForm: FormGroup;
   house: Partial<IHouse>;
 
