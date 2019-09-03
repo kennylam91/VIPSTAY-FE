@@ -28,6 +28,8 @@ import { HomeForGuestComponent } from './component/core/home-for-guest/home-for-
 import { registerLocaleData } from '@angular/common';
 import localeVN from '@angular/common/locales/vi';
 import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 
 // set locale VN
 registerLocaleData(localeVN);
@@ -59,7 +61,12 @@ registerLocaleData(localeVN);
     FormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     {

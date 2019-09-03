@@ -90,9 +90,16 @@
           <div class="input-group mb-3">
             <div class="col-md-3"><label>Checkin: </label></div>
             <div class="col-md-9">
-              <input type="date" class="form-control datetimepicker-input" id="checkin"
-                     formControlName="checkin" [(ngModel)]="orderHouse.checkin"
-                     data-date="" data-date-format="DD/MM/YYYY">
+              <mat-form-field class="example-full-width">
+                <input readonly matInput [matDatepickerFilter]="myFilter" [matDatepicker]="checkin"
+                       placeholder="Choose a date"
+                       formControlName="checkin" [(ngModel)]="orderHouse.checkin">
+                <mat-datepicker-toggle matSuffix [for]="checkin"></mat-datepicker-toggle>
+                <mat-datepicker #checkin></mat-datepicker>
+              </mat-form-field>
+              <!--              <input type="date" class="form-control datetimepicker-input" id="checkin"-->
+              <!--                     formControlName="checkin" [(ngModel)]="orderHouse.checkin"-->
+              <!--                     data-date="" data-date-format="DD/MM/YYYY">-->
             </div>
           </div>
           <div class="alert alert-danger" role="alert"
@@ -102,8 +109,14 @@
           <div class="input-group mb-3">
             <div class="col-md-3"><label>Checkout: </label></div>
             <div class="col-md-9">
-              <input type="date" class="form-control datetimepicker-input" id="checkout"
-                     formControlName="checkout" [(ngModel)]="orderHouse.checkout">
+              <mat-form-field class="example-full-width">
+                <input readonly matInput [matDatepickerFilter]="myFilter" [matDatepicker]="checkout"
+                       placeholder="Choose a date" formControlName="checkout" [(ngModel)]="orderHouse.checkout">
+                <mat-datepicker-toggle matSuffix [for]="checkout"></mat-datepicker-toggle>
+                <mat-datepicker #checkout></mat-datepicker>
+              </mat-form-field>
+              <!--              <input type="date" class="form-control datetimepicker-input" id="checkout"-->
+              <!--                     formControlName="checkout" [(ngModel)]="orderHouse.checkout">-->
             </div>
           </div>
           <div class="alert alert-danger" role="alert"
@@ -113,8 +126,10 @@
           <div class="input-group mb-3">
             <div class="col-md-3"><label>Số người: </label></div>
             <div class="col-md-9">
-              <input type="number" class="form-control" id="numberGuest"
-                     formControlName="numberGuest" [(ngModel)]="orderHouse.numberGuest">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Type a number" id="numberGuest"
+                       formControlName="numberGuest" [(ngModel)]="orderHouse.numberGuest">
+              </mat-form-field>
             </div>
           </div>
           <div class="alert alert-danger" role="alert"
