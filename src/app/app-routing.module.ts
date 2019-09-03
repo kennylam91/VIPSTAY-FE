@@ -7,6 +7,7 @@ import {RegisterComponent} from './component/feature/register/register.component
 import {RegisterHostComponent} from './component/feature/register-host/register-host.component';
 // import {UploadFileComponent} from './component/upload-file/upload-file.component';
 
+import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 import {ListHouseComponent} from './component/feature/list-house/list-house.component';
 import {UploadFileComponent} from './component/feature/upload-file/upload-file.component';
@@ -16,6 +17,8 @@ import {BookingOfUserComponent} from './component/feature/booking-of-user/bookin
 // import {EditPasswordComponent} from './component/feature/edit-password/edit-password.component';
 import {HomeForGuestComponent} from './component/core/home-for-guest/home-for-guest.component';
 import {ListHouseHostComponent} from './component/feature/list-house-host/list-house-host.component';
+import {EditHouseComponent} from './component/feature/edit-house/edit-house.component';
+import {EditStatusHouseComponent} from './component/feature/edit-status-house/edit-status-house.component';
 
 
 const routes: Routes = [
@@ -33,6 +36,9 @@ const routes: Routes = [
   {path: 'profileUser', component: ProfileUserComponent},
   {path: 'bookingOfUser', component: BookingOfUserComponent},
   // {path: 'editPassword', component: EditPasswordComponent},
+  {path: 'edit-house/:id', component: EditHouseComponent},
+  {path: 'edit-statusHouse/:houseId', component: EditStatusHouseComponent},
+  {path: '**', redirectTo: '/houses', pathMatch: 'full'}
 ];
 
 @NgModule({

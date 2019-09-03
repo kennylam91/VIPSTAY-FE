@@ -24,7 +24,7 @@ export class HouseDetailComponent implements OnInit {
     description: '',
     imageUrls: [],
     rate: 0,
-    area: 0
+    area: 0,
   };
   orderHouse = new OrderHouse();
   formOrder: FormGroup;

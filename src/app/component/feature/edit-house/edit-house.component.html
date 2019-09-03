@@ -1,0 +1,166 @@
+<div class="container-fluid">
+  <app-header-for-host></app-header-for-host>
+  <div
+    style="background-color: black; border-radius: 10px; text-align: center; color: white; margin-top: 20px; margin-bottom: 20px; font-size: x-large; margin-left: 5px; margin-right:5px">
+    Sửa lại thông tin về chỗ ở bạn đã đăng
+  </div>
+  <div class="container-fluid row">
+    <div class="col-8">
+      <form (ngSubmit)="editHouse()" [formGroup]="houseForm">
+        <div class="form-group">
+          <label>House Name: </label>
+          <input type="email" class="form-control" [(ngModel)]="house.houseName" formControlName="houseName"
+                 placeholder="Enter house name">
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('houseName').invalid && houseForm.get('houseName').touched">
+          Address is required!
+        </div>
+
+        <div class="form-group">
+          <label>House Type: </label>
+          <select class="form-control form-control-lg" [(ngModel)]="house.houseType" formControlName="houseType">
+            <option value="home">HOME</option>
+            <option value="villa">VILLA</option>
+            <option value="resort">RESORT</option>
+            <option value="hotel">HOTEL</option>
+          </select>
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('houseType').invalid && houseForm.get('houseType').touched">
+          Address is required!
+        </div>
+
+        <div class="form-group">
+          <label>Address: </label>
+          <input type="text" class="form-control" [(ngModel)]="house.address" formControlName="address"
+                 placeholder="Enter address">
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('address').invalid && houseForm.get('address').touched">
+          Address is required!
+        </div>
+        <div class="form-group">
+          <label>Bedroom number: </label>
+          <input type="number" class="form-control" [(ngModel)]="house.bedroomNumber" formControlName="bedroomNumber"
+                 placeholder="Enter bedroom number">
+        </div>
+        <div class="form-group">
+          <label>Bathroom Number: </label>
+          <input type="number" class="form-control" [(ngModel)]="house.bathroomNumber" formControlName="bathroomNumber"
+                 placeholder="Enter bathroom number">
+        </div>
+        <div class="form-group">
+          <label>Price: </label>
+          <input type="number" class="form-control" [(ngModel)]="house.price" formControlName="price"
+                 placeholder="Enter price">
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('price').invalid && houseForm.get('price').touched">
+          Address is required!
+        </div>
+        <div class="form-group">
+          <label>Description: </label>
+          <textarea class="form-control" [(ngModel)]="house.description" formControlName="description"
+                    placeholder="Enter description"></textarea>
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('description').invalid && houseForm.get('description').touched">
+          Address is required!
+        </div>
+        <div class="form-group">
+          <label>Area: </label>
+          <input type="number" class="form-control" [(ngModel)]="house.area" formControlName="area"
+                 placeholder="Enter area">
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('area').invalid && houseForm.get('area').touched">
+          Address is required!
+        </div>
+
+
+<!--        <div style="padding-left: 30px">-->
+<!--          &lt;!&ndash;                    <mat-form-field color="primary">&ndash;&gt;-->
+<!--          &lt;!&ndash;                      <mat-label>Custom calendar color</mat-label>&ndash;&gt;-->
+<!--          &lt;!&ndash;                      <input matInput [matDatepicker]="picker2">&ndash;&gt;-->
+<!--          &lt;!&ndash;                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>&ndash;&gt;-->
+<!--          &lt;!&ndash;                      <mat-datepicker #picker2 color="primary"></mat-datepicker>&ndash;&gt;-->
+<!--          &lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+
+<!--          <mat-form-field color="primary">-->
+<!--            <input matInput [matDatepicker]="picker" placeholder="Choose a date">-->
+<!--            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--            <mat-datepicker #picker color="primary"></mat-datepicker>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <p>{{statusHouses[0].startHouse}}</p>-->
+<!--          <p>{{statusHouses[0].endHouse}}</p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <p>{{statusHouses[1].startHouse}}</p>-->
+<!--          <p>{{statusHouses[1].endHouse}}</p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <p>{{statusHouses[2].startHouse}}</p>-->
+<!--          <p>{{statusHouses[2].endHouse}}</p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <p>{{statusHouses[3].startHouse}}</p>-->
+<!--          <p>{{statusHouses[3].endHouse}}</p>-->
+<!--        </div>-->
+
+        <div><p>Chỗ ở sẽ tạm ngưng cung cấp dịch vụ trong khoảng thời gian như sau: </p></div>
+        <div *ngFor="let statusHouse of statusHouses; index as i">
+          <div class="row">
+
+            <p>Từ ngày: </p>
+            <div class="alert alert-dark" role="alert">
+              <p>{{statusHouse.startDate}}</p>
+            </div>
+            <p> đến ngày: </p>
+            <div class="alert alert-dark" role="alert">
+              <p>{{statusHouse.endDate}}</p>
+            </div>
+            <button type="button" class="btn btn-danger" [value]="i" (click)="delete($event.target.value)">Delete</button>
+          </div>
+        </div>
+
+
+        <div style="margin-bottom: 20px">
+          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Sửa thông tin
+          </button>
+        </div>
+      </form>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Bạn đã update chỗ ở thành công!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="redirect()" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-4" style="margin-bottom: 10px">
+      <div>
+        <p>Thêm hoặc xóa ảnh chỗ ở của bạn: </p>
+        <app-upload-file></app-upload-file>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
