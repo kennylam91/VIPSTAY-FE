@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HouseService} from '../../../services/house.service';
-import {ActivatedRoute} from '@angular/router';
 import {IHouse} from '../../../model/IHouse';
-import {StandardResponse} from '../../../model/StandardResponse';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {OrderHouse} from '../../../model/OrderHouse';
 
 
 @Component({
@@ -11,46 +12,81 @@ import {StandardResponse} from '../../../model/StandardResponse';
   styleUrls: ['./house-detail.component.css']
 })
 export class HouseDetailComponent implements OnInit {
-  houseDetail: StandardResponse;
 
+  house: IHouse = {
+    id: 0,
+    houseName: '',
+    category: '',
+    address: '',
+    bedroomNumber: 0,
+    bathroomNumber: 0,
+    price: 0,
+    description: '',
+    imageUrls: [],
+    rate: 0,
+    area: 0
+  };
+  orderHouse = new OrderHouse();
+  formOrder: FormGroup;
 
   time: Date = new Date();
 
-  constructor(private houseService: HouseService, private route: ActivatedRoute) {
+  constructor(private houseService: HouseService,
+              private route: ActivatedRoute,
+              private router: Router) {
+    this.formOrder = new FormGroup({
+      checkin: new FormControl('', [Validators.required]),
+      checkout: new FormControl('', [Validators.required]),
+      numberGuest: new FormControl('', [Validators.required, Validators.min(1)])
+    });
   }
 
   ngOnInit() {
-
-    setInterval(() => {
-      this.time = new Date();
-    }, 1000);
+    // setInterval(() => {
+    //   this.time = new Date();
+    // }, 1000);
     const id = +this.route.snapshot.paramMap.get('id');
     this.houseService.getHouseById(id)
       .subscribe(
-        data => {
-          this.houseDetail = data;
-          console.log(data);
-          this.houseDetail.data = {
-            id: data.data.id,
-            houseName: data.data.houseName,
-            houseType: data.data.houseType,
-            address: data.data.address,
-            bedroomNumber: data.data.bedroomNumber,
-            bathroomNumber: data.data.bathroomNumber,
-            price: data.data.price,
-            description: data.data.description,
-            image: data.data.image,
-            rate: data.data.rate,
-            area: data.data.area,
-            status: data.data.status,
-            user: data.data.user,
-            category: data.data.category,
-          };
+        next => {
+          this.house = next.data;
+          console.log(next.data);
         },
         error => {
           console.log(error);
-          this.houseDetail = null;
+          this.house = null;
         });
   }
 
+  getNumberDay() {
+    let numberDay;
+    if (this.orderHouse.checkin && this.orderHouse.checkout) {
+      const day = 86400 * 1000;
+      let checkout = new Date(this.orderHouse.checkout);
+      let checkin = new Date(this.orderHouse.checkin);
+      numberDay = (checkout.getTime() - checkin.getTime()) / day;
+
+    } else {
+      numberDay = 1;
+    }
+    return numberDay;
+  }
+
+  booking() {
+    if (this.formOrder.valid) {
+      this.orderHouse.orderTime = new Date();
+      this.orderHouse.cost = this.house.price * this.getNumberDay();
+      this.houseService.bookingHouse(this.orderHouse, this.house.id).subscribe(
+        next => {
+          if (next.success) {
+            alert(next.message);
+            this.router.navigateByUrl('/me/orders');
+          } else {
+            alert(next.message);
+          }
+
+        }
+      );
+    }
+  }
 }

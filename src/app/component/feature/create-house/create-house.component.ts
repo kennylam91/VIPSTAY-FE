@@ -6,6 +6,12 @@ import {IHouse} from '../../../model/IHouse';
 import {HouseService} from '../../../services/house.service';
 import {StandardResponse} from '../../../model/StandardResponse';
 
+import {IHouse} from '../../../model/IHouse';
+import {HouseService} from '../../../services/house.service';
+import {HouseRequest} from '../../../model/HouseRequest';
+import {ImageOfHouse} from '../../../model/ImageOfHouse';
+import {CategoryOfHouse} from '../../../model/CategoryOfHouse';
+
 
 @Component({
   selector: 'app-create-house',
@@ -14,59 +20,53 @@ import {StandardResponse} from '../../../model/StandardResponse';
 })
 export class CreateHouseComponent implements OnInit {
   houseForm: FormGroup;
-  house: Partial<StandardResponse>;
+  house: Partial<IHouse>;
 
   constructor(private router: Router,
-              private service: HouseService) {
+              private houseService: HouseService) {
     this.houseForm = new FormGroup({
       houseName: new FormControl('', [Validators.required]),
-      houseType: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      bedroomNumber: new FormControl(''),
-      bathroomNumber: new FormControl(''),
-      price: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      image: new FormControl('', [Validators.required]),
-      area: new FormControl('', [Validators.required])
+      bedroomNumber: new FormControl('', Validators.min(0)),
+      bathroomNumber: new FormControl('', Validators.min(0)),
+      price: new FormControl('', [Validators.min(0)]),
+      description: new FormControl(''),
+      area: new FormControl('', [Validators.min(0)])
     });
-  }
-
-  ngOnInit() {
+    const typeName = 'Home';
     this.house = {
-      message: 'Post a new house successfully',
-      success: true,
-      data: {
-        id: 0,
-        houseName: '',
-        houseType: '',
-        address: '',
-        bedroomNumber: 0,
-        bathroomNumber: 0,
-        price: 0,
-        description: '',
-        image: 'https://previews.123rf.com/images/anthonycz/anthonycz1208/anthonycz120800119/15033060-house-icon.jpg',
-        rate: 0,
-        area: 0,
-        status: '',
-        user: '',
-        category: ''
-      }
+      houseName: '',
+      category: '',
+      address: '',
+      bedroomNumber: 0,
+      bathroomNumber: 0,
+      price: 0,
+      description: '',
+      rate: 0,
+      area: 0
     };
   }
 
-  onChange($event) {
-    this.house.data.image = $event;
+  ngOnInit() {
   }
 
   createHouse() {
-    console.log(this.house);
-    this.service.createHouse(this.house).subscribe(data => {
-      alert('tao thanh cong');
-      // this.house = data;
-      this.router.navigate(['/home-for-host']);
-    }, error => {
-      console.log(error);
-      this.router.navigate(['/houses']);
-    });
+    if (this.houseForm.valid) {
+      console.log(this.house);
+      const imageHouses: ImageOfHouse[] = [];
+      for (let i = 0; i < this.houseService.imageUrls.length; i++) {
+        let imageHouse = new ImageOfHouse();
+        imageHouse.imageUrl = this.houseService.imageUrls[i];
+        imageHouse.house = this.house;
+        imageHouses.push(imageHouse);
+      }
+      this.houseService.createHouse(imageHouses).subscribe(next => {
+        console.log(next);
+        this.router.navigate(['/home-for-host']);
+      }, error => console.log(error));
+    } else {
+      alert('Thông tin nhà chưa đủ hoặc không hợp lệ. Vui lòng kiểm tra lại.');
+    }
   }
 }

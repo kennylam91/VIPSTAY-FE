@@ -20,13 +20,23 @@ import {AngularFireStorageModule} from 'angularfire2/storage';
 import {HeaderForHostComponent} from './component/shared/header-for-host/header-for-host.component';
 import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
-// import {ListHouseComponent} from './component/feature/list-house/list-house.component';
+import { ListHouseComponent } from './component/feature/list-house/list-house.component';
 import {environment} from '../environments/environment';
 import { ProfileUserComponent } from './component/feature/profile-user/profile-user.component';
 import { NavbarProfileComponent } from './component/feature/navbar-profile/navbar-profile.component';
 import { BookingOfUserComponent } from './component/feature/booking-of-user/booking-of-user.component';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 // import { EditPasswordComponent } from './component/feature/edit-password/edit-password.component';
+import {AuthInterceptorService} from './services/auth-interceptor.service';
+import { HomeForGuestComponent } from './component/core/home-for-guest/home-for-guest.component';
+// set locale VN
+import { registerLocaleData } from '@angular/common';
+import localeVN from '@angular/common/locales/vi';
+import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
+
+// set locale VN
+registerLocaleData(localeVN);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +58,9 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
     // EditPasswordComponent
   ],
     // ListHouseComponent ],
+    ListHouseComponent,
+    HomeForGuestComponent,
+    SlideShowComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -60,7 +73,13 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

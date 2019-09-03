@@ -4,9 +4,9 @@
     style="background-color: black; border-radius: 10px; text-align: center; color: white; margin-top: 20px; margin-bottom: 20px; font-size: x-large; margin-left: 5px; margin-right:5px">
     Đăng ký chỗ ở
   </div>
-  <div class="container-fluid row">
-    <div class="col-8">
-      <form (ngSubmit)="createHouse()" [formGroup]="houseForm">
+  <form (ngSubmit)="createHouse()" [formGroup]="houseForm">
+    <div class="container-fluid row">
+      <div class="col-md-6">
         <div class="form-group">
           <label>House Name: </label>
           <input type="text" class="form-control" [(ngModel)]="house.data.houseName" formControlName="houseName"
@@ -14,9 +14,8 @@
         </div>
         <div class="alert alert-danger" role="alert"
              *ngIf="houseForm.get('houseName').invalid && houseForm.get('houseName').touched">
-          Address is required!
+          Không để trống trường này!
         </div>
-
         <div class="form-group">
           <label>House Type: </label>
           <select class="form-control form-control-lg" [(ngModel)]="house.data.houseType" formControlName="houseType">
@@ -24,11 +23,18 @@
             <option value="villa">VILLA</option>
             <option value="resort">RESORT</option>
             <option value="hotel">HOTEL</option>
+          <select id="houseType" class="custom-select"
+                  [(ngModel)]="house.category" formControlName="category">
+            <option value="">Select type</option>
+            <option value="Home">Home</option>
+            <option value="Villa">Villa</option>
+            <option value="Resort">Resort</option>
+            <option value="Hotel">Hotel</option>
           </select>
         </div>
         <div class="alert alert-danger" role="alert"
-             *ngIf="houseForm.get('houseType').invalid && houseForm.get('houseType').touched">
-          Address is required!
+             *ngIf="houseForm.get('category').invalid && houseForm.get('category').touched">
+          Không để trống trường này!
         </div>
 
         <div class="form-group">
@@ -38,18 +44,28 @@
         </div>
         <div class="alert alert-danger" role="alert"
              *ngIf="houseForm.get('address').invalid && houseForm.get('address').touched">
-          Address is required!
+          Không để trống trường này!
         </div>
         <div class="form-group">
           <label>Bedroom number: </label>
           <input type="number" class="form-control" [(ngModel)]="house.data.bedroomNumber" formControlName="bedroomNumber"
                  placeholder="Enter bedroom number">
         </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('bedroomNumber').invalid && houseForm.get('bedroomNumber').touched">
+          Giá trị này phải lớn hơn 0
+        </div>
         <div class="form-group">
           <label>Bathroom Number: </label>
           <input type="number" class="form-control" [(ngModel)]="house.data.bathroomNumber" formControlName="bathroomNumber"
                  placeholder="Enter bathroom number">
         </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="houseForm.get('bathroomNumber').invalid && houseForm.get('bathroomNumber').touched">
+          Giá trị này phải lớn hơn 0
+        </div>
+      </div>
+      <div class="col-md-6" style="margin-bottom: 10px">
         <div class="form-group">
           <label>Price: </label>
           <input type="number" class="form-control" [(ngModel)]="house.data.price" formControlName="price"
@@ -57,16 +73,12 @@
         </div>
         <div class="alert alert-danger" role="alert"
              *ngIf="houseForm.get('price').invalid && houseForm.get('price').touched">
-          Address is required!
+          Giá trị này phải lớn hơn 0
         </div>
         <div class="form-group">
           <label>Description: </label>
           <textarea class="form-control" [(ngModel)]="house.data.description" formControlName="description"
                     placeholder="Enter description"></textarea>
-        </div>
-        <div class="alert alert-danger" role="alert"
-             *ngIf="houseForm.get('description').invalid && houseForm.get('description').touched">
-          Address is required!
         </div>
         <div class="form-group">
           <label>Area: </label>
@@ -75,16 +87,17 @@
         </div>
         <div class="alert alert-danger" role="alert"
              *ngIf="houseForm.get('area').invalid && houseForm.get('area').touched">
-          Address is required!
+          Giá trị này phải lớn hơn 0
         </div>
-        <div style="margin-bottom: 20px">
-          <button type="submit" class="btn btn-primary">Thêm chỗ ở</button>
-        </div>
-      </form>
+        <p>Thêm ảnh chỗ ở của bạn: </p>
+        <app-upload-file></app-upload-file>
+      </div>
     </div>
-    <div class="col-4" style="margin-bottom: 10px">
-      <app-upload-file (giveURLtoCreate)="onChange($event)"></app-upload-file>
+    <div class="container-fluid row justify-content-center">
+      <div style="margin-bottom: 20px">
+        <input type="submit" class="btn btn-outline-primary" value="Thêm chỗ ở">
+      </div>
     </div>
-  </div>
+  </form>
   <app-footer></app-footer>
 </div>

@@ -1,43 +1,35 @@
 <div>
   <nav class="navbar navbar-expand-sm bg-light header">
-    <div class="col-md-2">
+    <div class="col-md-6">
       <a class="navbar-brand" [routerLink]="['']">
         <img width="70" class="img-fluid" alt="VIPSTAY"
-             src="assets/icon/background_1151777.png" style="height: 50px;width: 50px">
-        <label>VIPstay</label>
+             src="https://firebasestorage.googleapis.com/v0/b/vipstay-637a2.appspot.com/o/vipstay-logo.png?alt=media&token=0692d07b-3d78-449d-8803-d866d0439bbf">
       </a>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-6">
       <ul class="navbar-nav justify-content-around">
         <li class="nav-item">
           <a class="nav-link text-dark " href="#">Hotline: 1900 1080</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark " routerLink="/create-house">Create House</a>
+          <a class="nav-link btn btn-outline-warning text-warning p-0 mt-2" [routerLink]="['/registerHost']"
+             *ngIf="!username">Trở thành chủ nhà</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link btn btn-outline-warning text-warning p-0 mt-2" [routerLink]="['/registerHost']">Trở thành
-            chủ
-            nhà</a>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!username">
           <a class="nav-link text-dark " [routerLink]="['/registerUser']">Đăng ký</a>
         </li>
 
         <li class="nav-item">
-          <div *ngIf="username == null">
+          <div *ngIf="username">
+            <a class="nav-link text-dark" href="#">{{username}}</a>
+          </div>
+          <div *ngIf="!username">
             <a class="nav-link text-dark " routerLink="/login">Đăng nhập</a>
           </div>
-            <div *ngIf="username !== null" class="dropdown">
-              <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
-                {{username}}
-              </button>
-              <div class="dropdown-menu">
-                <a class="nav-link text-dark dropdown-item " [routerLink]="['/profileUser']"><i class="fa fa-address-card"></i> Profile User</a>
-                <a class="nav-link text-dark dropdown-item" [routerLink]="['/bookingOfUser']"><i class="fa fa-paragraph"></i> Đặt chỗ của tôi</a>
-                <a href="/logout" class="nav-link text-dark dropdown-item" (click)="logout()"><i class="fa fa-backward"></i> Đăng xuất</a>
-              </div>
-            </div>
+        </li>
+        <li class="nav-item" *ngIf="username">
+          <a routerLink="/logout" class="nav-link text-dark " (click)="logout()">Đăng xuất</a>
+        </li>
       </ul>
     </div>
   </nav>

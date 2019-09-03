@@ -1,32 +1,31 @@
 <div>
   <nav class="navbar navbar-expand-sm bg-light">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <a class="navbar-brand text-dark" [routerLink]="['']">VIPstay | for Host</a>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
       <ul class="navbar-nav justify-content-around">
         <li class="nav-item">
           <a class="nav-link text-dark " href="#">Hotline: 1900 1080</a>
         </li>
         <li class="nav-item">
-          <div *ngIf="username">
-            <a class="nav-link text-dark" href="#">{{username}}</a>
-          </div>
-          <div *ngIf="username == null">
+          <div *ngIf="!username">
             <a class="nav-link text-dark " routerLink="/login">Đăng nhập</a>
           </div>
         </li>
         <li class="nav-item">
-          <a href="/logout" class="nav-link text-dark " (click)="logout()">Đăng xuất</a>
+          <a routerLink="/logout" class="nav-link text-dark " (click)="logout()">Đăng xuất</a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link text-dark " href="#"><i class="fa fa-bell"></i></a>
         </li>
+        <div *ngIf="username">
+          <a class="nav-link text-dark" href="#">{{username}}</a>
+        </div>
       </ul>
     </div>
   </nav>
-  <img src="../../../assets/banner/59349995-d0f0-4d54-8601-24e834671a44.jpg" height="auto" width="100%"/>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
