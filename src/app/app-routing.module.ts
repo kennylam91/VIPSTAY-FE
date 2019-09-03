@@ -12,6 +12,7 @@ import {CreateHouseComponent} from './component/feature/create-house/create-hous
 import {ListHouseComponent} from './component/feature/list-house/list-house.component';
 import {UploadFileComponent} from './component/feature/upload-file/upload-file.component';
 import {HomeForGuestComponent} from './component/core/home-for-guest/home-for-guest.component';
+import {ListHouseHostComponent} from './component/feature/list-house-host/list-house-host.component';
 
 
 const routes: Routes = [
@@ -22,9 +23,10 @@ const routes: Routes = [
   {path: 'registerUser', component: RegisterComponent},
   {path: 'registerHost', component: RegisterHostComponent},
   {path: 'home-for-host', component: HomeForHostComponent},
+  {path: 'home-for-host/houses', component: ListHouseHostComponent},
+  {path: 'home-for-host/create-house', component: CreateHouseComponent},
   {path: 'me/orders', component: HomeForGuestComponent},
-  {path: 'create-house', component: CreateHouseComponent},
-  {path: '**', redirectTo: '/houses', pathMatch: 'full'}
+  {path: '', redirectTo: '/houses', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -6,6 +6,7 @@ import {HouseService} from '../../../services/house.service';
 import {HouseRequest} from '../../../model/HouseRequest';
 import {ImageOfHouse} from '../../../model/ImageOfHouse';
 import {CategoryOfHouse} from '../../../model/CategoryOfHouse';
+import {HostService} from '../../../services/host.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class CreateHouseComponent implements OnInit {
   house: Partial<IHouse>;
 
   constructor(private router: Router,
-              private houseService: HouseService) {
+              private hostService: HostService) {
     this.houseForm = new FormGroup({
       houseName: new FormControl('', [Validators.required]),
       category: new FormControl('', [Validators.required]),
@@ -51,15 +52,15 @@ export class CreateHouseComponent implements OnInit {
     if (this.houseForm.valid) {
       console.log(this.house);
       const imageHouses: ImageOfHouse[] = [];
-      for (let i = 0; i < this.houseService.imageUrls.length; i++) {
+      for (let i = 0; i < this.hostService.imageUrls.length; i++) {
         let imageHouse = new ImageOfHouse();
-        imageHouse.imageUrl = this.houseService.imageUrls[i];
+        imageHouse.imageUrl = this.hostService.imageUrls[i];
         imageHouse.house = this.house;
         imageHouses.push(imageHouse);
       }
-      this.houseService.createHouse(imageHouses).subscribe(next => {
+      this.hostService.createHouse(imageHouses).subscribe(next => {
         console.log(next);
-        this.router.navigate(['/home-for-host']);
+        this.router.navigate(['/home-for-host/houses']);
       }, error => console.log(error));
     } else {
       alert('Thông tin nhà chưa đủ hoặc không hợp lệ. Vui lòng kiểm tra lại.');

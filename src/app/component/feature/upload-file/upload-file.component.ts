@@ -7,6 +7,7 @@ import {ImageOfHouse} from '../../../model/ImageOfHouse';
 import {Observable} from 'rxjs';
 import UploadTaskSnapshot = firebase.storage.UploadTaskSnapshot;
 import {finalize} from 'rxjs/operators';
+import {HostService} from '../../../services/host.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class UploadFileComponent implements OnInit {
 
   constructor(private httpClient: HttpClient,
               private afStorage: AngularFireStorage,
-              private houseService: HouseService) {
+              private hostService: HostService) {
   }
 
   ngOnInit() {
@@ -39,7 +40,7 @@ export class UploadFileComponent implements OnInit {
 
   async onUpload() {
     try {
-      this.houseService.imageUrls = [];
+      this.hostService.imageUrls = [];
       this.index = 1;
       this.btn = 'Uploading';
       for (const file of this.files) {
@@ -49,7 +50,7 @@ export class UploadFileComponent implements OnInit {
         const snapshot: UploadTaskSnapshot = await this.ref.put(file);
         const downloadUrl = await snapshot.ref.getDownloadURL();
 
-        this.houseService.imageUrls.push(downloadUrl);
+        this.hostService.imageUrls.push(downloadUrl);
         this.percent = Math.round(this.index / this.totalFile * 100);
         // prevent index++ when index=totalFile
         this.index = this.index === this.totalFile ? this.index : this.index + 1;
@@ -57,7 +58,7 @@ export class UploadFileComponent implements OnInit {
     } catch (error) {
       console.log(`Failed to upload file and get link - ${error}`);
     }
-    console.log(this.houseService.imageUrls);
+    console.log(this.hostService.imageUrls);
     this.btn = 'Upload';
   }
 }

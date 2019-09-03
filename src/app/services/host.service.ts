@@ -18,9 +18,15 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class HostService {
+  houses: IHouse[];
+  imageUrls: string[] = [];
   private API_URL = environment.URL + '/api/host/houses';
 
   constructor(private http: HttpClient) {
+  }
+
+  getHouses(): Observable<any> {
+    return this.http.get<any>(this.API_URL);
   }
 
   createHouse(imageOfHouses: ImageOfHouse[]): Observable<any> {

@@ -30,6 +30,7 @@ import localeVN from '@angular/common/locales/vi';
 import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import { ListHouseHostComponent } from './component/feature/list-house-host/list-house-host.component';
 
 // set locale VN
 registerLocaleData(localeVN);
@@ -51,7 +52,8 @@ registerLocaleData(localeVN);
     CreateHouseComponent,
     ListHouseComponent,
     HomeForGuestComponent,
-    SlideShowComponent],
+    SlideShowComponent,
+    ListHouseHostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

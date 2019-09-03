@@ -8,12 +8,8 @@ import {Router} from '@angular/router';
 })
 export class HomeForHostComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  createHouse() {
-    this.router.navigate(['/create-house']);
   }
 }
