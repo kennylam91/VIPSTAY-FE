@@ -79,27 +79,63 @@
         </div>
 
 
-        <div style="padding-left: 30px">
-<!--          <mat-form-field color="primary">-->
-<!--            <mat-label>Custom calendar color</mat-label>-->
-<!--            <input matInput [matDatepicker]="picker2">-->
-<!--            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>-->
-<!--            <mat-datepicker #picker2 color="primary"></mat-datepicker>-->
-<!--          </mat-form-field>-->
+<!--        <div style="padding-left: 30px">-->
+<!--          &lt;!&ndash;                    <mat-form-field color="primary">&ndash;&gt;-->
+<!--          &lt;!&ndash;                      <mat-label>Custom calendar color</mat-label>&ndash;&gt;-->
+<!--          &lt;!&ndash;                      <input matInput [matDatepicker]="picker2">&ndash;&gt;-->
+<!--          &lt;!&ndash;                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>&ndash;&gt;-->
+<!--          &lt;!&ndash;                      <mat-datepicker #picker2 color="primary"></mat-datepicker>&ndash;&gt;-->
+<!--          &lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
 
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+<!--          <mat-form-field color="primary">-->
+<!--            <input matInput [matDatepicker]="picker" placeholder="Choose a date">-->
+<!--            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--            <mat-datepicker #picker color="primary"></mat-datepicker>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <p>{{statusHouses[0].startHouse}}</p>-->
+<!--          <p>{{statusHouses[0].endHouse}}</p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <p>{{statusHouses[1].startHouse}}</p>-->
+<!--          <p>{{statusHouses[1].endHouse}}</p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <p>{{statusHouses[2].startHouse}}</p>-->
+<!--          <p>{{statusHouses[2].endHouse}}</p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <p>{{statusHouses[3].startHouse}}</p>-->
+<!--          <p>{{statusHouses[3].endHouse}}</p>-->
+<!--        </div>-->
+
+        <div><p>Chỗ ở sẽ tạm ngưng cung cấp dịch vụ trong khoảng thời gian như sau: </p></div>
+        <div *ngFor="let statusHouse of statusHouses; index as i">
+          <div class="row">
+
+            <p>Từ ngày: </p>
+            <div class="alert alert-dark" role="alert">
+              <p>{{statusHouse.startHouse}}</p>
+            </div>
+            <p> đến ngày: </p>
+            <div class="alert alert-dark" role="alert">
+              <p>{{statusHouse.endHouse}}</p>
+            </div>
+            <button type="button" class="btn btn-danger" [value]="i" (click)="delete($event.target.value)">Delete</button>
+          </div>
         </div>
 
+
         <div style="margin-bottom: 20px">
-          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Sửa thông tin</button>
+          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Sửa thông tin
+          </button>
         </div>
       </form>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">

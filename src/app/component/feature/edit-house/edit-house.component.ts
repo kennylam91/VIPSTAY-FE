@@ -45,6 +45,7 @@ export class EditHouseComponent implements OnInit {
       rate: 0,
       area: 0,
     };
+    this.statusHouses = [];
   }
 
   ngOnInit() {
@@ -56,8 +57,11 @@ export class EditHouseComponent implements OnInit {
         this.statusHouseService.getStatusHouseByHouseId(this.house.id).subscribe(data => {
           if (data.data != null) {
             this.statusHouses = data.data;
+            console.log(this.statusHouses);
+            console.log(this.statusHouses[0]);
           }
-          this.statusHouses = [null];
+        }, error1 => {
+          console.log(error1);
         });
       }, error1 => {
         console.log(error1);
@@ -70,6 +74,12 @@ export class EditHouseComponent implements OnInit {
     console.log(this.house);
     this.houseService.updateHouse(this.house).subscribe(next => {
       console.log(next);
+    }, error => console.log(error));
+  }
+
+  delete(value) {
+    this.statusHouseService.deleteStatusHouse(value).subscribe(next => {
+      alert(next.message);
     }, error => console.log(error));
   }
 
