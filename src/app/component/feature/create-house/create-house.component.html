@@ -4,7 +4,7 @@
     style="background-color: black; border-radius: 10px; text-align: center; color: white; margin-top: 20px; margin-bottom: 20px; font-size: x-large; margin-left: 5px; margin-right:5px">
     Đăng ký chỗ ở
   </div>
-  <form (ngSubmit)="createHouse()" [formGroup]="houseForm">
+  <form method="post" (ngSubmit)="createHouse()" [formGroup]="houseForm">
     <div class="container-fluid row">
       <div class="col-md-6">
         <div class="form-group">
