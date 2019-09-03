@@ -1,0 +1,182 @@
+<app-header></app-header>
+<header class="container-fluid shadow" style="max-width:100%;" id="home">
+  <!--    <img src='{{house.imageUrls[1]}}' alt="Architecture" width="100%" height="600">-->
+  <app-slide-show [house]="house"></app-slide-show>
+</header>
+
+<div class="container-fluid shadow">
+  <ul class="breadcrumb shadow">
+    <li class="breadcrumb-item"><a [routerLink]="['']">Trang chủ</a></li>
+    <li class="breadcrumb-item active"><a [routerLink]="['/houses',house.id]">{{house.houseName}}</a></li>
+  </ul>
+  <div class="row">
+    <div class="col-sm-8 ">
+      <div class="container shadow">
+        <p class="font-weight-bold " style="font-size: 20px">{{house.houseName}} ____ {{ time | date:'hh:mm:ss a' }}</p>
+        <p class="font-weight-bold ">
+          <img src="assets/icon/address.png" width="20" height="20"> {{house.address}}
+        </p>
+        <p class="font-weight-bold ">
+          <img src="assets/icon/house.png" width="20" height="20"> Diện tích: {{house.area}} m2
+        </p>
+        <p class="overflow-auto">{{house.description}}</p>
+      </div>
+      <p></p>
+      <div class="container shadow">
+        <p class="font-weight-bold" style="font-size: 20px">Tiện Nghi Chỗ ở </p>
+        <div class="row">
+          <div class="col-md-6"><p><img src="assets/icon/house.png" width="20" height="20"> Phòng
+            ngủ: {{house.bathroomNumber}}</p></div>
+          <div class="col-md-6"><p><img src="assets/icon/house.png" width="20" height="20"> Phòng
+            tắm: {{house.bedroomNumber}}</p></div>
+        </div>
+      </div>
+      <div class="container bg-light shadow mt-3">
+        <p class="font-weight-bold" style="font-size: 20px">Tiện ích gia đình </p>
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="assets/icon/chair.png" width="60" height="60">Phù hợp với trẻ nhỏ
+          </div>
+          <div class="col-lg-4">
+            <img src="assets/icon/No-Smoking-Sign-Vinyl-Decal-Sticker__27437.1506204179.jpg" width="35" height="35">
+            Không hút thuốc
+          </div>
+        </div>
+        <p class="font-weight-bold" style="font-size: 20px">Tiện ích bếp </p>
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="assets/icon/electric.png" width="35" height="35"> Bếp điện
+          </div>
+          <div class="col-lg-4">
+            <img src="assets/icon/microwave-oven-60-798617.png" width="35" height="35"> Lò vi sóng
+          </div>
+          <div class="col-lg-4">
+            <img src="assets/icon/fridge-119-733211.png" width="35" height="35"> Tủ lạnh
+          </div>
+        </div>
+        <p class="font-weight-bold" style="font-size: 20px">Tiện ích giải trí </p>
+        <img src="assets/icon/background_1151777.png" width="35" height="35"> Cảnh quan đẹp
+      </div>
+      <p class="font-weight-bold shadow" style="font-size: 25px">Đánh Giá</p>
+      <div class="container shadow">
+        <div class="card">
+          <div class="card-header row">
+            <div class="col-lg-1">
+              <img src="assets/PictureHouseDetail/room_18463_14_1545395734.jpg" width="35" height="35"
+                   style="border-radius: 50%">
+            </div>
+            <div class="col-lg-4">
+              <p> Trần Thanh Hiếu Thảo</p>
+            </div>
+            <div class="col-lg-7 text-lg-right">
+              <p> 2 month ago</p>
+            </div>
+          </div>
+          <div class="card-body">Lần này đặt phòng do có sự cố phòng nên chủ nhà đã liên hệ giúp mình sang một homestay
+            khác. Hy vọng lần sau sẽ có dịp ở homestay này :D
+          </div>
+        </div>
+        <form class="form-inline">
+          <input type="text" style="width: 627px" class="form-control mb-2 mr-sm-2" placeholder="Type your comment">
+          <button type="submit" class="btn btn-primary mb-2">Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="container border shadow-lg ">
+        <p style="font-size: 35px;text-align: center">{{house.price * getNumberDay()}}$<span
+          style="font-size: 20px">/{{getNumberDay()}}đêm</span></p>
+        <form [formGroup]="formOrder" (ngSubmit)="booking()">
+          <div class="input-group mb-3">
+            <div class="col-md-3"><label>Checkin: </label></div>
+            <div class="col-md-9">
+              <mat-form-field class="example-full-width">
+                <input readonly matInput [matDatepickerFilter]="myFilter" [matDatepicker]="checkin"
+                       placeholder="Choose a date"
+                       formControlName="checkin" [(ngModel)]="orderHouse.checkin">
+                <mat-datepicker-toggle matSuffix [for]="checkin"></mat-datepicker-toggle>
+                <mat-datepicker #checkin></mat-datepicker>
+              </mat-form-field>
+              <!--              <input type="date" class="form-control datetimepicker-input" id="checkin"-->
+              <!--                     formControlName="checkin" [(ngModel)]="orderHouse.checkin"-->
+              <!--                     data-date="" data-date-format="DD/MM/YYYY">-->
+            </div>
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="formOrder.get('checkin').invalid && formOrder.get('checkin').touched">
+            Không để trống trường này!
+          </div>
+          <div class="input-group mb-3">
+            <div class="col-md-3"><label>Checkout: </label></div>
+            <div class="col-md-9">
+              <mat-form-field class="example-full-width">
+                <input readonly matInput [matDatepickerFilter]="myFilter" [matDatepicker]="checkout"
+                       placeholder="Choose a date" formControlName="checkout" [(ngModel)]="orderHouse.checkout">
+                <mat-datepicker-toggle matSuffix [for]="checkout"></mat-datepicker-toggle>
+                <mat-datepicker #checkout></mat-datepicker>
+              </mat-form-field>
+              <!--              <input type="date" class="form-control datetimepicker-input" id="checkout"-->
+              <!--                     formControlName="checkout" [(ngModel)]="orderHouse.checkout">-->
+            </div>
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="formOrder.get('checkout').invalid && formOrder.get('checkout').touched">
+            Không để trống trường này!
+          </div>
+          <div class="input-group mb-3">
+            <div class="col-md-3"><label>Số người: </label></div>
+            <div class="col-md-9">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Type a number" id="numberGuest"
+                       formControlName="numberGuest" [(ngModel)]="orderHouse.numberGuest">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="formOrder.get('numberGuest')?.errors?.required && formOrder.get('numberGuest').touched">
+            Không để trống trường này!
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="formOrder.get('numberGuest')?.errors?.min && formOrder.get('numberGuest').touched">
+            Trường này phải lớn hơn 0
+          </div>
+          <div class="input-group mb-3 input-group-lg ">
+            <input style="background: coral;color: white" type="submit" class="form-control text-center"
+                   value="Gửi yêu cầu đặt phòng">
+          </div>
+        </form>
+      </div>
+      <div class="container border shadow-lg ">
+        <p style="font-size: 20px;text-align: center">Đăng nhập và tận hưởng quyền lợi của Thành viên!
+        </p>
+        <p style="font-size: 14px;text-align: center">Đăng ký thành viên VIPstay, trải nghiệm đột phá - Đặt phòng nhanh
+          hơn, ưu đãi nhiều hơn nữa.
+        </p>
+        <form>
+          <div class="input-group mb-3">
+            <button style="background: coral;color: white" type="text" class="form-control" [routerLink]="['/login']">
+              ĐĂNG NHẬP
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="container border shadow-lg h-auto ">
+        <div class="row">
+          <div class="col-2"><img src="assets/PictureHouseDetail/room_18463_14_1545395734.jpg" width="60" height="60"
+                                  style="border-radius: 50%"></div>
+          <div class="col-10">
+            <p style="font-size: 20px;text-align: center;color: coral">Xóm HomeStay
+            <p>
+            <p style="font-size: 15px;text-align: center">Tham gia 09/2018
+            <p>
+          </div>
+        </div>
+        <p style="font-size: 14px;border: 1px bisque solid ">Gọi<a href="#"> 18006586</a> (miễn phí) để được hỗ trợ 24/7
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+

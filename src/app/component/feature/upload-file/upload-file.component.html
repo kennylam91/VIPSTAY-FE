@@ -1,0 +1,14 @@
+<div class="upload-file">
+  <input type="file" class="mt-1" (change)="onFileChanged($event)" #fileInput multiple>
+  <div class="float-right text-primary">{{index}}/{{totalFile}}</div>
+  <div class="alert alert-success p-1 mt-2" *ngIf="percent===100">Done</div>
+  <div class="progress mt-2" *ngIf="percent!==100 && index!==0">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(percent) + '%'" [attr.aria-valuenow]="(percent)" aria-valuemin="0" aria-valuemax="100">{{percent}}%</div>
+  </div>
+  <div style="margin-bottom: 10px; margin-top: 10px">
+    <button type="button" (click)="onUpload()" class="btn btn-success">{{btn}}</button>
+  </div>
+<!--  <div *ngIf="!downloadURL" style="margin-bottom: 10px; margin-top: 10px">-->
+<!--    <img [src]="downloadURL" style="width: 300px; height: auto">-->
+<!--  </div>-->
+</div >
