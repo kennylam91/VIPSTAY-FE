@@ -48,4 +48,6 @@ export class HouseService {
   bookingHouse(orderHouse: OrderHouse, id: number): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/${id}/booking`, JSON.stringify(orderHouse), httpOptions);
   }
+
+
 }

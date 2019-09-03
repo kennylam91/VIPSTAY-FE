@@ -1,16 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-
 import {Router} from '@angular/router';
-import {IHouse} from '../../../model/IHouse';
-import {HouseService} from '../../../services/house.service';
 import {StandardResponse} from '../../../model/StandardResponse';
-
-import {IHouse} from '../../../model/IHouse';
-import {HouseService} from '../../../services/house.service';
 import {HouseRequest} from '../../../model/HouseRequest';
 import {ImageOfHouse} from '../../../model/ImageOfHouse';
 import {CategoryOfHouse} from '../../../model/CategoryOfHouse';
+import {IHouse} from '../../../model/IHouse';
+import {HouseService} from '../../../services/house.service';
 
 
 @Component({
@@ -55,8 +51,9 @@ export class CreateHouseComponent implements OnInit {
     if (this.houseForm.valid) {
       console.log(this.house);
       const imageHouses: ImageOfHouse[] = [];
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.houseService.imageUrls.length; i++) {
-        let imageHouse = new ImageOfHouse();
+        const imageHouse = new ImageOfHouse();
         imageHouse.imageUrl = this.houseService.imageUrls[i];
         imageHouse.house = this.house;
         imageHouses.push(imageHouse);

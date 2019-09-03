@@ -8,7 +8,7 @@ import {HeaderComponent} from './component/shared/header/header.component';
 import {FooterComponent} from './component/shared/footer/footer.component';
 import {HouseDetailComponent} from './component/feature/house-detail/house-detail.component';
 import {SearchComponent} from './component/shared/search/search.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './component/feature/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './component/feature/register/register.component';
@@ -55,9 +55,6 @@ registerLocaleData(localeVN);
     ProfileUserComponent,
     NavbarProfileComponent,
     BookingOfUserComponent,
-    // EditPasswordComponent
-  ],
-    // ListHouseComponent ],
     ListHouseComponent,
     HomeForGuestComponent,
     SlideShowComponent],

@@ -1,13 +1,20 @@
-<link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" />
-<link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" />
-<link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" />
-<link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" />
-<link href="https://cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet" />
 
 <app-header></app-header>
 <div class="container" style="height: 528px">
 <app-navbar-profile></app-navbar-profile>
-  <ejs-datepicker id='datepicker' placeholder='Select a date' [(ngModel)]="dateValue"  format ='yyyy-MM-dd'></ejs-datepicker>
+  <ul class=" border border-dark shadow list-group " style="align-items: center">
+    <li class="list-group-item bg-success" style="font-size: 20px">List Customer Order House Of {{username}}</li>
+  </ul>
+<div *ngFor="let orderHouse of ArrayOrder">
+    <div *ngFor="let k of orderHouse">
+      <ul class=" border border-dark shadow list-group float-left " style="width: 300px;margin: 5px">
+      <li class="list-group-item bg-info">House Name:{{k.house.houseName}}</li>
+    <li class="list-group-item">Người thuê nhà:{{k.tenant.username}}</li>
+        <li class="list-group-item">Ngày Order:{{k.orderTime |date:' dd-MM-yy  hh:mm:ss a'}}</li>
+      <li class="list-group-item">Ngày vào:{{k.checkin |date:' dd-MM-yy  hh:mm:ss a'}}</li>
+      <li class="list-group-item">Ngày ra:{{k.checkout |date:' dd-MM-yy  hh:mm:ss a'}}</li>
+    </ul>
 </div>
-
-<app-footer></app-footer>
+</div>
+<!--<app-footer></app-footer>-->
+</div>

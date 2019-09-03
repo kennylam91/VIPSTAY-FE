@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {OrderService} from '../../../services/order.service';
+import {OrderHouse} from '../../../model/OrderHouse';
+import {IHouse} from '../../../model/IHouse';
+
 
 @Component({
   selector: 'app-booking-of-user',
@@ -6,12 +10,24 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./booking-of-user.component.css']
 })
 export class BookingOfUserComponent implements OnInit {
-  public dateValue: Date = new Date('02/09/2019');
+  username: string;
+  ArrayOrder: Array<any> = [];
 
-  constructor() {
+
+  constructor(private orderService: OrderService) {
   }
 
   ngOnInit() {
+    this.orderService.getlistHouseOfHost().subscribe(data => {
+      for (let i = 0; i < data.data.length; i++) {
+        this.orderService.getHouseOrderByUser(data.data[i].id).subscribe(next => {
+          if (next.data.length !== 0) {
+            this.ArrayOrder.push(next.data);
+          }
+        });
+      }
+    });
+    this.username = localStorage.getItem('currentUser');
   }
 
 }

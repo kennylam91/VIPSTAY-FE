@@ -20,16 +20,25 @@
         </li>
 
         <li class="nav-item">
-          <div *ngIf="username">
-            <a class="nav-link text-dark" href="#">{{username}}</a>
-          </div>
-          <div *ngIf="!username">
+          <div *ngIf="username == null">
             <a class="nav-link text-dark " routerLink="/login">Đăng nhập</a>
           </div>
-        </li>
-        <li class="nav-item" *ngIf="username">
-          <a routerLink="/logout" class="nav-link text-dark " (click)="logout()">Đăng xuất</a>
-        </li>
+          <div *ngIf="username !== null" class="dropdown">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+              {{username}}
+            </button>
+            <div class="dropdown-menu">
+              <a class="nav-link text-dark dropdown-item " [routerLink]="['/profileUser']"><i class="fa fa-address-card"></i> Profile User</a>
+              <div *ngIf="username === 'host'">
+              <a class="nav-link text-dark dropdown-item" [routerLink]="['/me/orders']"><i class="fa fa-paragraph"></i> Danh sách All Order</a>
+              </div>
+              <a class="nav-link text-dark dropdown-item" [routerLink]="['/bookingOfUser']"><i class="fa fa-paragraph"></i>Thông tin khách Order</a>
+              <a href="/logout" class="nav-link text-dark dropdown-item" (click)="logout()"><i class="fa fa-backward"></i> Đăng xuất</a>
+              <div *ngIf="username === 'host'">
+                <a class="nav-link text-dark dropdown-item" [routerLink]="['/home-for-host']"><i class="fa fa-backward"></i>Quản lý nhà</a>
+              </div>
+            </div>
+          </div>
       </ul>
     </div>
   </nav>

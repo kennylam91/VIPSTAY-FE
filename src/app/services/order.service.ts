@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {OrderHouse} from '../model/OrderHouse';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,13 @@ export class OrderService {
 
   getOrders(): Observable<any> {
     return this.http.get<any>(this.API_URL);
+  }
+
+  getHouseOrderByUser(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.URL + '/api/host/house/orderOfUser'}/${id}`);
+  }
+
+  getlistHouseOfHost(): Observable<any> {
+    return this.http.get<any>(`${environment.URL + '/api/host/houses'}`);
   }
 }
