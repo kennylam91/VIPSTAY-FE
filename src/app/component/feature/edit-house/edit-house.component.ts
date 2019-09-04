@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {StatusHouseService} from '../../../services/status-house.service';
 import {IStatusHouse} from '../../../model/IStatusHouse';
+import {HostService} from '../../../services/host.service';
 
 @Component({
   selector: 'app-edit-house',
@@ -17,7 +18,8 @@ export class EditHouseComponent implements OnInit {
   house: IHouse;
   statusHouses: IStatusHouse[];
 
-  constructor(private houseService: HouseService,
+  constructor(private hostService: HostService,
+              private houseService:HouseService,
               private statusHouseService: StatusHouseService,
               private route: ActivatedRoute,
               private router: Router) {
@@ -35,13 +37,13 @@ export class EditHouseComponent implements OnInit {
     this.house = {
       id: 0,
       houseName: '',
-      houseType: '',
+      category: '',
       address: '',
       bedroomNumber: 0,
       bathroomNumber: 0,
       price: 0,
       description: '',
-      images: [],
+      imageUrls: [],
       rate: 0,
       area: 0,
     };
@@ -72,7 +74,7 @@ export class EditHouseComponent implements OnInit {
 
   editHouse() {
     console.log(this.house);
-    this.houseService.updateHouse(this.house).subscribe(next => {
+    this.hostService.updateHouse(this.house).subscribe(next => {
       console.log(next);
     }, error => console.log(error));
   }
@@ -84,6 +86,6 @@ export class EditHouseComponent implements OnInit {
   }
 
   redirect() {
-    this.router.navigate(['/home-for-host']);
+    this.router.navigate(['/home-for-host/houses']);
   }
 }

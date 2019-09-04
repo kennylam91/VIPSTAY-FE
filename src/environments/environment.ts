@@ -13,7 +13,7 @@ export const environment = {
     storageBucket: 'vipstay-637a2.appspot.com',
     messagingSenderId: '394776501356',
     appId: '1:394776501356:web:d1cea52d76cd19a0'
-  }
+  },
 };
 
 /*

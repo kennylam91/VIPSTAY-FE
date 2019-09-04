@@ -34,7 +34,7 @@ export class CreateHouseComponent implements OnInit {
     const typeName = 'Home';
     this.house = {
       houseName: '',
-      houseType: '',
+      category: '',
       address: '',
       bedroomNumber: 0,
       bathroomNumber: 0,
@@ -61,6 +61,7 @@ export class CreateHouseComponent implements OnInit {
       this.hostService.createHouse(imageHouses).subscribe(next => {
         console.log(next);
         this.router.navigate(['/home-for-host/houses']);
+        alert('Đăng nhà thành công');
       }, error => console.log(error));
     } else {
       alert('Thông tin nhà chưa đủ hoặc không hợp lệ. Vui lòng kiểm tra lại.');

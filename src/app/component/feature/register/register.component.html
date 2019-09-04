@@ -18,32 +18,60 @@
   <!--    Invalid email!-->
   <!--  </div>-->
   <div class="form-group row">
-    <label class="col">
+    <label class="col" id="username">
       Username:
       <input type="text" class="form-control" [(ngModel)]="user.username" formControlName="username">
+      <div class="text-danger small"
+           *ngIf="registerForm.get('username').invalid && (registerForm.get('username').dirty || registerForm.get('username').touched)">
+        <div *ngIf="registerForm.get('username').errors.required">
+          Không để trống dòng này!
+        </div>
+        <div *ngIf="registerForm.get('username').errors.minlength">
+          Username tối thiểu 3 kí tự
+        </div>
+        <div *ngIf="registerForm.get('username').errors.maxlength">
+          Username tối đa 50 kí tự
+        </div>
+        <div *ngIf="registerForm.get('username').errors.pattern">
+          Username không được chứa các ký tự đặc biệt
+        </div>
+      </div>
     </label>
   </div>
-  <div class="alert alert-danger" role="alert"
-       *ngIf="registerForm.get('username').invalid && registerForm.get('username').touched">
-    Address is required!
-  </div>
+
   <div formGroupName="pwGroup">
-    <div class="form-group row">
+    <div class="form-group row mt-2">
       <label class="col">
         Mật khẩu:
         <input type="password" class="form-control" [(ngModel)]="user.password" formControlName="password">
+        <div class="text-danger small"
+             *ngIf="registerForm.get('pwGroup').get('password').invalid && (registerForm.get('pwGroup').get('password').dirty || registerForm.get('pwGroup').get('password').touched)">
+          <div *ngIf="registerForm.get('pwGroup').get('password').errors.required">
+            Không để trống dòng này!
+          </div>
+          <div *ngIf="registerForm.get('pwGroup').get('password').errors.minlength">
+            Mật khẩu tối thiếu 6 ký tự!
+          </div>
+          <div *ngIf="registerForm.get('pwGroup').get('password').errors.maxlength">
+            Mật khẩu tối đa 100 ký tự!
+          </div>
+        </div>
       </label>
     </div>
     <div class="form-group row">
       <label class="col">
         Xác nhận mật khẩu:
         <input type="password" class="form-control" formControlName="confirmPassword">
+        <div class="text-danger small"
+             *ngIf="registerForm.get('pwGroup').invalid && (registerForm.get('pwGroup').get('confirmPassword').dirty || registerForm.get('pwGroup').get('confirmPassword').touched)">
+          Mật khẩu không trùng nhau!
+        </div>
       </label>
     </div>
-    <div class="alert alert-danger" role="alert" *ngIf="registerForm.hasError('passwordnotmatch', ['pwGroup']) &&
-      registerForm.get('pwGroup').touched">
-      Password does not match!
-    </div>
+    <!--    <div class="alert alert-danger" role="alert" *ngIf="registerForm.hasError('passwordnotmatch', ['pwGroup']) &&-->
+    <!--      registerForm.get('pwGroup').touched">-->
+    <!--      Password does not match!-->
+    <!--    </div>-->
   </div>
 
 
@@ -115,28 +143,30 @@
   <!--  </div>-->
 
   <div class="form-group">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" type="submit">
-      Create User
-    </button>
+    <input id="test" class="btn btn-primary" type="submit"
+           value="Create User">
   </div>
-  <!--  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
-  <!--    <div class="modal-dialog modal-dialog-centered" role="document">-->
-  <!--      <div class="modal-content">-->
-  <!--        <div class="modal-header">-->
-  <!--          <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>-->
-  <!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-  <!--            <span aria-hidden="true">&times;</span>-->
-  <!--          </button>-->
-  <!--        </div>-->
-  <!--        <div class="modal-body">-->
-  <!--          Bạn đã đăng ký thành công-->
-  <!--        </div>-->
-  <!--        <div class="modal-footer">-->
-  <!--          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
+<!--  modal-->
+<!--  <div class="modal fade hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
+<!--       aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>-->
+<!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--            <span aria-hidden="true">&times;</span>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--          assasassaa-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
 </form>
 
 <app-footer></app-footer>

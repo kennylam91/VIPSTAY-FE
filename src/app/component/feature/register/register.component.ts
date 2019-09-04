@@ -1,12 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
-import {first} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {IUser} from '../../../model/IUser';
-import {ajaxGetJSON} from 'rxjs/internal-compatibility';
-import {Observable} from 'rxjs';
-import {User} from 'firebase';
+import * as $ from 'jquery';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -23,6 +20,8 @@ function comparePassword(c: AbstractControl) {
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   user: Partial<IUser>;
+  success: boolean;
+  message: string;
 
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
@@ -30,20 +29,21 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: [''],
       pwGroup: this.fb.group({
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
         confirmPassword: ['']
       }, {validator: comparePassword}),
-      address: ['', Validators.required],
-      age: ['', [Validators.required, Validators.min(18)]],
-      type: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern(/^\+84\d{9,10}$/)]],
-      role: ['', Validators.required],
-      name: ['', Validators.required],
-      idNumber: ['', Validators.required],
-      avatar: ['', Validators.required],
-      username: ['', Validators.required],
+      address: [''],
+      age: [''],
+      type: [''],
+      phone: [''],
+      role: [''],
+      name: [''],
+      idNumber: [''],
+      avatar: [''],
+      username: ['', [Validators.required, Validators.minLength(3),
+        Validators.maxLength(50), Validators.pattern(/^[_A-z0-9]*[_A-z0-9]*$/)]],
     });
 
     this.user = {
@@ -55,22 +55,23 @@ export class RegisterComponent implements OnInit {
     };
   }
 
+
   onSubmit() {
-    // if (this.registerForm.invalid) {
-    //   return;
-    // }
     console.log(this.user);
-    this.userService.registerGuest(this.user)
-      .subscribe(
-        data => {
-          console.log('succsess');
-          alert('Đăng ký thành công');
-          this.router.navigateByUrl('/login');
-        },
-        error => {
-          console.log('error');
-        }
-      );
+    if (this.registerForm.valid) {
+      this.userService.registerGuest(this.user)
+        .subscribe(
+          next => {
+            this.success = next.success;
+            this.message = next.message;
+            alert('Đăng ký tài khoản thành công');
+            this.router.navigateByUrl('/login');
+          },
+          error => {
+            console.log(error);
+          }
+        );
+    }
   }
 
 }

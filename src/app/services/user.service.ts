@@ -8,17 +8,17 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  private API_URL = environment.URL ;
+  private API_URL = environment.URL + '/api';
 
   constructor(private httpClient: HttpClient) {
   }
 
-  registerGuest(user: Partial<IUser>): Observable<IUser> {
-    return this.httpClient.post<IUser>(this.API_URL + '/signup', user);
+  registerGuest(user: Partial<IUser>): Observable<any> {
+    return this.httpClient.post<any>(this.API_URL + '/signup', user);
   }
 
-  registerHost(user: Partial<IUser>): Observable<IUser> {
-    return this.httpClient.post<IUser>(this.API_URL + '/host/signup', user);
+  registerHost(user: Partial<IUser>): Observable<any> {
+    return this.httpClient.post<any>(this.API_URL + '/host/signup', user);
   }
 }
 

@@ -33,7 +33,7 @@
               <a class="nav-link text-dark dropdown-item" [routerLink]="['/me/orders']"><i class="fa fa-paragraph"></i> Danh sách All Order</a>
               </div>
               <a class="nav-link text-dark dropdown-item" [routerLink]="['/bookingOfUser']"><i class="fa fa-paragraph"></i>Thông tin khách Order</a>
-              <a href="/logout" class="nav-link text-dark dropdown-item" (click)="logout()"><i class="fa fa-backward"></i> Đăng xuất</a>
+              <a  class="nav-link text-dark dropdown-item" [routerLink]="['/logout']" (click)="logout()"><i class="fa fa-backward"></i> Đăng xuất</a>
               <div *ngIf="username === 'host'">
                 <a class="nav-link text-dark dropdown-item" [routerLink]="['/home-for-host']"><i class="fa fa-backward"></i>Quản lý nhà</a>
               </div>

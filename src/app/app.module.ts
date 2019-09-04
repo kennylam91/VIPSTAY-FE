@@ -28,25 +28,22 @@ import { BookingOfUserComponent } from './component/feature/booking-of-user/book
 // import { EditPasswordComponent } from './component/feature/edit-password/edit-password.component';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
 import { HomeForGuestComponent } from './component/core/home-for-guest/home-for-guest.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import { EditHouseComponent } from './component/feature/edit-house/edit-house.component';
+import { EditStatusHouseComponent } from './component/feature/edit-status-house/edit-status-house.component';
+import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
+import { ListHouseHostComponent } from './component/feature/list-house-host/list-house-host.component';
 // set locale VN
 import { registerLocaleData } from '@angular/common';
 import localeVN from '@angular/common/locales/vi';
-import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
-import { ListHouseHostComponent } from './component/feature/list-house-host/list-house-host.component';
+import { PageNotFoundComponent } from './component/shared/page-not-found/page-not-found.component';
+import { PageForbiddenComponent } from './component/shared/page-forbidden/page-forbidden.component';
+
 
 // set locale VN
 registerLocaleData(localeVN);
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
-import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
-import {HeaderForHostComponent} from './component/shared/header-for-host/header-for-host.component';
-import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireStorageModule} from '@angular/fire/storage';
-import { EditHouseComponent } from './component/feature/edit-house/edit-house.component';
-import { EditStatusHouseComponent } from './component/feature/edit-status-house/edit-status-house.component';
+
 
 @NgModule({
   declarations: [
@@ -69,10 +66,11 @@ import { EditStatusHouseComponent } from './component/feature/edit-status-house/
     ListHouseComponent,
     HomeForGuestComponent,
     SlideShowComponent,
-    ListHouseHostComponent],
-    ListHouseComponent,
+    ListHouseHostComponent,
     EditHouseComponent,
-    EditStatusHouseComponent],
+    EditStatusHouseComponent,
+    PageNotFoundComponent,
+    PageForbiddenComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

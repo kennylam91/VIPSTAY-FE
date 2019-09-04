@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.authenService.authenticate(this.loginForm.value).subscribe(
       next => {
+        console.log(next.data.roles[0].authority);
         localStorage.setItem('token', next.data.token);
         localStorage.setItem('currentUser', next.data.username);
         localStorage.setItem('currentPassword', next.data.password);

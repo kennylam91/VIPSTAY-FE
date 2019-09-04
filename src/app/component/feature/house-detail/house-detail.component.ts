@@ -73,26 +73,32 @@ export class HouseDetailComponent implements OnInit {
   }
 
   booking() {
-    if (this.formOrder.valid) {
-      this.orderHouse.orderTime = new Date();
-      this.orderHouse.cost = this.house.price * this.getNumberDay();
-      this.houseService.bookingHouse(this.orderHouse, this.house.id).subscribe(
-        next => {
-          if (next.success) {
-            alert(next.message);
-            this.router.navigateByUrl('/me/orders');
-          } else {
-            alert(next.message);
-          }
+    if (!localStorage.getItem('currentUser')) {
+      alert('Bạn cần phải dăng nhập để đặt nhà');
+      this.router.navigateByUrl('/login');
+    } else {
+      if (this.formOrder.valid) {
+        this.orderHouse.orderTime = new Date();
+        this.orderHouse.cost = this.house.price * this.getNumberDay();
+        this.houseService.bookingHouse(this.orderHouse, this.house.id).subscribe(
+          next => {
+            if (next.success) {
+              alert(next.message);
+              this.router.navigateByUrl('/me/orders');
+            } else {
+              alert(next.message);
+            }
 
-        }
-      );
+          }
+        );
+      }
     }
+
   }
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
-  }
+  };
 }

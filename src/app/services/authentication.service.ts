@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private API_URL = environment.URL + '/login';
+  private API_URL = environment.URL + '/api/login';
 
   constructor(private httpClient: HttpClient) {
   }
