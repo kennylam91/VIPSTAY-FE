@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpEvent, HttpHandler, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 const httpOptions = {
@@ -11,9 +11,10 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthInterceptorService {
+export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor() { }
+  constructor() {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (localStorage.getItem('currentUser') && localStorage.getItem('token')) {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IHouse} from '../../../model/IHouse';
 import {HouseService} from '../../../services/house.service';
+import {AuthenticationService} from '../../../services/authentication.service';
 
 @Component({
   selector: 'app-list-house',
@@ -14,7 +15,8 @@ export class ListHouseComponent implements OnInit {
   suggestionHouses = this.bestChoiceHouses;
 
 
-  constructor(private houseService: HouseService) {
+  constructor(private houseService: HouseService,
+              private authenticationService: AuthenticationService) {
 
   }
 
@@ -24,5 +26,7 @@ export class ListHouseComponent implements OnInit {
         this.bestChoiceHouses = next.data;
         console.log(next);
       });
+    console.log(this.authenticationService.roles);
+    console.log(this.authenticationService.token);
   }
 }
