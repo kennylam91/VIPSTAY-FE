@@ -27,6 +27,7 @@ const routes: Routes = [
   {path: 'logout', component: LoginComponent},
   {path: 'houses', component: HomepageComponent},
   {path: 'houses/:id', component: HouseDetailComponent},
+  {path: 'booking', component: HouseDetailComponent, canActivate: [AuthGuard]},
   {path: 'registerUser', component: RegisterComponent},
   {path: 'registerHost', component: RegisterHostComponent},
   {path: '404', component: PageNotFoundComponent},

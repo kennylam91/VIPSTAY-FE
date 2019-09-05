@@ -28,6 +28,7 @@ export class HouseDetailComponent implements OnInit {
   };
   orderHouse = new OrderHouse();
   formOrder: FormGroup;
+  returnUrl = '/houses/';
 
   time: Date = new Date();
 
@@ -46,6 +47,7 @@ export class HouseDetailComponent implements OnInit {
     //   this.time = new Date();
     // }, 1000);
     const id = +this.route.snapshot.paramMap.get('id');
+    this.returnUrl += id;
     this.houseService.getHouseById(id)
       .subscribe(
         next => {
@@ -99,6 +101,6 @@ export class HouseDetailComponent implements OnInit {
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+    return true;
   };
 }

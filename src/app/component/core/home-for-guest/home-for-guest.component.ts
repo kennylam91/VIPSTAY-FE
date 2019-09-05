@@ -10,6 +10,7 @@ import {OrderService} from '../../../services/order.service';
 export class HomeForGuestComponent implements OnInit {
   orders: OrderHouse[];
   day = 86400 * 1000;
+  now: Date;
 
   constructor(private orderService: OrderService) {
   }
@@ -17,13 +18,28 @@ export class HomeForGuestComponent implements OnInit {
   ngOnInit() {
     this.orderService.getOrders().subscribe(
       next => {
-        console.log("haha");
         this.orders = next.data;
-        // for (let order of this.orders) {
-        //   order.checkin = new Date(order.checkin);
-        //   order.checkout = new Date(order.checkout);
-        // }
+        for (let order of this.orders) {
+          order.checkin = new Date(order.checkin);
+          order.checkout = new Date(order.checkout);
+          this.now = new Date();
+        }
       }
+    );
+  }
+
+  cancelOrder(id: number) {
+    this.orderService.deleteOrder(id).subscribe(
+      next => {
+        console.log(next);
+        if (next.success) {
+          alert(next.message);
+          location.reload();
+        } else {
+          alert(next.message);
+        }
+      },
+      error => console.log(error)
     );
   }
 }

@@ -41,6 +41,7 @@ import {PageNotFoundComponent} from './component/shared/page-not-found/page-not-
 import {PageForbiddenComponent} from './component/shared/page-forbidden/page-forbidden.component';
 import {AuthenticationService} from './services/authentication.service';
 import {ErrorInterceptorService} from './services/error-interceptor.service';
+import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
 
 
 // set locale VN
@@ -72,7 +73,8 @@ registerLocaleData(localeVN);
     EditHouseComponent,
     EditStatusHouseComponent,
     PageNotFoundComponent,
-    PageForbiddenComponent],
+    PageForbiddenComponent,
+    ConfirmOrderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

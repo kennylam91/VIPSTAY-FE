@@ -17,19 +17,25 @@
         <th>Số người</th>
         <th>Tổng tiền</th>
         <th>Thời gian đặt</th>
+        <th>Hủy đơn hàng</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let order of orders,index as i">
-        <td class="text-center">{{i+1}}</td>
+        <td class="text-center">{{i + 1}}</td>
         <td>{{order.house.houseName}}</td>
         <td class="text-center">{{order.house.price}}$</td>
         <td class="text-center">{{order.checkin | date:'dd/MM/yyyy' }}</td>
         <td class="text-center">{{order.checkout | date:'dd/MM/yyyy' }}</td>
-        <td class="text-center">{{(order.checkout.getTime()-order.checkin.getTime())/day}}</td>
+        <td class="text-center">{{(order.checkout.getTime() - order.checkin.getTime()) / day}}</td>
         <td class="text-center">{{order.numberGuest}}</td>
         <td class="text-center">{{order.cost}}</td>
         <td>{{order.orderTime | date:"EEEE, HH:mm, 'ngày' dd/MM/yyyy"}}</td>
+        <td class="text-center">
+          <button class="btn btn-outline-danger" [disabled]="(order.checkin.getTime()-now.getTime())/day<1"
+                  (click)="cancelOrder(order.id)">Hủy
+          </button>
+        </td>
       </tr>
       </tbody>
     </table>

@@ -39,7 +39,9 @@ export class AuthGuard implements CanActivate {
       this.router.navigateByUrl('403');
       return false;
     }
-    this.router.navigateByUrl('login', {skipLocationChange: false});
+    console.log('Could not authenticate');
+    this.router.navigate(['login'], {queryParams: {'redirectURL': state.url}});
+    // this.router.navigateByUrl('login', {skipLocationChange: false});
     // this.router.navigate(['login'], {skipLocationChange: false});
     return false;
   }
