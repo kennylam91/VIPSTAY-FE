@@ -18,18 +18,21 @@ import {HouseService} from '../../../services/house.service';
 export class CreateHouseComponent implements OnInit {
   houseForm: FormGroup;
   house: Partial<IHouse>;
+  defaultHouseImage = 'https://www.sanmonjizen.org/images/assets/home.gif';
 
   constructor(private router: Router,
               private hostService: HostService) {
     this.houseForm = new FormGroup({
-      houseName: new FormControl('', [Validators.required]),
+      houseName: new FormControl('',
+        [Validators.required, Validators.minLength(3),
+          Validators.maxLength(100), Validators.pattern(/^[_A-z0-9]*[_A-z0-9]*$/)]),
       category: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      bedroomNumber: new FormControl('', Validators.min(0)),
-      bathroomNumber: new FormControl('', Validators.min(0)),
-      price: new FormControl('', [Validators.min(0)]),
+      bedroomNumber: new FormControl('', [Validators.min(0), Validators.required]),
+      bathroomNumber: new FormControl('', [Validators.min(0), Validators.required]),
+      price: new FormControl('', [Validators.min(0), Validators.required]),
       description: new FormControl(''),
-      area: new FormControl('', [Validators.min(0)])
+      area: new FormControl('', [Validators.min(0), Validators.required])
     });
     const typeName = 'Home';
     this.house = {
@@ -52,6 +55,10 @@ export class CreateHouseComponent implements OnInit {
     if (this.houseForm.valid) {
       console.log(this.house);
       const imageHouses: ImageOfHouse[] = [];
+      // set default image if not upload image
+      if (!this.hostService.imageUrls.length) {
+        this.hostService.imageUrls.push(this.defaultHouseImage);
+      }
       for (let i = 0; i < this.hostService.imageUrls.length; i++) {
         let imageHouse = new ImageOfHouse();
         imageHouse.imageUrl = this.hostService.imageUrls[i];

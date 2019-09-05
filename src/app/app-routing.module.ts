@@ -36,8 +36,8 @@ const routes: Routes = [
   {
     path: 'home-for-host', component: HomeForHostComponent, canActivate: [AuthGuard], data: {roles: [Role.HOST]},
     children: [
-      {path: 'houses', component: ListHouseHostComponent, canActivate: [AuthGuard]},
-      {path: 'create-house', component: CreateHouseComponent, canActivate: [AuthGuard]},
+      {path: 'houses', component: ListHouseHostComponent, canActivate: [AuthGuard], data: {roles: [Role.HOST]}},
+      {path: 'create-house', component: CreateHouseComponent, canActivate: [AuthGuard], data: {roles: [Role.HOST]}},
     ]
   },
   {path: 'me/orders', component: HomeForGuestComponent, canActivate: [AuthGuard], data: {roles: [Role.GUEST]}},
