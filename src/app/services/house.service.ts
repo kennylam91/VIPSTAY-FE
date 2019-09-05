@@ -17,6 +17,7 @@ const httpOptions = {
 })
 export class HouseService {
   houses: IHouse[];
+  order: any;
   imageUrls: string[] = [];
   private API_URL = environment.URL + '/api/houses';
 

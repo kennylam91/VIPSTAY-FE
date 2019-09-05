@@ -86,7 +86,7 @@
       <div class="container border shadow-lg ">
         <p style="font-size: 35px;text-align: center">{{house.price * getNumberDay()}}$<span
           style="font-size: 20px">/{{getNumberDay()}}đêm</span></p>
-        <form [formGroup]="formOrder" (ngSubmit)="booking()">
+        <form [formGroup]="formOrder" (ngSubmit)="sendOrder()">
           <div class="input-group mb-3">
             <div class="col-md-3"><label>Checkin: </label></div>
             <div class="col-md-9">
@@ -97,9 +97,6 @@
                 <mat-datepicker-toggle matSuffix [for]="checkin"></mat-datepicker-toggle>
                 <mat-datepicker #checkin></mat-datepicker>
               </mat-form-field>
-              <!--              <input type="date" class="form-control datetimepicker-input" id="checkin"-->
-              <!--                     formControlName="checkin" [(ngModel)]="orderHouse.checkin"-->
-              <!--                     data-date="" data-date-format="DD/MM/YYYY">-->
             </div>
           </div>
           <div class="alert alert-danger" role="alert"
@@ -140,9 +137,9 @@
                *ngIf="formOrder.get('numberGuest')?.errors?.min && formOrder.get('numberGuest').touched">
             Trường này phải lớn hơn 0
           </div>
-          <div class="input-group mb-3 input-group-lg ">
-            <a routerLink="booking"><input style="background: coral;color: white" type="submit" class="form-control text-center"
-                      value="Gửi yêu cầu đặt phòng"></a>
+          <div class="input-group mb-3 input-group-lg justify-content-center">
+            <input routerLink="booking" (click)="sendOrder()" style="background: coral;color: white; text-decoration: none" type="submit" class="form-control text-center"
+                      value="Gửi yêu cầu đặt phòng">
           </div>
         </form>
       </div>

@@ -18,6 +18,7 @@ import {AuthGuard} from './services/auth.guard';
 import {PageNotFoundComponent} from './component/shared/page-not-found/page-not-found.component';
 import {Role} from './model/Role';
 import {PageForbiddenComponent} from './component/shared/page-forbidden/page-forbidden.component';
+import {ConfirmOrderComponent} from './component/feature/confirm-order/confirm-order.component';
 // import {UploadFileComponent} from './component/upload-file/upload-file.component';
 
 
@@ -27,13 +28,12 @@ const routes: Routes = [
   {path: 'logout', component: LoginComponent},
   {path: 'houses', component: HomepageComponent},
   {path: 'houses/:id', component: HouseDetailComponent},
-  {path: 'booking', component: HouseDetailComponent, canActivate: [AuthGuard]},
   {path: 'registerUser', component: RegisterComponent},
   {path: 'registerHost', component: RegisterHostComponent},
   {path: '404', component: PageNotFoundComponent},
   {path: '403', component: PageForbiddenComponent},
   {path: '', redirectTo: 'houses', pathMatch: 'full'},
-
+  {path: 'houses/:id/booking', component: ConfirmOrderComponent, canActivate: [AuthGuard], data: {roles: [Role.GUEST]}},
   {
     path: 'home-for-host', component: HomeForHostComponent, canActivate: [AuthGuard], data: {roles: [Role.HOST]},
     children: [

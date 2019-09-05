@@ -1,0 +1,114 @@
+<app-header></app-header>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 text-center jumbotron pt-md-4 pb-md-4">
+      <h2 class="mb-md-5">Xác nhận thông tin đặt nhà</h2>
+      <form class="text-center" [formGroup]="orderForm" (ngSubmit)="booking()">
+        <div class="input-group mb-3  ">
+          <div class="col-md-6 text-right"><label>Tên nhà: </label></div>
+          <div class="col-md-6 text-left font-weight-bold"><label>{{house.houseName}}</label></div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label>Loại nhà: </label></div>
+          <div class="col-md-6 text-left font-weight-bold"><label>{{house.category.name}}</label></div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label>Địa chỉ: </label></div>
+          <div class="col-md-6 text-left font-weight-bold"><label>{{house.address}}</label></div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label>Diện tích: </label></div>
+          <div class="col-md-6 text-left font-weight-bold"><label>{{house.area}}m2</label></div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label>Số phòng ngủ: </label></div>
+          <div class="col-md-6 text-left font-weight-bold"><label>{{house.bedroomNumber}}</label></div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label>Số phòng tắm: </label></div>
+          <div class="col-md-6 text-left font-weight-bold"><label>{{house.bathroomNumber}}</label></div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label>Giá: </label></div>
+          <div class="col-md-6 text-left font-weight-bold"><label>{{house.price}}$/đêm</label></div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label class="mt-md-4">Checkin: </label></div>
+          <div class="col-md-6 text-left font-weight-bold">
+            <mat-form-field class="example-full-width" eckin>
+              <input readonly matInput [matDatepickerFilter]="myFilter" [matDatepicker]="checkin"
+                     placeholder="Choose a date"
+                     formControlName="checkin" (dateChange)="onChange()">
+              <mat-datepicker-toggle matSuffix [for]="checkin"></mat-datepicker-toggle>
+              <mat-datepicker #checkin></mat-datepicker>
+            </mat-form-field>
+            <div class="text-danger small"
+                 *ngIf="orderForm.get('checkin').invalid && (orderForm.get('checkin').dirty || orderForm.get('checkin').touched)">
+              <div *ngIf="orderForm.get('checkin').errors.required">
+                Không để trống dòng này!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label class="mt-md-4">Checkout: </label></div>
+          <div class="col-md-6 text-left font-weight-bold">
+            <mat-form-field class="example-full-width">
+              <input readonly matInput [matDatepickerFilter]="myFilter" [matDatepicker]="checkout"
+                     placeholder="Choose a date" formControlName="checkout" (dateChange)="onChange()">
+              <mat-datepicker-toggle matSuffix [for]="checkout"></mat-datepicker-toggle>
+              <mat-datepicker #checkout></mat-datepicker>
+            </mat-form-field>
+            <div class="text-danger small"
+                 *ngIf="orderForm.get('checkout').invalid && (orderForm.get('checkout').dirty || orderForm.get('checkout').touched)">
+              <div *ngIf="orderForm.get('checkout').errors.required">
+                Không để trống dòng này!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label class="mt-md-4">Số người: </label></div>
+          <div class="col-md-6 text-left font-weight-bold">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Type a number" id="numberGuest"
+                     formControlName="numberGuest">
+            </mat-form-field>
+            <div class="text-danger small"
+                 *ngIf="orderForm.get('numberGuest').invalid && (orderForm.get('numberGuest').dirty || orderForm.get('numberGuest').touched)">
+              <div *ngIf="orderForm.get('numberGuest').errors.required">
+                Không để trống dòng này!
+              </div>
+              <div *ngIf="orderForm.get('numberGuest').errors.min">
+                Số người phải lớn hơn 0
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="col-md-6 text-right"><label>Số đêm: </label></div>
+          <div class="col-md-6 text-left font-weight-bold"><label>{{numberNights}}</label></div>
+        </div>
+        <div class="input-group mb-md-5">
+          <div class="col-md-6 text-right"><label>Thành tiền: </label></div>
+          <div class="col-md-6 text-left font-weight-bold"><label>{{cost}}$</label></div>
+        </div>
+        <div class="input-group mb-3 input-group-lg mt-md-4">
+          <div class="col-md-6">
+            <button [routerLink]="['/houses',id]" type="button" class="btn btn-outline-danger form-control text-center">
+              Huỷ
+            </button>
+          </div>
+          <div class="col-md-6">
+            <input type="submit" class="btn btn-outline-success form-control text-center"
+                   value="Đặt nhà">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

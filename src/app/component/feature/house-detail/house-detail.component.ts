@@ -28,7 +28,6 @@ export class HouseDetailComponent implements OnInit {
   };
   orderHouse = new OrderHouse();
   formOrder: FormGroup;
-  returnUrl = '/houses/';
 
   time: Date = new Date();
 
@@ -47,7 +46,6 @@ export class HouseDetailComponent implements OnInit {
     //   this.time = new Date();
     // }, 1000);
     const id = +this.route.snapshot.paramMap.get('id');
-    this.returnUrl += id;
     this.houseService.getHouseById(id)
       .subscribe(
         next => {
@@ -64,8 +62,8 @@ export class HouseDetailComponent implements OnInit {
     let numberDay;
     if (this.orderHouse.checkin && this.orderHouse.checkout) {
       const day = 86400 * 1000;
-      let checkout = new Date(this.orderHouse.checkout);
-      let checkin = new Date(this.orderHouse.checkin);
+      const checkout = new Date(this.orderHouse.checkout);
+      const checkin = new Date(this.orderHouse.checkin);
       numberDay = (checkout.getTime() - checkin.getTime()) / day;
 
     } else {
@@ -74,33 +72,17 @@ export class HouseDetailComponent implements OnInit {
     return numberDay;
   }
 
-  booking() {
-    if (!localStorage.getItem('currentUser')) {
-      alert('Bạn cần phải dăng nhập để đặt nhà');
-      this.router.navigateByUrl('/login');
+  sendOrder() {
+    if (this.formOrder.valid) {
+      this.houseService.order = this.formOrder.value;
     } else {
-      if (this.formOrder.valid) {
-        this.orderHouse.orderTime = new Date();
-        this.orderHouse.cost = this.house.price * this.getNumberDay();
-        this.houseService.bookingHouse(this.orderHouse, this.house.id).subscribe(
-          next => {
-            if (next.success) {
-              alert(next.message);
-              this.router.navigateByUrl('/me/orders');
-            } else {
-              alert(next.message);
-            }
-
-          }
-        );
-      }
+      alert('Bạn chưa điền đủ thông tin đặt nhà');
     }
-
   }
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
     return true;
-  };
+  }
 }

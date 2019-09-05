@@ -1,19 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../services/authentication.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpHeaders} from '@angular/common/http';
 import {error} from 'util';
 
 function convertStringToArray(str: string): string[] {
   let arr: string[] = [];
-  let temp1 = str.replace('[', '');
-  let temp2 = temp1.replace(']', '');
-  let temp3 = temp2.replace('"', '');
-  let temp4 = temp3.replace('"', '');
-  let temp5 = temp4.replace('"', '');
-  let temp6 = temp5.replace('"', '');
-  let temp7 = temp6.replace(' ', '');
+  const temp1 = str.replace('[', '');
+  const temp2 = temp1.replace(']', '');
+  const temp3 = temp2.replace('"', '');
+  const temp4 = temp3.replace('"', '');
+  const temp5 = temp4.replace('"', '');
+  const temp6 = temp5.replace('"', '');
+  const temp7 = temp6.replace(' ', '');
   arr = temp7.split(',');
   console.log(arr);
   return arr;
@@ -26,8 +26,12 @@ function convertStringToArray(str: string): string[] {
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  redirectURL: string;
 
-  constructor(private formBuilder: FormBuilder, public authenService: AuthenticationService, private router: Router) {
+  constructor(private formBuilder: FormBuilder,
+              public authenService: AuthenticationService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -44,17 +48,22 @@ export class LoginComponent implements OnInit {
     this.authenService.authenticate(this.loginForm.value).subscribe(
       next => {
         console.log(next.data.roles[0].authority);
-        let roles: string[] = [];
-        for (let role of next.data.roles) {
+        const roles: string[] = [];
+        for (const role of next.data.roles) {
           roles.push(role.authority);
         }
         localStorage.setItem('token', next.data.token);
         localStorage.setItem('currentUser', next.data.username);
         localStorage.setItem('roles', JSON.stringify(roles));
-        console.log(convertStringToArray(JSON.stringify(roles))[0] + 'aaaaaaaa');
-        console.log(convertStringToArray(JSON.stringify(roles))[1] + 'bbbbbbbbbb');
-        if (next.data.token) {
-          this.router.navigateByUrl('houses');
+        const params = this.route.snapshot.queryParams;
+        if (params.redirectURL) {
+          this.redirectURL = params.redirectURL;
+        }
+        if (this.redirectURL) {
+          this.router.navigateByUrl(this.redirectURL)
+            .catch(() => this.router.navigate(['houses']));
+        } else {
+          this.router.navigate(['houses']);
         }
       },
       error1 => {
