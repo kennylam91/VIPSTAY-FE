@@ -1,20 +1,28 @@
-
 <app-header></app-header>
 <div class="container" style="height: 528px">
-<app-navbar-profile></app-navbar-profile>
+  <app-navbar-profile></app-navbar-profile>
   <ul class=" border border-dark shadow list-group " style="align-items: center">
     <li class="list-group-item bg-success" style="font-size: 20px">List Customer Order House Of {{username}}</li>
   </ul>
-<div *ngFor="let orderHouse of ArrayOrder">
-    <div *ngFor="let k of orderHouse">
-      <ul class=" border border-dark shadow list-group float-left " style="width: 300px;margin: 5px">
-      <li class="list-group-item bg-info">House Name:{{k.house.houseName}}</li>
-    <li class="list-group-item">Người thuê nhà:{{k.tenant.username}}</li>
-        <li class="list-group-item">Ngày Order:{{k.orderTime |date:' dd-MM-yy  hh:mm:ss a'}}</li>
-      <li class="list-group-item">Ngày vào:{{k.checkin |date:' dd-MM-yy  hh:mm:ss a'}}</li>
-      <li class="list-group-item">Ngày ra:{{k.checkout |date:' dd-MM-yy  hh:mm:ss a'}}</li>
+  <div *ngIf="status.length != 0">
+  <div *ngFor="let orderHouse of userOrder">
+
+      <ul class=" border border-dark shadow list-group float-left " style="width: 350px;margin: 10px">
+        <li class="list-group-item bg-primary">Người thuê phòng:{{orderHouse.tenant.username}}</li>
+        <li class="list-group-item">Email người thuê:{{orderHouse.tenant.email}}</li>
+        <li class="list-group-item">Ngày Order:{{orderHouse.orderTime |date:' dd-MM-yy  hh:mm:ss a'}}</li>
+        <li class="list-group-item">Ngày vào:{{orderHouse.checkin |date:' dd-MM-yy  hh:mm:ss a'}}</li>
+        <li class="list-group-item">Ngày ra:{{orderHouse.checkout |date:' dd-MM-yy  hh:mm:ss a'}}</li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="status.length == 0 ">
+    <ul class=" border border-dark shadow list-group " style="width: 350px;margin: 10px;align-items: center">
+      <li class="list-group-item bg-primary" style="height: 150px;font-size: 30px;color: #f2f2f2">Hiện chưa có khách đặt phòng này</li>
     </ul>
+  </div>
+
+
 </div>
-</div>
-<!--<app-footer></app-footer>-->
-</div>
+<app-footer></app-footer>
+

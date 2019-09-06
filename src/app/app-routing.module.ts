@@ -13,9 +13,9 @@ import {UploadFileComponent} from './component/feature/upload-file/upload-file.c
 import {ProfileUserComponent} from './component/feature/profile-user/profile-user.component';
 import {HomeForHostComponent} from './component/core/home-for-host/home-for-host.component';
 import {BookingOfUserComponent} from './component/feature/booking-of-user/booking-of-user.component';
-// import {EditPasswordComponent} from './component/feature/edit-password/edit-password.component';
 import {HomeForGuestComponent} from './component/core/home-for-guest/home-for-guest.component';
 import {ConfirmPasswordComponent} from './component/feature/confirm-password/confirm-password.component';
+import {ListHouseOfHostComponent} from './component/feature/list-house-of-host/list-house-of-host.component';
 
 
 const routes: Routes = [
@@ -29,9 +29,9 @@ const routes: Routes = [
   {path: 'me/orders', component: HomeForGuestComponent},
   {path: 'create-house', component: CreateHouseComponent},
   {path: 'profileUser', component: ProfileUserComponent},
-  {path: 'bookingOfUser', component: BookingOfUserComponent},
+  {path: 'bookingOfUser/:id', component: BookingOfUserComponent},
   {path: 'confirmPassword', component: ConfirmPasswordComponent},
-  // {path: 'editPassword', component: EditPasswordComponent},
+  {path: 'listHouseOfHost', component: ListHouseOfHostComponent},
   {path: '**', redirectTo: '/houses', pathMatch: 'full'}
 ];
 
