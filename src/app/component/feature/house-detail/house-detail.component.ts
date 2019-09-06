@@ -4,6 +4,8 @@ import {IHouse} from '../../../model/IHouse';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrderHouse} from '../../../model/OrderHouse';
+import {CommentService} from '../../../services/comment.service';
+import {IComment} from '../../../model/IComment';
 
 
 @Component({
@@ -31,7 +33,10 @@ export class HouseDetailComponent implements OnInit {
 
   time: Date = new Date();
 
+  comments: IComment[] = [];
+
   constructor(private houseService: HouseService,
+              private commentService: CommentService,
               private route: ActivatedRoute,
               private router: Router) {
     this.formOrder = new FormGroup({
@@ -56,6 +61,15 @@ export class HouseDetailComponent implements OnInit {
           console.log(error);
           this.house = null;
         });
+
+    this.commentService.getCommentsByHouseId(id).subscribe(next => {
+      this.comments = next.data;
+      console.log(next.data);
+    },
+      error => {
+        console.log(error);
+        this.comments = null;
+      });
   }
 
   getNumberDay() {

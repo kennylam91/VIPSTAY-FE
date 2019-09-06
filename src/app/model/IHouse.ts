@@ -1,6 +1,3 @@
-import {HouseRequest} from './HouseRequest';
-import {CategoryOfHouse} from './CategoryOfHouse';
-import {ImageOfHouse} from './ImageOfHouse';
 
 export interface IHouse {
   id: number;

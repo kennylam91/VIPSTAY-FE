@@ -26,7 +26,7 @@ export class ListHouseComponent implements OnInit {
         this.bestChoiceHouses = next.data;
         console.log(next);
       });
-    console.log(this.authenticationService.roles);
-    console.log(this.authenticationService.token);
+    // console.log(this.authenticationService.roles);
+    // console.log(this.authenticationService.token);
   }
 }
