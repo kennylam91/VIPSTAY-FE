@@ -15,6 +15,7 @@ import {HomeForHostComponent} from './component/core/home-for-host/home-for-host
 import {BookingOfUserComponent} from './component/feature/booking-of-user/booking-of-user.component';
 // import {EditPasswordComponent} from './component/feature/edit-password/edit-password.component';
 import {HomeForGuestComponent} from './component/core/home-for-guest/home-for-guest.component';
+import {ConfirmPasswordComponent} from './component/feature/confirm-password/confirm-password.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'create-house', component: CreateHouseComponent},
   {path: 'profileUser', component: ProfileUserComponent},
   {path: 'bookingOfUser', component: BookingOfUserComponent},
+  {path: 'confirmPassword', component: ConfirmPasswordComponent},
   // {path: 'editPassword', component: EditPasswordComponent},
   {path: '**', redirectTo: '/houses', pathMatch: 'full'}
 ];

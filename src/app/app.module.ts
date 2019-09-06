@@ -33,6 +33,7 @@ import { HomeForGuestComponent } from './component/core/home-for-guest/home-for-
 import { registerLocaleData } from '@angular/common';
 import localeVN from '@angular/common/locales/vi';
 import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
+import { ConfirmPasswordComponent } from './component/feature/confirm-password/confirm-password.component';
 
 // set locale VN
 registerLocaleData(localeVN);
@@ -57,7 +58,8 @@ registerLocaleData(localeVN);
     BookingOfUserComponent,
     ListHouseComponent,
     HomeForGuestComponent,
-    SlideShowComponent],
+    SlideShowComponent,
+    ConfirmPasswordComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

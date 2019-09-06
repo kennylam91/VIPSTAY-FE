@@ -1,12 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
-import {first} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {IUser} from '../../../model/IUser';
-import {ajaxGetJSON} from 'rxjs/internal-compatibility';
-import {Observable} from 'rxjs';
-import {User} from 'firebase';
+
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;

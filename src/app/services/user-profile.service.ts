@@ -12,14 +12,20 @@ export class UserProfileService {
 
   constructor(private httpClient: HttpClient) {
   }
+
   getAllUser(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(this.API_URL);
   }
-  updateUser(user: Partial<IUser>): Observable<IUser> {
-    return this.httpClient.put<IUser>(`${this.API_URL + '/update'}/${user.id}`, user);
+
+  updateUser(user: Partial<IUser>): Observable<any> {
+    return this.httpClient.put<any>(`${this.API_URL + '/updateCurrent'}`, user);
   }
 
-  getUserByid(id: number): Observable<IUser> {
-    return this.httpClient.get<IUser>(`${this.API_URL}/${id}`);
+  getUserByid(): Observable<any> {
+    return this.httpClient.get<any>(`${this.API_URL + '/Current'}`);
+  }
+
+  confirmPaswordUser(password: string): Observable<any> {
+    return this.httpClient.post<any>(`${this.API_URL + '/confirmPassword'}`, password);
   }
 }

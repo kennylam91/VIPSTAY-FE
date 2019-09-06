@@ -11,6 +11,7 @@
     <div class="col-lg-4 " >
       <div class="d-flex flex-column flex-wrap bg-light shadow">
         <button class="p-2 bg-white font-weight-bold " style="text-align: left" [routerLink]="['/profileUser']">Thông tin tài khoản</button>
+        <button class="p-2 bg-white " style="text-align: left" [routerLink]="['/confirmPassword']">Thay đổi mật khẩu</button>
         <button class="p-2 bg-white " style="text-align: left">Thanh Toán</button>
         <button class="p-2 bg-white " style="text-align: left">Liên kết tài khoản</button>
       </div>
@@ -32,8 +33,8 @@
           <input type="text" class="form-control" id="name"   [(ngModel)]="user.name" name="three">
         </div>
         <div class="form-group">
-          <label for="pwd">Mật khẩu mới</label>
-          <input type="password" class="form-control" id="pwd"  [(ngModel)]="user.password" name="four">
+          <label for="pwd">Mật khẩu xác nhận</label>
+          <input type="password" class="form-control" id="pwd" [(ngModel)]="oldPasword" name="four">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
