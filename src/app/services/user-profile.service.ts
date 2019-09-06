@@ -21,7 +21,7 @@ export class UserProfileService {
     return this.httpClient.put<any>(`${this.API_URL + '/updateCurrent'}`, user);
   }
 
-  getUserByid(): Observable<any> {
+  getUserCurrent(): Observable<any> {
     return this.httpClient.get<any>(`${this.API_URL + '/Current'}`);
   }
 
