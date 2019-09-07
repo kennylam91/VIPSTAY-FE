@@ -25,6 +25,7 @@ export class HouseDetailComponent implements OnInit {
     imageUrls: [],
     rate: 0,
     area: 0,
+    orderHouses: []
   };
   orderHouse = new OrderHouse();
   formOrder: FormGroup;
@@ -84,5 +85,5 @@ export class HouseDetailComponent implements OnInit {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
     return true;
-  }
+  };
 }

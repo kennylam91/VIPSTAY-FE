@@ -9,7 +9,8 @@ import {IHouse} from '../../../model/IHouse';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  bestChoiceHouses: StandardResponse;
+
+  bestChoiceHouses: IHouse[];
 
   constructor(private houseService: HouseService) {
   }
@@ -17,7 +18,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.houseService.getHouses()
       .subscribe(next => {
-        this.bestChoiceHouses = next;
+        this.bestChoiceHouses = next.data;
       });
   }
 

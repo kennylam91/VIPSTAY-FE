@@ -19,7 +19,7 @@ export class EditHouseComponent implements OnInit {
   statusHouses: IStatusHouse[];
 
   constructor(private hostService: HostService,
-              private houseService:HouseService,
+              private houseService: HouseService,
               private statusHouseService: StatusHouseService,
               private route: ActivatedRoute,
               private router: Router) {
@@ -46,6 +46,7 @@ export class EditHouseComponent implements OnInit {
       imageUrls: [],
       rate: 0,
       area: 0,
+      orderHouses: []
     };
     this.statusHouses = [];
   }

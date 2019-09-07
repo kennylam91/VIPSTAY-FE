@@ -31,6 +31,7 @@ export class ConfirmOrderComponent implements OnInit {
     imageUrls: [],
     rate: 0,
     area: 0,
+    orderHouses: []
   };
 
   constructor(private houseService: HouseService,

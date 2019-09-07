@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {AuthenticationService} from './authentication.service';
 import {environment} from '../../environments/environment';
 import {OrderHouse} from '../model/OrderHouse';
+import {FilterRequest} from '../model/FilterRequest';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,6 +27,10 @@ export class HouseService {
 
   getHouses(): Observable<any> {
     return this.http.get<any>(this.API_URL);
+  }
+
+  filterHouse(filterRequest: FilterRequest): Observable<any> {
+    return this.http.post<any>(this.API_URL + '/filter', filterRequest);
   }
 
   getHouseById(id: number): Observable<any> {

@@ -1,23 +1,33 @@
-<form class="bg-light">
-  <div class="input-group p-2 m-2">
-    <input type="text" class="form-control mr-2 rounded-sm" placeholder="Tìm kiếm">
-    <input type="text" class="form-control mr-2 rounded-sm datetimepicker-input" placeholder="Ngày đến" id="ngayden" data-toggle="datetimepicker" data-target="#ngayden"/>
-    <input type="text" class="form-control mr-2 rounded-sm datetimepicker-input" placeholder="Ngày đi" id="ngaydi" data-toggle="datetimepicker" data-target="#ngaydi"/>
-    <input type="text" class="form-control mr-2 rounded-sm" placeholder="Số người">
-    <button class="btn btn-success" type="submit">Tìm kiếm</button>
-  </div>
-</form>
+<div class="sticky-top">
+  <form [formGroup]="searchForm" method="post" class="bg-light" (ngSubmit)="filter()">
+    <div class="input-group p-2 m-2">
+      <select name="address" class="custom-select form-control mr-2 rounded-sm text-secondary" formControlName="address">
+        <option value="" selected>Chọn địa chỉ</option>
+        <option *ngFor="let address of addresses" value="{{address}}">{{address}}</option>
+      </select>
+      <input type="number" min="0" class="form-control mr-2 rounded-sm" placeholder="Số phòng ngủ" formControlName="bedroomNumber">
+      <input type="number" min="0" class="form-control mr-2 rounded-sm" placeholder="Số phòng tắm" formControlName="bathroomNumber">
+      <input type="number" min="0" class="form-control mr-2 rounded-sm" placeholder="Giá thấp nhất" formControlName="minPrice">
+      <input type="number" min="0" class="form-control mr-2 rounded-sm" placeholder="Giá cao nhất" formControlName="maxPrice">
+      <div class="checkin position-relative mr-md-2" style="width: 190px">
+        <input class="form-control mr-2 rounded-sm" [matDatepicker]="checkin"
+               onkeypress="return false;" (keydown.backspace)="false"
+               placeholder="Nhập ngày checkin" formControlName="checkin">
+        <mat-datepicker-toggle matSuffix [for]="checkin"
+                               style="position: absolute;top:0px;left: 155px"></mat-datepicker-toggle>
+        <mat-datepicker #checkin></mat-datepicker>
+      </div>
+      <div class="checkout position-relative mr-md-2" style="width: 190px">
+        <input class="form-control mr-2 rounded-sm" [matDatepicker]="checkout"
+               onkeypress="return false;" (keydown.backspace)="false"
+               placeholder="Nhập ngày checkout" formControlName="checkout">
+        <mat-datepicker-toggle matSuffix [for]="checkout"
+                               style="position: absolute;top:0px;left: 155px"></mat-datepicker-toggle>
+        <mat-datepicker #checkout></mat-datepicker>
+      </div>
 
-
-<script type="text/javascript">
-    $(function () {
-        $('#ngayden').datetimepicker({
-            format: 'L'
-        });
-    });
-    $(function () {
-        $('#ngaydi').datetimepicker({
-            format: 'L'
-        });
-    });
-</script>
+      <button class="btn btn-outline-success mr-2" type="submit">Lọc</button>
+      <button class="btn btn-outline-danger" (click)="unFilter()" type="button">Bỏ lọc</button>
+    </div>
+  </form>
+</div>

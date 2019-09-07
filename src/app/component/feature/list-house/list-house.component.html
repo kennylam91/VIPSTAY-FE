@@ -1,4 +1,5 @@
 <img src="../../../assets/banner/59349995-d0f0-4d54-8601-24e834671a44.jpg" height="auto" width="100%"/>
+<app-search (press)="update($event)"></app-search>
 <div class="body">
   <div class="best-choice houselist">
     <span class="header">Lựa chọn tốt nhất</span>
@@ -8,7 +9,8 @@
       </span>
     <div class="row mt-3">
       <div class="card single-house col-sm-3" *ngFor="let house of bestChoiceHouses; i as index">
-        <a routerLink="/houses/{{house.id}}"><img class="card-img-top img-fluid" style="width: 305px;height: 204px" [src]=house.imageUrls[0] alt=""></a>
+        <a routerLink="/houses/{{house.id}}"><img class="card-img-top img-fluid" style="width: 305px;height: 204px"
+                                                  [src]=house.imageUrls[0] alt=""></a>
         <div class="card-body text-center">
           <a routerLink="/houses/{{house.id}}"><h5 class="card-title">{{house.houseName}}</h5></a>
           <p class="card-text m-md-1">{{house.price}} $/đêm</p>
@@ -34,7 +36,7 @@
       </span>
     <div class="row mt-3">
       <div class="card single-house col-sm-3" *ngFor="let house of bestSaleoffHouses; i as index">
-        <a routerLink="/houses/{{house.id}}"><img class="card-img-top img-fluid"  [src]=house.imageUrls[0]  alt=""></a>
+        <a routerLink="/houses/{{house.id}}"><img class="card-img-top img-fluid" [src]=house.imageUrls[0] alt=""></a>
         <div class="card-body text-center">
           <a routerLink="/houses/{{house.id}}">
             <h5 class="card-title">{{house.houseName}}</h5></a>
