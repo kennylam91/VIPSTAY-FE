@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -21,5 +21,13 @@ export class RateService {
 
   createRate(rate: Partial<IRate>): Observable<any> {
     return this.http.post<any>(this.API_URL_POST, rate);
+  }
+
+  checkRates(rates: IRate[]): number {
+    let total: number;
+    for (const rate of rates) {
+      total += rate.rate;
+    }
+    return total / rates.length;
   }
 }

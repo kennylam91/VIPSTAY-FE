@@ -6,6 +6,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrderHouse} from '../../../model/OrderHouse';
 import {CommentService} from '../../../services/comment.service';
 import {IComment} from '../../../model/IComment';
+import {RateService} from '../../../services/rate.service';
+import {IRate} from '../../../model/IRate';
 
 
 @Component({
@@ -34,9 +36,45 @@ export class HouseDetailComponent implements OnInit {
   time: Date = new Date();
 
   comments: IComment[] = [];
+  comment: Partial<IComment> = {
+    comment: '',
+    house: {
+      id: 0,
+      houseName: '',
+      category: '',
+      address: '',
+      bedroomNumber: 0,
+      bathroomNumber: 0,
+      price: 0,
+      description: '',
+      imageUrls: [],
+      rate: 0,
+      area: 0,
+    }
+  };
+  rates: IRate[] = [];
+  rate: Partial<IRate> = {
+    rate: 0,
+    house: {
+      id: 0,
+      houseName: '',
+      category: '',
+      address: '',
+      bedroomNumber: 0,
+      bathroomNumber: 0,
+      price: 0,
+      description: '',
+      imageUrls: [],
+      rate: 0,
+      area: 0,
+    }
+  };
+
+  rateChecked: number;
 
   constructor(private houseService: HouseService,
               private commentService: CommentService,
+              private rateService: RateService,
               private route: ActivatedRoute,
               private router: Router) {
     this.formOrder = new FormGroup({
@@ -50,26 +88,36 @@ export class HouseDetailComponent implements OnInit {
     // setInterval(() => {
     //   this.time = new Date();
     // }, 1000);
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.houseService.getHouseById(id)
-      .subscribe(
-        next => {
-          this.house = next.data;
-          console.log(next.data);
-        },
-        error => {
-          console.log(error);
-          this.house = null;
-        });
+    this.route.paramMap.subscribe(paramMap => {
+      const id = +paramMap.get('id');
+      this.houseService.getHouseById(id)
+        .subscribe(
+          next => {
+            this.house = next.data;
+            console.log(next.data);
+            this.rateService.getRatesByHouseId(this.house.id).subscribe(data => {
+                this.rates = data.data;
+                console.log(this.rates);
+              },
+              error1 => {
+                console.log(error1);
+              });
+          },
+          error => {
+            console.log(error);
+            this.house = null;
+          });
 
-    this.commentService.getCommentsByHouseId(id).subscribe(next => {
-      this.comments = next.data;
-      console.log(next.data);
-    },
-      error => {
-        console.log(error);
-        this.comments = null;
-      });
+      this.rateChecked = this.rateService.checkRates(this.rates);
+      // this.commentService.getCommentsByHouseId(id).subscribe(next => {
+      //     this.comments = next.data;
+      //     console.log(next.data);
+      //   },
+      //   error => {
+      //     console.log(error);
+      //     this.comments = null;
+      //   });
+    });
   }
 
   getNumberDay() {
@@ -79,12 +127,12 @@ export class HouseDetailComponent implements OnInit {
       let checkout = new Date(this.orderHouse.checkout);
       let checkin = new Date(this.orderHouse.checkin);
       numberDay = (checkout.getTime() - checkin.getTime()) / day;
-
     } else {
       numberDay = 1;
     }
     return numberDay;
   }
+
 
   booking() {
     if (!localStorage.getItem('currentUser')) {
@@ -107,12 +155,46 @@ export class HouseDetailComponent implements OnInit {
         );
       }
     }
-
   }
 
-  myFilter = (d: Date): boolean => {
-    const day = d.getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
-  };
+  // myFilter = (d: Date): boolean => {
+  //   const day = d.getDay();
+  //   // Prevent Saturday and Sunday from being selected.
+  //   return day !== 0 && day !== 6;
+  // };
+
+  createComment() {
+    this.comment.house = this.house;
+    this.commentService.createComment(this.comment).subscribe(next => {
+      console.log(this.comment);
+      alert(next.message);
+      this.comment = {
+        comment: '',
+        house: {
+          id: 0,
+          houseName: '',
+          category: '',
+          address: '',
+          bedroomNumber: 0,
+          bathroomNumber: 0,
+          price: 0,
+          description: '',
+          imageUrls: [],
+          rate: 0,
+          area: 0,
+        }
+      };
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  createRate() {
+    this.rate.house = this.house;
+    this.rateService.createRate(this.rate).subscribe(next => {
+        console.log(this.rate);
+        alert(next.message);
+      }
+    );
+  }
 }
