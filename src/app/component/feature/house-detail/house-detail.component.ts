@@ -95,28 +95,27 @@ export class HouseDetailComponent implements OnInit {
           next => {
             this.house = next.data;
             console.log(next.data);
-            this.rateService.getRatesByHouseId(this.house.id).subscribe(data => {
-                this.rates = data.data;
-                console.log(this.rates);
-              },
-              error1 => {
-                console.log(error1);
-              });
           },
           error => {
             console.log(error);
             this.house = null;
           });
-
-      this.rateChecked = this.rateService.checkRates(this.rates);
-      // this.commentService.getCommentsByHouseId(id).subscribe(next => {
-      //     this.comments = next.data;
-      //     console.log(next.data);
-      //   },
-      //   error => {
-      //     console.log(error);
-      //     this.comments = null;
-      //   });
+      this.rateService.getRatesByHouseId(this.house.id).subscribe(data => {
+          this.rates = data.data;
+          console.log(this.rates);
+          this.rateChecked = this.rateService.checkRates(this.rates);
+        },
+        error1 => {
+          console.log(error1);
+        });
+      this.commentService.getCommentsByHouseId(id).subscribe(next => {
+          this.comments = next.data;
+          console.log(next.data);
+        },
+        error => {
+          console.log(error);
+          this.comments = null;
+        });
     });
   }
 
@@ -189,8 +188,10 @@ export class HouseDetailComponent implements OnInit {
     });
   }
 
-  createRate() {
+  createRate(i: number) {
+    console.log(i);
     this.rate.house = this.house;
+    this.rate.rate = i;
     this.rateService.createRate(this.rate).subscribe(next => {
         console.log(this.rate);
         alert(next.message);
