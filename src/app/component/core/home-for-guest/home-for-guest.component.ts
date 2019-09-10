@@ -23,6 +23,9 @@ export class HomeForGuestComponent implements OnInit {
           order.checkin = new Date(order.checkin);
           order.checkout = new Date(order.checkout);
           this.now = new Date();
+          this.orderService.getHouseOfOrder(order.id).subscribe(
+            next2 => order.house = next2.data
+          );
         }
       }
     );

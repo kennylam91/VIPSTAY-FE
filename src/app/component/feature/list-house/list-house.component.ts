@@ -10,7 +10,7 @@ import {AuthenticationService} from '../../../services/authentication.service';
 })
 export class ListHouseComponent implements OnInit {
 
-  bestChoiceHouses: IHouse[];
+  bestChoiceHouses: IHouse[] = [];
   bestSaleoffHouses = this.bestChoiceHouses;
   suggestionHouses = this.bestChoiceHouses;
 

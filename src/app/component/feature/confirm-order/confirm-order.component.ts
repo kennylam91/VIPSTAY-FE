@@ -77,6 +77,7 @@ export class ConfirmOrderComponent implements OnInit {
     if (this.orderForm.valid) {
       this.orderHouse.orderTime = new Date();
       this.orderHouse.cost = this.cost;
+      this.orderHouse.numberGuest = this.orderForm.value.numberGuest;
       this.orderHouse.checkin = new Date(this.orderForm.value.checkin);
       this.orderHouse.checkout = new Date(this.orderForm.value.checkout);
       this.houseService.bookingHouse(this.orderHouse, this.house.id).subscribe(

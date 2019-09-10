@@ -17,8 +17,12 @@ export class OrderService {
     return this.http.get<any>(this.API_URL);
   }
 
+  getHouseOfOrder(id: number): Observable<any> {
+    return this.http.get<any>(this.API_URL + `/${id}` + '/house-of-order');
+  }
+
   deleteOrder(id: number): Observable<any> {
-    return this.http.delete<any>(this.API_URL + `/${id}` );
+    return this.http.delete<any>(this.API_URL + `/${id}`);
   }
 
   getHouseOrderByUser(id: number): Observable<any> {
