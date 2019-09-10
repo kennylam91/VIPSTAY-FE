@@ -43,10 +43,12 @@ import {AuthenticationService} from './services/authentication.service';
 import {ErrorInterceptorService} from './services/error-interceptor.service';
 import { ConfirmOrderComponent } from './component/feature/confirm-order/confirm-order.component';
 
+import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
+import { ConfirmPasswordComponent } from './component/feature/confirm-password/confirm-password.component';
+import { ListHouseOfHostComponent } from './component/feature/list-house-of-host/list-house-of-host.component';
 
 // set locale VN
 registerLocaleData(localeVN);
-
 
 @NgModule({
   declarations: [
@@ -75,6 +77,9 @@ registerLocaleData(localeVN);
     PageNotFoundComponent,
     PageForbiddenComponent,
     ConfirmOrderComponent],
+    SlideShowComponent,
+    ConfirmPasswordComponent,
+    ListHouseOfHostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

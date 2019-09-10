@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {IUser} from '../../../model/IUser';
 import * as $ from 'jquery';
 
+
 function comparePassword(c: AbstractControl) {
   const v = c.value;
   return (v.password === v.confirmPassword) ? null : {
