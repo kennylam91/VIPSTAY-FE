@@ -9,7 +9,7 @@ export class IHouse {
   category: string;
   address: string;
   imageUrls: string[];
-  orderHouses: number[];
+  orderHouses: OrderHouse[];
   bedroomNumber: number;
   bathroomNumber: number;
   price: number;

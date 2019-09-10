@@ -30,5 +30,6 @@ export class ListHouseComponent implements OnInit {
 
   update(houses: IHouse[]) {
     this.bestChoiceHouses = houses;
+    console.log(this.bestChoiceHouses.length);
   }
 }
