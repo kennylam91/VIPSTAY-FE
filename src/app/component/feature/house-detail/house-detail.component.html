@@ -57,29 +57,64 @@
         <p class="font-weight-bold" style="font-size: 20px">Tiện ích giải trí </p>
         <img src="assets/icon/background_1151777.png" width="35" height="35"> Cảnh quan đẹp
       </div>
-      <p class="font-weight-bold shadow" style="font-size: 25px">Đánh Giá</p>
-      <div class="container shadow">
-        <div class="card">
-          <div class="card-header row">
-            <div class="col-lg-1">
-              <img src="assets/PictureHouseDetail/room_18463_14_1545395734.jpg" width="35" height="35"
-                   style="border-radius: 50%">
-            </div>
-            <div class="col-lg-4">
-              <p> Trần Thanh Hiếu Thảo</p>
-            </div>
-            <div class="col-lg-7 text-lg-right">
-              <p> 2 month ago</p>
-            </div>
-          </div>
-          <div class="card-body">Lần này đặt phòng do có sự cố phòng nên chủ nhà đã liên hệ giúp mình sang một homestay
-            khác. Hy vọng lần sau sẽ có dịp ở homestay này :D
+
+      <div
+        style="margin-bottom: 10px; margin-top: 30px; border-radius: 15px; text-align: center; border: black solid 2px"
+        *ngIf="rateChecked !== null">
+        <h5>Đánh giá: </h5>
+        {{rateChecked}}
+        <span class="fa fa-star checked"></span>
+      </div>
+      <div style="margin-top: 20px; margin-bottom: 20px" *ngIf="isGuest">
+        <div *ngIf="rateGuest === 0">
+          <h5>Đánh giá của bạn về dịch vụ này: </h5>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" value="5"/><label class="full" for="star5"
+                                                                           (click)="createRate(5)"></label>
+            <input type="radio" id="star4" name="rating" value="4"/><label class="full" for="star4"
+                                                                           (click)="createRate(4)"></label>
+            <input type="radio" id="star3" name="rating" value="3"/><label class="full" for="star3"
+                                                                           (click)="createRate(3)"></label>
+            <input type="radio" id="star2" name="rating" value="2"/><label class="full" for="star2"
+                                                                           (click)="createRate(2)"></label>
+            <input type="radio" id="star1" name="rating" value="1"/><label class="full" for="star1"
+                                                                           (click)="createRate(1)"></label>
+          </fieldset>
+        </div>
+
+        <div *ngIf="rateGuest !== 0">
+          <h5>Đánh giá của bạn về dịch vụ này: </h5>
+          <div>
+            <span class="fa fa-star" [class.checked]="rateGuest-0>0"></span>
+            <span class="fa fa-star" [class.checked]="rateGuest-1>0"></span>
+            <span class="fa fa-star" [class.checked]="rateGuest-2>0"></span>
+            <span class="fa fa-star" [class.checked]="rateGuest-3>0"></span>
+            <span class="fa fa-star" [class.checked]="rateGuest-4>0"></span>
           </div>
         </div>
-        <form class="form-inline">
-          <input type="text" style="width: 627px" class="form-control mb-2 mr-sm-2" placeholder="Type your comment">
-          <button type="submit" class="btn btn-primary mb-2">Send</button>
-        </form>
+      </div>
+
+      <div style="margin-top: 60px; margin-bottom: 20px" *ngIf="isGuest">
+        <h5>Phản hồi về dịch vụ: </h5>
+        <div>
+          <div>
+            <textarea type="text" class="form-control mb-2 mr-sm-2" style="border-radius: 30px"
+                      placeholder="Type your comment" [(ngModel)]="comment.comment"></textarea>
+          </div>
+          <div>
+            <button type="button" class="btn btn-primary mb-2" (click)="createComment()">Gửi phản hồi</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 30px; margin-bottom: 20px" *ngIf="comments !== null">
+        <h5>Phản hồi: </h5>
+        <div
+          style="background-color: #f2f2f2; border-radius: 20px; padding-left: 15px; margin-top: 3px; margin-bottom: 2px"
+          *ngFor="let comment of comments">
+          <div style="color: dodgerblue; font-size: 20px">{{comment.user.name}}:</div>
+          <div>{{comment.comment}}</div>
+        </div>
       </div>
     </div>
     <div class="col-sm-4">
@@ -171,7 +206,6 @@
         <p style="font-size: 14px;border: 1px bisque solid ">Gọi<a href="#"> 18006586</a> (miễn phí) để được hỗ trợ 24/7
         </p>
       </div>
-
     </div>
   </div>
 </div>
