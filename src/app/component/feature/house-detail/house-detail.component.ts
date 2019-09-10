@@ -54,7 +54,7 @@ export class HouseDetailComponent implements OnInit {
   };
   rates: IRate[] = [];
   rate: Partial<IRate> = {
-    rate: 0,
+    ratePoint: 0,
     house: {
       id: 0,
       houseName: '',
@@ -100,10 +100,11 @@ export class HouseDetailComponent implements OnInit {
             console.log(error);
             this.house = null;
           });
-      this.rateService.getRatesByHouseId(this.house.id).subscribe(data => {
+      this.rateService.getRatesByHouseId(id).subscribe(data => {
           this.rates = data.data;
           console.log(this.rates);
           this.rateChecked = this.rateService.checkRates(this.rates);
+          console.log(this.rateChecked);
         },
         error1 => {
           console.log(error1);
@@ -149,7 +150,6 @@ export class HouseDetailComponent implements OnInit {
             } else {
               alert(next.message);
             }
-
           }
         );
       }
@@ -191,7 +191,7 @@ export class HouseDetailComponent implements OnInit {
   createRate(i: number) {
     console.log(i);
     this.rate.house = this.house;
-    this.rate.rate = i;
+    this.rate.ratePoint = i;
     this.rateService.createRate(this.rate).subscribe(next => {
         console.log(this.rate);
         alert(next.message);

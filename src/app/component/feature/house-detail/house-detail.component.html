@@ -58,36 +58,51 @@
         <img src="assets/icon/background_1151777.png" width="35" height="35"> Cảnh quan đẹp
       </div>
 
-      <div class="row" style="margin-top: 20px; margin-bottom: 20px; padding: 10px; border-radius: 15px; border: black solid 2px">
-        <div style="color: white; background-color: black; margin-bottom: 20px; margin-top: 20px; border-radius: 12px; text-align: center; width: 250px" *ngIf="rateChecked !== null">
-          <h5>Đánh giá: {{rateChecked}}</h5> <span class="fa fa-star checked"></span>
-        </div>
+      <div
+        style="margin-bottom: 10px; margin-top: 30px; border-radius: 15px; text-align: center; border: black solid 2px"
+        *ngIf="rateChecked !== null">
+        <h5>Đánh giá: </h5>
+        {{rateChecked}}
+        <span class="fa fa-star checked"></span>
+      </div>
+      <div style="margin-top: 20px; margin-bottom: 20px">
+        <h5>Đánh giá của bạn về dịch vụ này: </h5>
+        <fieldset class="rating">
+          <input type="radio" id="star5" name="rating" value="5"/><label class="full" for="star5"
+                                                                         (click)="createRate(5)"></label>
+          <input type="radio" id="star4" name="rating" value="4"/><label class="full" for="star4"
+                                                                         (click)="createRate(4)"></label>
+          <input type="radio" id="star3" name="rating" value="3"/><label class="full" for="star3"
+                                                                         (click)="createRate(3)"></label>
+          <input type="radio" id="star2" name="rating" value="2"/><label class="full" for="star2"
+                                                                         (click)="createRate(2)"></label>
+          <input type="radio" id="star1" name="rating" value="1"/><label class="full" for="star1"
+                                                                         (click)="createRate(1)"></label>
+        </fieldset>
+      </div>
+
+      <div style="margin-top: 60px; margin-bottom: 20px">
+        <h5>Phản hồi về dịch vụ: </h5>
         <div>
-          <h5>Đánh giá của bạn về dịch vụ này: </h5>
-          <fieldset class="rating">
-            <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" (click)="createRate(5)"></label>
-            <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" (click)="createRate(4)"></label>
-            <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" (click)="createRate(3)"></label>
-            <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" (click)="createRate(2)"></label>
-            <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" (click)="createRate(1)"></label>
-          </fieldset>
+          <div>
+            <textarea type="text" class="form-control mb-2 mr-sm-2" style="border-radius: 30px"
+                      placeholder="Type your comment" [(ngModel)]="comment.comment"></textarea>
+          </div>
+          <div>
+            <button type="button" class="btn btn-primary mb-2" (click)="createComment()">Gửi phản hồi</button>
+          </div>
         </div>
       </div>
 
-<!--      <div class="container" style="margin-top: 30px; margin-bottom: 20px">-->
-<!--        <h5 class="font-weight-bold" style="font-size: 25px">Phản hồi về dịch vụ: </h5>-->
-<!--        <div>-->
-<!--          <form class="form-inline">-->
-<!--            <div>-->
-<!--            <textarea type="text" style="width: 627px" class="form-control mb-2 mr-sm-2"-->
-<!--                      placeholder="Type your comment" [(ngModel)]="comment.comment"></textarea>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <button type="submit" class="btn btn-primary mb-2" (click)="createComment()">Send</button>-->
-<!--            </div>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--      </div>-->
+      <div style="margin-top: 30px; margin-bottom: 20px" *ngIf="comments !== null">
+        <h5>Phản hồi: </h5>
+        <div
+          style="background-color: #f2f2f2; border-radius: 20px; padding-left: 15px; margin-top: 3px; margin-bottom: 2px"
+          *ngFor="let comment of comments">
+          <div style="color: dodgerblue; font-size: 20px">{{comment.user.name}}:</div>
+          <div>{{comment.comment}}</div>
+        </div>
+      </div>
     </div>
     <div class="col-sm-4">
       <div class="container border shadow-lg ">
@@ -181,7 +196,6 @@
         <p style="font-size: 14px;border: 1px bisque solid ">Gọi<a href="#"> 18006586</a> (miễn phí) để được hỗ trợ 24/7
         </p>
       </div>
-
     </div>
   </div>
 </div>

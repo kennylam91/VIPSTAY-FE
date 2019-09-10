@@ -24,10 +24,10 @@ export class RateService {
   }
 
   checkRates(rates: IRate[]): number {
-    let total: number;
+    let total = 0;
     for (const rate of rates) {
-      total += rate.rate;
+      total += rate.ratePoint;
     }
-    return total / rates.length;
+    return Math.round((total / rates.length) * 1000) / 1000;
   }
 }

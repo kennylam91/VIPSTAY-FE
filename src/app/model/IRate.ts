@@ -4,6 +4,6 @@ import {IHouse} from './IHouse';
 export interface IRate {
   id: number;
   user: IUser;
-  rate: number;
+  ratePoint: number;
   house: IHouse;
 }
