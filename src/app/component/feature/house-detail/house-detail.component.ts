@@ -63,6 +63,7 @@ export class HouseDetailComponent implements OnInit {
       price: 0,
       description: '',
       imageUrls: [],
+      orderHouses: [],
       rate: 0,
       area: 0,
     }
@@ -80,6 +81,7 @@ export class HouseDetailComponent implements OnInit {
       price: 0,
       description: '',
       imageUrls: [],
+      orderHouses: [],
       rate: 0,
       area: 0,
     }
@@ -182,9 +184,48 @@ export class HouseDetailComponent implements OnInit {
     }
   }
 
+  createComment() {
+    this.comment.house = this.house;
+    this.commentService.createComment(this.comment).subscribe(next => {
+      console.log(this.comment);
+      alert(next.message);
+      this.comment = {
+        comment: '',
+        house: {
+          id: 0,
+          houseName: '',
+          category: '',
+          address: '',
+          bedroomNumber: 0,
+          bathroomNumber: 0,
+          price: 0,
+          description: '',
+          imageUrls: [],
+          orderHouses: [],
+          rate: 0,
+          area: 0,
+        }
+      };
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  createRate(i: number) {
+    console.log(i);
+    this.rate.house = this.house;
+    this.rate.ratePoint = i;
+    this.rateService.createRate(this.rate).subscribe(next => {
+        console.log(this.rate);
+        alert(next.message);
+      }
+    );
+  }
+
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
     return true;
   };
+
 }
