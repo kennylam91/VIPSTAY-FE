@@ -8,7 +8,21 @@ import {CommentService} from '../../../services/comment.service';
 import {IComment} from '../../../model/IComment';
 import {RateService} from '../../../services/rate.service';
 import {IRate} from '../../../model/IRate';
+import {AuthenticationService} from '../../../services/authentication.service';
 
+function convertStringToArray(str: string): string[] {
+  let arr: string[] = [];
+  let temp1 = str.replace('[', '');
+  let temp2 = temp1.replace(']', '');
+  let temp3 = temp2.replace('"', '');
+  let temp4 = temp3.replace('"', '');
+  let temp5 = temp4.replace('"', '');
+  let temp6 = temp5.replace('"', '');
+  let temp7 = temp6.replace(' ', '');
+  arr = temp7.split(',');
+  console.log(arr);
+  return arr;
+}
 
 @Component({
   selector: 'app-house-detail',
@@ -70,11 +84,27 @@ export class HouseDetailComponent implements OnInit {
     }
   };
 
+  licenses: boolean;
+
   rateChecked: number;
+
+  isGuest: boolean;
+
+  rateGuest = 0;
+
+  checkGuest(roles: string[]): boolean {
+    for (const role of roles) {
+      if (role === 'ROLE_GUEST') {
+        return true;
+      }
+    }
+    return false;
+  }
 
   constructor(private houseService: HouseService,
               private commentService: CommentService,
               private rateService: RateService,
+              private authenService: AuthenticationService,
               private route: ActivatedRoute,
               private router: Router) {
     this.formOrder = new FormGroup({
@@ -117,6 +147,16 @@ export class HouseDetailComponent implements OnInit {
           console.log(error);
           this.comments = null;
         });
+
+      if (this.authenService.isLoggedIn()) {
+        const roles = convertStringToArray(localStorage.getItem('roles'));
+        this.isGuest = this.checkGuest(roles);
+      }
+      if (this.isGuest) {
+        this.rateService.getRateByUserIdAndHouseId(id).subscribe(next => {
+          this.rateGuest = next.data.ratePoint;
+        });
+      }
     });
   }
 

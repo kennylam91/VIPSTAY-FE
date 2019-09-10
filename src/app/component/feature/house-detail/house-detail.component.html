@@ -65,23 +65,36 @@
         {{rateChecked}}
         <span class="fa fa-star checked"></span>
       </div>
-      <div style="margin-top: 20px; margin-bottom: 20px">
-        <h5>Đánh giá của bạn về dịch vụ này: </h5>
-        <fieldset class="rating">
-          <input type="radio" id="star5" name="rating" value="5"/><label class="full" for="star5"
-                                                                         (click)="createRate(5)"></label>
-          <input type="radio" id="star4" name="rating" value="4"/><label class="full" for="star4"
-                                                                         (click)="createRate(4)"></label>
-          <input type="radio" id="star3" name="rating" value="3"/><label class="full" for="star3"
-                                                                         (click)="createRate(3)"></label>
-          <input type="radio" id="star2" name="rating" value="2"/><label class="full" for="star2"
-                                                                         (click)="createRate(2)"></label>
-          <input type="radio" id="star1" name="rating" value="1"/><label class="full" for="star1"
-                                                                         (click)="createRate(1)"></label>
-        </fieldset>
+      <div style="margin-top: 20px; margin-bottom: 20px" *ngIf="isGuest">
+        <div *ngIf="rateGuest === 0">
+          <h5>Đánh giá của bạn về dịch vụ này: </h5>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" value="5"/><label class="full" for="star5"
+                                                                           (click)="createRate(5)"></label>
+            <input type="radio" id="star4" name="rating" value="4"/><label class="full" for="star4"
+                                                                           (click)="createRate(4)"></label>
+            <input type="radio" id="star3" name="rating" value="3"/><label class="full" for="star3"
+                                                                           (click)="createRate(3)"></label>
+            <input type="radio" id="star2" name="rating" value="2"/><label class="full" for="star2"
+                                                                           (click)="createRate(2)"></label>
+            <input type="radio" id="star1" name="rating" value="1"/><label class="full" for="star1"
+                                                                           (click)="createRate(1)"></label>
+          </fieldset>
+        </div>
+
+        <div *ngIf="rateGuest !== 0">
+          <h5>Đánh giá của bạn về dịch vụ này: </h5>
+          <div>
+            <span class="fa fa-star" [class.checked]="rateGuest-0>0"></span>
+            <span class="fa fa-star" [class.checked]="rateGuest-1>0"></span>
+            <span class="fa fa-star" [class.checked]="rateGuest-2>0"></span>
+            <span class="fa fa-star" [class.checked]="rateGuest-3>0"></span>
+            <span class="fa fa-star" [class.checked]="rateGuest-4>0"></span>
+          </div>
+        </div>
       </div>
 
-      <div style="margin-top: 60px; margin-bottom: 20px">
+      <div style="margin-top: 60px; margin-bottom: 20px" *ngIf="isGuest">
         <h5>Phản hồi về dịch vụ: </h5>
         <div>
           <div>

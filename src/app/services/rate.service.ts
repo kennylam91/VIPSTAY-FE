@@ -23,6 +23,10 @@ export class RateService {
     return this.http.post<any>(this.API_URL_POST, rate);
   }
 
+  getRateByUserIdAndHouseId(houseId: number): Observable<any> {
+    return this.http.get<any>(`${this.API_URL_POST}/${houseId}`);
+  }
+
   checkRates(rates: IRate[]): number {
     let total = 0;
     for (const rate of rates) {
