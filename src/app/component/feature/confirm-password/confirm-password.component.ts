@@ -47,34 +47,29 @@ export class ConfirmPasswordComponent implements OnInit {
 
   updatePassword() {
     this.user.password = this.oldPasword;
-    console.log(this.oldPasword);
-    console.log(this.user.password);
     this.userProfileService.confirmPaswordUser(this.oldPasword + '').subscribe(next => {
       this.status = next.message;
-      console.log('da vao');
-    });
-    if (this.status === 'confirm Succssess') {
-      console.log('da vao 2');
-      this.status = '';
-      this.user.password = this.newPassword;
-      alert('xác nhận thành công');
-      this.userProfileService.updateUser(this.user).subscribe(data => {
-        alert('Ban da update thanh cong');
-        this.username = data.username;
-        localStorage.setItem('currentUser', data.username);
-        // Tạo form đem vào service login để lấy token mới
-        this.loginForm = this.formBuilder.group({
-          username: [data.username, Validators.required],
-          password: [this.oldPasword, Validators.required]
-        });
-        // Lấy lại token mới
-        this.authenService.authenticate(this.loginForm.value).subscribe(
-          next => {
-            localStorage.setItem('token', next.data.token);
+      if (this.status === 'confirm Succssess') {
+        this.status = '';
+        this.user.password = this.newPassword;
+        this.userProfileService.updateUser(this.user).subscribe(data => {
+          alert('Ban da update thanh cong');
+          this.username = data.username;
+          localStorage.setItem('currentUser', data.username);
+          // Tạo form đem vào service login để lấy token mới
+          this.loginForm = this.formBuilder.group({
+            username: [data.username, Validators.required],
+            password: [this.oldPasword, Validators.required]
           });
-      });
-    } else {
-      alert('Bạn nhập mật khẩu hiện tại không chính xác');
-    }
+          // Lấy lại token mới
+          this.authenService.authenticate(this.loginForm.value).subscribe(
+            next => {
+              localStorage.setItem('token', next.data.token);
+            });
+        });
+        return;
+      }
+    });
+    // alert('Bạn nhập mật khẩu hiện tại không chính xác');
   }
 }
