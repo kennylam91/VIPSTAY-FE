@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../../../services/order.service';
 import {OrderHouse} from '../../../model/OrderHouse';
 import {IHouse} from '../../../model/IHouse';
+import {ActivatedRoute, Router} from '@angular/router';
+import {IUser} from '../../../model/IUser';
+
 
 
 @Component({
@@ -11,23 +14,22 @@ import {IHouse} from '../../../model/IHouse';
 })
 export class BookingOfUserComponent implements OnInit {
   username: string;
-  ArrayOrder: Array<any> = [];
+  userOrder: OrderHouse[];
+  status: Array<any> = [];
 
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.orderService.getlistHouseOfHost().subscribe(data => {
-      for (let i = 0; i < data.data.length; i++) {
-        this.orderService.getHouseOrderByUser(data.data[i].id).subscribe(next => {
-          if (next.data.length !== 0) {
-            this.ArrayOrder.push(next.data);
-          }
-        });
-      }
-    });
+    const id = +this.route.snapshot.paramMap.get('id');
     this.username = localStorage.getItem('currentUser');
+    this.orderService.getHouseOrderByUser(id).subscribe(data => {
+      this.userOrder = data.data;
+      this.status = data.data;
+      console.log(this.status);
+      console.log(this.userOrder[10].house.houseName);
+    });
   }
-
 }

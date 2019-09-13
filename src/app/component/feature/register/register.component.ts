@@ -29,21 +29,20 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      email: [''],
+      email: ['', [Validators.required, Validators.email]],
       pwGroup: this.fb.group({
-        password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['']
       }, {validator: comparePassword}),
-      address: [''],
-      age: [''],
-      type: [''],
-      phone: [''],
-      role: [''],
-      name: [''],
-      idNumber: [''],
-      avatar: [''],
-      username: ['', [Validators.required, Validators.minLength(3),
-        Validators.maxLength(50), Validators.pattern(/^[_A-z0-9]*[_A-z0-9]*$/)]],
+      address: ['', Validators.required],
+      age: ['', [Validators.required, Validators.min(18)]],
+      type: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^\+84\d{9,10}$/)]],
+      role: ['', Validators.required],
+      name: ['', Validators.required],
+      idNumber: ['', Validators.required],
+      avatar: ['', Validators.required],
+      username: ['', Validators.required],
     });
 
     this.user = {
@@ -55,8 +54,10 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-
   onSubmit() {
+    // if (this.registerForm.invalid) {
+    //   return;
+    // }
     console.log(this.user);
     if (this.registerForm.valid) {
       this.userService.registerGuest(this.user)

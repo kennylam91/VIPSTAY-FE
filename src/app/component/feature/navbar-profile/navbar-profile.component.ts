@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-navbar-profile',
@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar-profile.component.css']
 })
 export class NavbarProfileComponent implements OnInit {
+  username: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+    this.username = localStorage.getItem('currentUser');
   }
+
   logout() {
     localStorage.clear();
   }

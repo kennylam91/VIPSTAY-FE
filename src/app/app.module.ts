@@ -42,10 +42,12 @@ import {PageForbiddenComponent} from './component/shared/page-forbidden/page-for
 import {AuthenticationService} from './services/authentication.service';
 import {ErrorInterceptorService} from './services/error-interceptor.service';
 
+import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
+import { ConfirmPasswordComponent } from './component/feature/confirm-password/confirm-password.component';
+import { ListHouseOfHostComponent } from './component/feature/list-house-of-host/list-house-of-host.component';
 
 // set locale VN
 registerLocaleData(localeVN);
-
 
 @NgModule({
   declarations: [
@@ -73,6 +75,9 @@ registerLocaleData(localeVN);
     EditStatusHouseComponent,
     PageNotFoundComponent,
     PageForbiddenComponent],
+    SlideShowComponent,
+    ConfirmPasswordComponent,
+    ListHouseOfHostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -81,6 +86,7 @@ registerLocaleData(localeVN);
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    DatePickerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     BrowserAnimationsModule,

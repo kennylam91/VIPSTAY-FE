@@ -9,7 +9,6 @@ import {HomeForHostComponent} from './component/core/home-for-host/home-for-host
 import {CreateHouseComponent} from './component/feature/create-house/create-house.component';
 import {ProfileUserComponent} from './component/feature/profile-user/profile-user.component';
 import {BookingOfUserComponent} from './component/feature/booking-of-user/booking-of-user.component';
-// import {EditPasswordComponent} from './component/feature/edit-password/edit-password.component';
 import {HomeForGuestComponent} from './component/core/home-for-guest/home-for-guest.component';
 import {ListHouseHostComponent} from './component/feature/list-house-host/list-house-host.component';
 import {EditHouseComponent} from './component/feature/edit-house/edit-house.component';
@@ -19,6 +18,8 @@ import {PageNotFoundComponent} from './component/shared/page-not-found/page-not-
 import {Role} from './model/Role';
 import {PageForbiddenComponent} from './component/shared/page-forbidden/page-forbidden.component';
 // import {UploadFileComponent} from './component/upload-file/upload-file.component';
+import {ConfirmPasswordComponent} from './component/feature/confirm-password/confirm-password.component';
+import {ListHouseOfHostComponent} from './component/feature/list-house-of-host/list-house-of-host.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,14 @@ const routes: Routes = [
   {path: 'edit-statusHouse/:houseId', component: EditStatusHouseComponent, canActivate: [AuthGuard], data: {roles: [Role.HOST]}},
   // dòng này phải đặt sau tất cả những link ko cần login và trước những link cần đăng nhập
   {path: '**', component: PageNotFoundComponent},
+  {path: 'home-for-host', component: HomeForHostComponent},
+  {path: 'me/orders', component: HomeForGuestComponent},
+  {path: 'create-house', component: CreateHouseComponent},
+  {path: 'profileUser', component: ProfileUserComponent},
+  {path: 'bookingOfUser/:id', component: BookingOfUserComponent},
+  {path: 'confirmPassword', component: ConfirmPasswordComponent},
+  {path: 'listHouseOfHost', component: ListHouseOfHostComponent},
+  {path: '**', redirectTo: '/houses', pathMatch: 'full'}
 ];
 
 @NgModule({
