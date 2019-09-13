@@ -17,7 +17,11 @@
       <tbody>
       <tr *ngFor="let house of houses,index as i">
         <td class="text-center">{{i+1}}</td>
-        <td>{{house.houseName}}</td>
+        <td>
+          <a routerLink="/edit-house/{{house.id}}">
+            {{house.houseName}}
+          </a>
+        </td>
       </tr>
       </tbody>
     </table>

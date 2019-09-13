@@ -84,13 +84,13 @@ export class HouseDetailComponent implements OnInit {
     }
   };
 
-  licenses: boolean;
-
   rateChecked: number;
 
   isGuest: boolean;
 
   rateGuest = 0;
+
+  id: number;
 
   checkGuest(roles: string[]): boolean {
     for (const role of roles) {
@@ -119,8 +119,8 @@ export class HouseDetailComponent implements OnInit {
     //   this.time = new Date();
     // }, 1000);
     this.route.paramMap.subscribe(paramMap => {
-      const id = +paramMap.get('id');
-      this.houseService.getHouseById(id)
+      this.id = +paramMap.get('id');
+      this.houseService.getHouseById(this.id)
         .subscribe(
           next => {
             this.house = next.data;
@@ -130,7 +130,7 @@ export class HouseDetailComponent implements OnInit {
             console.log(error);
             this.house = null;
           });
-      this.rateService.getRatesByHouseId(id).subscribe(data => {
+      this.rateService.getRatesByHouseId(this.id).subscribe(data => {
           this.rates = data.data;
           console.log(this.rates);
           this.rateChecked = this.rateService.checkRates(this.rates);
@@ -139,7 +139,7 @@ export class HouseDetailComponent implements OnInit {
         error1 => {
           console.log(error1);
         });
-      this.commentService.getCommentsByHouseId(id).subscribe(next => {
+      this.commentService.getCommentsByHouseId(this.id).subscribe(next => {
           this.comments = next.data;
           console.log(next.data);
         },
@@ -153,7 +153,7 @@ export class HouseDetailComponent implements OnInit {
         this.isGuest = this.checkGuest(roles);
       }
       if (this.isGuest) {
-        this.rateService.getRateByUserIdAndHouseId(id).subscribe(next => {
+        this.rateService.getRateByUserIdAndHouseId(this.id).subscribe(next => {
           this.rateGuest = next.data.ratePoint;
         });
       }
@@ -235,6 +235,15 @@ export class HouseDetailComponent implements OnInit {
     this.rateService.createRate(this.rate).subscribe(next => {
         console.log(this.rate);
         alert(next.message);
+        this.rateService.getRatesByHouseId(this.id).subscribe(data => {
+            this.rates = data.data;
+            console.log(this.rates);
+            this.rateChecked = this.rateService.checkRates(this.rates);
+            console.log(this.rateChecked);
+          },
+          error1 => {
+            console.log(error1);
+          });
       }
     );
   }

@@ -32,6 +32,6 @@ export class RateService {
     for (const rate of rates) {
       total += rate.ratePoint;
     }
-    return Math.round((total / rates.length) * 1000) / 1000;
+    return Math.round((total / rates.length) * 100) / 100;
   }
 }

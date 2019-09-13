@@ -10,13 +10,17 @@
         <p class="card-text m-md-1">{{house.price}} $/đêm</p>
         <p class="card-text m-md-1"><span class="fa fa-map-marker"></span> {{house.address}}</p>
         <p class="card-text m-md-1">
-          <span class="fa fa-star " [class.checked]="house.rate"></span>
+          <span class="fa fa-star" [class.checked]="house.rate"></span>
           <span class="fa fa-star" [class.checked]="(house.rate-1)>0"></span>
           <span class="fa fa-star" [class.checked]="(house.rate-2)>0"></span>
           <span class="fa fa-star" [class.checked]="(house.rate-3)>0"></span>
           <span class="fa fa-star" [class.checked]="(house.rate-4)>0"></span>
         </p>
         <p class="card-text m-md-1">{{house.bathroomNumber}} phòng tắm + {{house.bedroomNumber}} phòng ngủ</p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-secondary"><a routerLink="/edit-house/{{house.id}}"></a></button>
+         <button type="button" class="btn btn-secondary"><a routerLink="/edit-statusHouse/{{house.id}}"></a></button>
+        </div>
       </div>
     </div>
   </div>

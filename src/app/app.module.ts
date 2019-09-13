@@ -32,7 +32,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 import {EditHouseComponent} from './component/feature/edit-house/edit-house.component';
 import {EditStatusHouseComponent} from './component/feature/edit-status-house/edit-status-house.component';
-import {SlideShowComponent} from './component/feature/slide-show/slide-show.component';
 import {ListHouseHostComponent} from './component/feature/list-house-host/list-house-host.component';
 // set locale VN
 import {registerLocaleData} from '@angular/common';
@@ -45,6 +44,7 @@ import {ErrorInterceptorService} from './services/error-interceptor.service';
 import { SlideShowComponent } from './component/feature/slide-show/slide-show.component';
 import { ConfirmPasswordComponent } from './component/feature/confirm-password/confirm-password.component';
 import { ListHouseOfHostComponent } from './component/feature/list-house-of-host/list-house-of-host.component';
+import {DatePickerModule} from '@syncfusion/ej2-angular-calendars';
 
 // set locale VN
 registerLocaleData(localeVN);
@@ -74,7 +74,7 @@ registerLocaleData(localeVN);
     EditHouseComponent,
     EditStatusHouseComponent,
     PageNotFoundComponent,
-    PageForbiddenComponent],
+    PageForbiddenComponent,
     SlideShowComponent,
     ConfirmPasswordComponent,
     ListHouseOfHostComponent],

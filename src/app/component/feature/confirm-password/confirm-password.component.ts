@@ -63,12 +63,13 @@ export class ConfirmPasswordComponent implements OnInit {
           });
           // Lấy lại token mới
           this.authenService.authenticate(this.loginForm.value).subscribe(
-            next => {
-              localStorage.setItem('token', next.data.token);
+            next1 => {
+              localStorage.setItem('token', next1.data.token);
             });
         });
         return;
       }
+      this.router.navigate(['/home-for-host']);
     });
     // alert('Bạn nhập mật khẩu hiện tại không chính xác');
   }

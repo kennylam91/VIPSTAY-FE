@@ -60,10 +60,15 @@
 
       <div
         style="margin-bottom: 10px; margin-top: 30px; border-radius: 15px; text-align: center; border: black solid 2px"
-        *ngIf="rateChecked !== null">
+        *ngIf="rateChecked !== 0">
         <h5>Đánh giá: </h5>
-        {{rateChecked}}
+        {{rateChecked}}/5
         <span class="fa fa-star checked"></span>
+      </div>
+      <div
+        style="margin-bottom: 10px; margin-top: 30px; border-radius: 15px; text-align: center; border: black solid 2px"
+        *ngIf="rateChecked === 0">
+        <h5>Hãy là người đầu tiên đánh giá dịch vụ này</h5>
       </div>
       <div style="margin-top: 20px; margin-bottom: 20px" *ngIf="isGuest">
         <div *ngIf="rateGuest === 0">
