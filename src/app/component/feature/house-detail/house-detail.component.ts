@@ -220,9 +220,10 @@ export class HouseDetailComponent implements OnInit {
   }
 
   myFilter = (d: Date): boolean => {
-    const day = d.getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return true;
+    const day = d.getTime();
+    const now = new Date().getTime();
+    // Prevent select days was over .
+    return day > now;
   };
 
 }

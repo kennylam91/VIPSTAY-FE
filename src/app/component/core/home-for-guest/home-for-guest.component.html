@@ -21,7 +21,8 @@
         <th>Số người</th>
         <th>Tổng tiền</th>
         <th>Thời gian đặt</th>
-        <th>Tình trạng đơn hàng</th>
+        <th>Tình trạng</th>
+        <th>Huỷ</th>
       </tr>
       </thead>
       <tbody>
@@ -35,8 +36,9 @@
         <td class="text-center">{{order.numberGuest}}</td>
         <td class="text-center">{{order.cost}}</td>
         <td>{{order.orderTime | date:"EEEE, HH:mm, 'ngày' dd/MM/yyyy"}}</td>
+        <td class="text-center">{{order.statusOrder}}</td>
         <td class="text-center">
-          <button class="btn btn-outline-danger" [disabled]="(order.checkin.getTime()-now.getTime())/day<1"
+          <button class="btn btn-outline-danger" *ngIf="order.statusOrder!=='CANCELED'" [disabled]="(order.checkin.getTime()-now.getTime())/day<1"
                   (click)="cancelOrder(order.id)">Hủy
           </button>
         </td>

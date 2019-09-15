@@ -10,4 +10,5 @@ export class OrderHouse {
   orderTime: Date;
   house: IHouse;
   tenant: IUser;
+  statusOrder: string;
 }

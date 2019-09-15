@@ -132,6 +132,12 @@
                 <mat-datepicker-toggle matSuffix [for]="checkin"></mat-datepicker-toggle>
                 <mat-datepicker #checkin></mat-datepicker>
               </mat-form-field>
+              <div class="text-danger small"
+                   *ngIf="formOrder.get('checkin').invalid && (formOrder.get('checkin').dirty || formOrder.get('checkin').touched)">
+                <div *ngIf="formOrder.get('checkin').errors.required">
+                  Không để trống dòng này!
+                </div>
+              </div>
             </div>
           </div>
           <div class="alert alert-danger" role="alert"
@@ -147,13 +153,13 @@
                 <mat-datepicker-toggle matSuffix [for]="checkout"></mat-datepicker-toggle>
                 <mat-datepicker #checkout></mat-datepicker>
               </mat-form-field>
-              <!--              <input type="date" class="form-control datetimepicker-input" id="checkout"-->
-              <!--                     formControlName="checkout" [(ngModel)]="orderHouse.checkout">-->
+              <div class="text-danger small"
+                   *ngIf="formOrder.get('checkout').invalid && (formOrder.get('checkout').dirty || formOrder.get('checkout').touched)">
+                <div *ngIf="formOrder.get('checkout').errors.required">
+                  Không để trống dòng này!
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="alert alert-danger" role="alert"
-               *ngIf="formOrder.get('checkout').invalid && formOrder.get('checkout').touched">
-            Không để trống trường này!
           </div>
           <div class="input-group mb-3">
             <div class="col-md-3"><label>Số người: </label></div>
@@ -162,15 +168,16 @@
                 <input matInput placeholder="Type a number" id="numberGuest"
                        formControlName="numberGuest" [(ngModel)]="orderHouse.numberGuest">
               </mat-form-field>
+              <div class="text-danger small"
+                   *ngIf="formOrder.get('numberGuest').invalid && (formOrder.get('numberGuest').dirty || formOrder.get('numberGuest').touched)">
+                <div *ngIf="formOrder.get('numberGuest').errors.required">
+                  Không để trống dòng này!
+                </div>
+                <div *ngIf="formOrder.get('numberGuest').errors.min">
+                  Số người phải lớn hơn 0
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="alert alert-danger" role="alert"
-               *ngIf="formOrder.get('numberGuest')?.errors?.required && formOrder.get('numberGuest').touched">
-            Không để trống trường này!
-          </div>
-          <div class="alert alert-danger" role="alert"
-               *ngIf="formOrder.get('numberGuest')?.errors?.min && formOrder.get('numberGuest').touched">
-            Trường này phải lớn hơn 0
           </div>
           <div class="input-group mb-3 input-group-lg justify-content-center">
             <input (click)="sendOrder()" style="background: coral;color: white; text-decoration: none" type="submit" class="form-control text-center"
