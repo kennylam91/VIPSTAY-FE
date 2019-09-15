@@ -21,6 +21,7 @@ function comparePassword(c: AbstractControl) {
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   user: Partial<IUser>;
+  avatarDefault = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRTUteh9yefJkzgW2Pa1jEMEs8YKY5cfat09zZZdeyX-V-Vhpe';
   success: boolean;
   message: string;
 
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      email: [''],
+      email: ['', [Validators.required, Validators.email]],
       pwGroup: this.fb.group({
         password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
         confirmPassword: ['']
@@ -52,7 +53,8 @@ export class RegisterComponent implements OnInit {
       username: '',
       password: '',
       name: 'user',
-      email: 'dat' + Math.random() * 1000 + '@gmai.com',
+      email: '',
+      avatar: this.avatarDefault
     };
   }
 
@@ -75,4 +77,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  getImageUrl(imageUrls: string[]) {
+    this.user.avatar = imageUrls[0];
+  }
 }

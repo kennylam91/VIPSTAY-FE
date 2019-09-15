@@ -21,6 +21,10 @@ export class ProfileUserComponent implements OnInit {
 
   constructor(private  userProfileService: UserProfileService, private  route: ActivatedRoute, private router: Router,
               private formBuilder: FormBuilder, private authenService: AuthenticationService) {
+    this.user = {
+      username: '',
+      email: ''
+    };
   }
 
   ngOnInit() {

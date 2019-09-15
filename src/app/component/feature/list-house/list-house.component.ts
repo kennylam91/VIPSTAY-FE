@@ -14,7 +14,6 @@ export class ListHouseComponent implements OnInit {
   bestSaleoffHouses = this.bestChoiceHouses;
   suggestionHouses = this.bestChoiceHouses;
 
-
   constructor(private houseService: HouseService,
               private authenticationService: AuthenticationService) {
 

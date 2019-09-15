@@ -19,6 +19,16 @@ function convertStringToArray(str: string): string[] {
   return arr;
 }
 
+export const API_BASE_URL = 'http://localhost:8080';
+export const ACCESS_TOKEN = 'accessToken';
+
+export const OAUTH2_REDIRECT_URI = 'http://localhost:4200/oauth2/redirect';
+
+export const GOOGLE_AUTH_URL = API_BASE_URL + '/oauth2/authorize/google?redirect_uri=' + OAUTH2_REDIRECT_URI;
+export const FACEBOOK_AUTH_URL = API_BASE_URL + '/oauth2/authorize/facebook?redirect_uri=' + OAUTH2_REDIRECT_URI;
+export const GITHUB_AUTH_URL = API_BASE_URL + '/oauth2/authorize/github?redirect_uri=' + OAUTH2_REDIRECT_URI;
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -47,24 +57,29 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.authenService.authenticate(this.loginForm.value).subscribe(
       next => {
-        console.log(next.data.roles[0].authority);
-        const roles: string[] = [];
-        for (const role of next.data.roles) {
-          roles.push(role.authority);
-        }
-        localStorage.setItem('token', next.data.token);
-        localStorage.setItem('currentUser', next.data.username);
-        localStorage.setItem('roles', JSON.stringify(roles));
-        const params = this.route.snapshot.queryParams;
-        if (params.redirectURL) {
-          this.redirectURL = params.redirectURL;
-        }
-        if (this.redirectURL) {
-          this.router.navigateByUrl(this.redirectURL)
-            .catch(() => this.router.navigate(['houses']));
+        if (next.success) {
+          console.log(next.data.roles[0].authority);
+          const roles: string[] = [];
+          for (const role of next.data.roles) {
+            roles.push(role.authority);
+          }
+          localStorage.setItem('token', next.data.token);
+          localStorage.setItem('currentUser', next.data.username);
+          localStorage.setItem('roles', JSON.stringify(roles));
+          const params = this.route.snapshot.queryParams;
+          if (params.redirectURL) {
+            this.redirectURL = params.redirectURL;
+          }
+          if (this.redirectURL) {
+            this.router.navigateByUrl(this.redirectURL)
+              .catch(() => this.router.navigate(['houses']));
+          } else {
+            this.router.navigate(['houses']);
+          }
         } else {
-          this.router.navigate(['houses']);
+          alert(next.message);
         }
+
       },
       error1 => {
         this.router.navigateByUrl('/login');

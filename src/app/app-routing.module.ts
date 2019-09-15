@@ -54,19 +54,27 @@ const routes: Routes = [
   {path: 'edit-house/:id', component: EditHouseComponent, canActivate: [AuthGuard], data: {roles: [Role.HOST]}},
   {path: 'edit-statusHouse/:houseId', component: EditStatusHouseComponent, canActivate: [AuthGuard], data: {roles: [Role.HOST]}},
   // dòng này phải đặt sau tất cả những link ko cần login và trước những link cần đăng nhập
-  {path: '**', component: PageNotFoundComponent},
+  // {path: '**', component: PageNotFoundComponent},
   {path: 'home-for-host', component: HomeForHostComponent},
   {path: 'me/orders', component: HomeForGuestComponent},
   {path: 'create-house', component: CreateHouseComponent},
   {path: 'profileUser', component: ProfileUserComponent},
   {path: 'bookingOfUser/:id', component: BookingOfUserComponent},
-  {path: 'confirmPassword', component: ConfirmPasswordComponent},
+  {
+    path: 'confirmPassword',
+    component: ConfirmPasswordComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.HOST, Role.GUEST, Role.PM, Role.ADMIN]}
+  },
   {path: 'listHouseOfHost', component: ListHouseOfHostComponent},
-  {path: '**', redirectTo: '/houses', pathMatch: 'full'}
+  // {path: '**', redirectTo: '/houses', pathMatch: 'full'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    {
+      scrollPositionRestoration: 'enabled', // Add options right here
+    })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

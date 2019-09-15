@@ -25,7 +25,7 @@ export class EditHouseComponent implements OnInit {
               private router: Router) {
     this.houseForm = new FormGroup({
       houseName: new FormControl('', [Validators.required]),
-      houseType: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
       bedroomNumber: new FormControl(''),
       bathroomNumber: new FormControl(''),
@@ -56,6 +56,8 @@ export class EditHouseComponent implements OnInit {
       const id = +paramMap.get('id');
       this.houseService.getHouseById(id).subscribe(next => {
         this.house = next.data;
+        // @ts-ignore
+        this.house.category = this.house.category.name;
         console.log(next.data);
         this.statusHouseService.getStatusHouseByHouseId(this.house.id).subscribe(data => {
           if (data.data != null) {
@@ -77,6 +79,7 @@ export class EditHouseComponent implements OnInit {
     console.log(this.house);
     this.hostService.updateHouse(this.house).subscribe(next => {
       console.log(next);
+      alert(next.message);
     }, error => console.log(error));
   }
 
@@ -88,5 +91,9 @@ export class EditHouseComponent implements OnInit {
 
   redirect() {
     this.router.navigate(['/home-for-host/houses']);
+  }
+
+  getImageUrls(imageUrls: string[]) {
+    this.house.imageUrls = imageUrls;
   }
 }

@@ -17,11 +17,14 @@ import {HostService} from '../../../services/host.service';
 })
 export class UploadFileComponent implements OnInit {
   files: File[];
+  imageUrls: string[] = [];
   ref: AngularFireStorageReference;
   percent = 0;
   index = 0;
   btn = 'Upload';
   totalFile = 0;
+  @Output()
+  press = new EventEmitter<string[]>();
 
   constructor(private httpClient: HttpClient,
               private afStorage: AngularFireStorage,
@@ -29,6 +32,7 @@ export class UploadFileComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.btn);
   }
 
   onFileChanged(event) {
@@ -40,9 +44,8 @@ export class UploadFileComponent implements OnInit {
 
   async onUpload() {
     try {
-      this.hostService.imageUrls = [];
       this.index = 1;
-      this.btn = 'Uploading';
+      document.getElementById('upload').innerHTML = 'Uploading';
       for (const file of this.files) {
         const id = Math.random().toString(36).substring(2); // Create a random string
         this.ref = this.afStorage.ref(id);
@@ -50,7 +53,7 @@ export class UploadFileComponent implements OnInit {
         const snapshot: UploadTaskSnapshot = await this.ref.put(file);
         const downloadUrl = await snapshot.ref.getDownloadURL();
 
-        this.hostService.imageUrls.push(downloadUrl);
+        this.imageUrls.push(downloadUrl);
         this.percent = Math.round(this.index / this.totalFile * 100);
         // prevent index++ when index=totalFile
         this.index = this.index === this.totalFile ? this.index : this.index + 1;
@@ -58,7 +61,8 @@ export class UploadFileComponent implements OnInit {
     } catch (error) {
       console.log(`Failed to upload file and get link - ${error}`);
     }
-    console.log(this.hostService.imageUrls);
-    this.btn = 'Upload';
+    console.log(this.imageUrls);
+    this.press.emit(this.imageUrls);
+    document.getElementById('upload').innerHTML = 'Upload';
   }
 }

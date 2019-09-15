@@ -6,23 +6,22 @@
     <div class="col-md-6">
       <ul class="navbar-nav justify-content-around">
         <li class="nav-item">
-          <a class="nav-link text-dark " href="#">Hotline: 1900 1080</a>
+          <a class="nav-link text-dark">Hotline: 1900 1080</a>
         </li>
         <li class="nav-item">
-          <div *ngIf="!username">
-            <a class="nav-link text-dark " routerLink="/login">Đăng nhập</a>
-          </div>
+          <a class="nav-link btn btn-outline-warning text-warning p-0 mt-2" [routerLink]="['/registerHost']"
+             *ngIf="!username">Trở thành chủ nhà</a>
         </li>
-        <li class="nav-item">
-          <a routerLink="/logout" class="nav-link text-dark " (click)="logout()">Đăng xuất</a>
+        <li class="nav-item" *ngIf="!username">
+          <a class="nav-link text-dark " [routerLink]="['/registerUser']">Đăng ký</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-dark " href="#"><i class="fa fa-bell"></i></a>
+          <div *ngIf="username == null">
+            <a class="nav-link text-dark " routerLink="/login">Đăng nhập</a>
+          </div>
+          <app-user-menu></app-user-menu>
         </li>
-        <div *ngIf="username">
-          <a class="nav-link text-dark" href="#">{{username}}</a>
-        </div>
       </ul>
     </div>
   </nav>
@@ -30,7 +29,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/home-for-host','create-house']">Bảng thông tin</a>
+          <a class="nav-link" [routerLink]="['/home-for-host','create-house']">Đăng nhà</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Lịch</a>

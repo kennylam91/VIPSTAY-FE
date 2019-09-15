@@ -3,19 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {Observable} from 'rxjs';
 import {AuthenticationService} from './authentication.service';
 
-function convertStringToArray(str: string): string[] {
-  let arr: string[] = [];
-  let temp1 = str.replace('[', '');
-  let temp2 = temp1.replace(']', '');
-  let temp3 = temp2.replace('"', '');
-  let temp4 = temp3.replace('"', '');
-  let temp5 = temp4.replace('"', '');
-  let temp6 = temp5.replace('"', '');
-  let temp7 = temp6.replace(' ', '');
-  arr = temp7.split(',');
-  console.log(arr);
-  return arr;
-}
+declare function convertStringToArray(str);
 
 @Injectable({
   providedIn: 'root'

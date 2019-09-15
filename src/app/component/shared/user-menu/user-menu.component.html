@@ -1,0 +1,17 @@
+<div *ngIf="username !== null" class="dropdown">
+  <img class="rounded-circle dropdown-toggle" width="50" height="50" data-toggle="dropdown"
+       style="cursor: pointer"
+       src="{{user?.avatar}}">
+  <span>    {{user?.username}}</span>
+  <div class="dropdown-menu">
+    <a class="nav-link text-dark dropdown-item " [routerLink]="['/profileUser']"><i class="fa fa-address-card"></i> Quản lý tài khoản</a>
+    <div *ngIf="roles.indexOf('ROLE_GUEST')!==-1">
+      <a class="nav-link text-dark dropdown-item" [routerLink]="['/me/orders']"><i class="fa fa-home"></i> Nhà đã thuê</a>
+    </div>
+    <div *ngIf="roles.indexOf('ROLE_HOST')!==-1">
+      <a class="nav-link text-dark dropdown-item" [routerLink]="['/home-for-host/houses']"><i class="fa fa-home"></i> Nhà của tôi</a>
+    </div>
+    <a routerLink="logout" class="nav-link text-dark dropdown-item" (click)="logout()"><i class="fa fa-backward"></i> Đăng xuất</a>
+
+  </div>
+</div>

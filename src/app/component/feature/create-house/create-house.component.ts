@@ -19,6 +19,7 @@ export class CreateHouseComponent implements OnInit {
   houseForm: FormGroup;
   house: Partial<IHouse>;
   defaultHouseImage = 'https://www.sanmonjizen.org/images/assets/home.gif';
+  imageUrls: string[] = [];
 
   constructor(private router: Router,
               private hostService: HostService) {
@@ -56,12 +57,12 @@ export class CreateHouseComponent implements OnInit {
       console.log(this.house);
       const imageHouses: ImageOfHouse[] = [];
       // set default image if not upload image
-      if (!this.hostService.imageUrls.length) {
-        this.hostService.imageUrls.push(this.defaultHouseImage);
+      if (!this.imageUrls.length) {
+        this.imageUrls.push(this.defaultHouseImage);
       }
-      for (let i = 0; i < this.hostService.imageUrls.length; i++) {
+      for (let i = 0; i < this.imageUrls.length; i++) {
         let imageHouse = new ImageOfHouse();
-        imageHouse.imageUrl = this.hostService.imageUrls[i];
+        imageHouse.imageUrl = this.imageUrls[i];
         imageHouse.house = this.house;
         imageHouses.push(imageHouse);
       }
@@ -77,5 +78,9 @@ export class CreateHouseComponent implements OnInit {
 
   redirect() {
     this.router.navigate(['/home-for-host']);
+  }
+
+  getImageUrls(imageUrls: string[]) {
+    this.imageUrls = imageUrls;
   }
 }

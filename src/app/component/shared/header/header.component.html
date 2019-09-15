@@ -9,7 +9,7 @@
     <div class="col-md-6">
       <ul class="navbar-nav justify-content-around">
         <li class="nav-item">
-          <a class="nav-link text-dark " routerLink="/logout" (click)="logout()">Hotline: 1900 1080</a>
+          <a class="nav-link text-dark">Hotline: 1900 1080</a>
         </li>
         <li class="nav-item">
           <a class="nav-link btn btn-outline-warning text-warning p-0 mt-2" [routerLink]="['/registerHost']"
@@ -23,22 +23,8 @@
           <div *ngIf="username == null">
             <a class="nav-link text-dark " routerLink="/login">Đăng nhập</a>
           </div>
-          <div *ngIf="username !== null" class="dropdown">
-            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
-              {{username}}
-            </button>
-            <div class="dropdown-menu">
-              <a class="nav-link text-dark dropdown-item " [routerLink]="['/profileUser']"><i class="fa fa-address-card"></i> Profile User</a>
-              <div *ngIf="username === 'host'">
-                <a class="nav-link text-dark dropdown-item" [routerLink]="['/me/orders']"><i class="fa fa-paragraph"></i> Danh sách All Order</a>
-              </div>
-              <a class="nav-link text-dark dropdown-item" [routerLink]="['/listHouseOfHost']"><i class="fa fa-paragraph"></i>Danh sách nhà của {{username}} </a>
-              <a href="/logout" class="nav-link text-dark dropdown-item" (click)="logout()"><i class="fa fa-backward"></i> Đăng xuất</a>
-              <div *ngIf="username === 'host'">
-                <a class="nav-link text-dark dropdown-item" [routerLink]="['/home-for-host']"><i class="fa fa-backward"></i>Quản lý nhà</a>
-              </div>
-            </div>
-          </div>
+          <app-user-menu></app-user-menu>
+        </li>
       </ul>
     </div>
   </nav>
