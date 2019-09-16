@@ -75,13 +75,13 @@ export class HouseDetailComponent implements OnInit {
     }
   };
 
-  licenses: boolean;
-
   rateChecked: number;
 
   isGuest: boolean;
 
   rateGuest = 0;
+  id: number;
+
   id: number;
 
   checkGuest(roles: string[]): boolean {
@@ -215,6 +215,15 @@ export class HouseDetailComponent implements OnInit {
     this.rateService.createRate(this.rate).subscribe(next => {
         console.log(this.rate);
         alert(next.message);
+        this.rateService.getRatesByHouseId(this.id).subscribe(data => {
+            this.rates = data.data;
+            console.log(this.rates);
+            this.rateChecked = this.rateService.checkRates(this.rates);
+            console.log(this.rateChecked);
+          },
+          error1 => {
+            console.log(error1);
+          });
       }
     );
   }

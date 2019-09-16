@@ -47,9 +47,11 @@ import { ConfirmPasswordComponent } from './component/feature/confirm-password/c
 import { ListHouseOfHostComponent } from './component/feature/list-house-of-host/list-house-of-host.component';
 import { BannerComponent } from './component/shared/banner/banner.component';
 import { UserMenuComponent } from './component/shared/user-menu/user-menu.component';
+import {DatePickerModule} from '@syncfusion/ej2-angular-calendars';
 
 // set locale VN
 registerLocaleData(localeVN);
+
 
 @NgModule({
   declarations: [
@@ -90,6 +92,7 @@ registerLocaleData(localeVN);
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    DatePickerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     BrowserAnimationsModule,

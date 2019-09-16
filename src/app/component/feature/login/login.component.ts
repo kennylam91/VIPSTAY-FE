@@ -79,7 +79,6 @@ export class LoginComponent implements OnInit {
         } else {
           alert(next.message);
         }
-
       },
       error1 => {
         this.router.navigateByUrl('/login');
