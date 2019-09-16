@@ -38,8 +38,8 @@
             <th class="text-center">#</th>
           </tr>
           <tr *ngFor="let statusHouse of statusHouses">
-            <td class="text-center"><p>{{statusHouse.startDate}}</p></td>
-            <td class="text-center"><p>{{statusHouse.endDate}}</p></td>
+            <td class="text-center"><p>{{statusHouse.startDate | date:'dd/MM/yyyy'}}</p></td>
+            <td class="text-center"><p>{{statusHouse.endDate| date:'dd/MM/yyyy'}}</p></td>
             <td class="text-center">
               <button type="button" class="btn btn-danger" (click)="delete(statusHouse.id)">Delete </button>
             </td>

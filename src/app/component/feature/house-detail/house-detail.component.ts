@@ -82,7 +82,6 @@ export class HouseDetailComponent implements OnInit {
   rateGuest = 0;
   id: number;
 
-  id: number;
 
   checkGuest(roles: string[]): boolean {
     for (const role of roles) {

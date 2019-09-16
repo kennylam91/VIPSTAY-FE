@@ -54,6 +54,7 @@ export class ProfileUserComponent implements OnInit {
               localStorage.setItem('token', next1.data.token);
             });
         });
+
         return;
       }
     });

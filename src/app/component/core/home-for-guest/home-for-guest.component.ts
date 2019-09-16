@@ -19,7 +19,7 @@ export class HomeForGuestComponent implements OnInit {
     this.orderService.getOrders().subscribe(
       next => {
         this.orders = next.data;
-        for (let order of this.orders) {
+        for (const order of this.orders) {
           order.checkin = new Date(order.checkin);
           order.checkout = new Date(order.checkout);
           this.now = new Date();
@@ -37,7 +37,21 @@ export class HomeForGuestComponent implements OnInit {
         console.log(next);
         if (next.success) {
           alert(next.message);
-          location.reload();
+          // update orders after cancel
+          this.orderService.getOrders().subscribe(
+            next1 => {
+              this.orders = next1.data;
+              for (const order of this.orders) {
+                order.checkin = new Date(order.checkin);
+                order.checkout = new Date(order.checkout);
+                this.now = new Date();
+                this.orderService.getHouseOfOrder(order.id).subscribe(
+                  next2 => order.house = next2.data
+                );
+              }
+            }
+          );
+          // location.reload();
         } else {
           alert(next.message);
         }

@@ -21,8 +21,6 @@ import {Role} from './model/Role';
 import {PageForbiddenComponent} from './component/shared/page-forbidden/page-forbidden.component';
 import {ConfirmOrderComponent} from './component/feature/confirm-order/confirm-order.component';
 // import {UploadFileComponent} from './component/upload-file/upload-file.component';
-import {ConfirmPasswordComponent} from './component/feature/confirm-password/confirm-password.component';
-import {ListHouseOfHostComponent} from './component/feature/list-house-of-host/list-house-of-host.component';
 
 
 const routes: Routes = [

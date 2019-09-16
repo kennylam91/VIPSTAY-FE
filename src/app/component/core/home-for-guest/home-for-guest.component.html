@@ -26,7 +26,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let order of orders,index as i">
+      <tr *ngFor="let order of orders,index as i" [class.text-secondary]="order.statusOrder==='CANCELED'">
         <td class="text-center">{{i + 1}}</td>
         <td>{{order.house.houseName}}</td>
         <td class="text-center">{{order.house.price}}$</td>
@@ -38,7 +38,7 @@
         <td>{{order.orderTime | date:"EEEE, HH:mm, 'ngày' dd/MM/yyyy"}}</td>
         <td class="text-center">{{order.statusOrder}}</td>
         <td class="text-center">
-          <button class="btn btn-outline-danger" *ngIf="order.statusOrder!=='CANCELED'" [disabled]="(order.checkin.getTime()-now.getTime())/day<1"
+          <button class="btn btn-outline-danger" *ngIf="order.statusOrder!=='CANCELED' && (order.checkin.getTime()-now.getTime())/day>1"
                   (click)="cancelOrder(order.id)">Hủy
           </button>
         </td>

@@ -60,7 +60,10 @@ export class EditStatusHouseComponent implements OnInit {
           }, error => console.log(error));
           this.statusHouse.startDate = null;
           this.statusHouse.endDate = null;
-          this.router.navigate(['/home-for-host']);
+          this.statusHouseService.getStatusHouseByHouseId(this.houseId).subscribe(next1 => {
+            this.statusHouses = next1.data;
+            console.log(this.statusHouses);
+          }, error => console.log(error));
         });
       }
     });
