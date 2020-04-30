@@ -26,7 +26,7 @@
     "firebase": "^6.4.0",
     "font-awesome": "^4.7.0",
     "glyphicons": "^0.2.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
